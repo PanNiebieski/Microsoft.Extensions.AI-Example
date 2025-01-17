@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Czarny ekran w OBS przy Display Capture</title>
+  <slug>czarny-ekran-w-obs-przy-display-capture</slug>
+  <pubDate>2021-05-07T07:19:16.706Z</pubDate>
+  <lastModified>2021-05-07T09:17:27.996Z</lastModified>
+  <excerpt></excerpt>
+  <privateNotes></privateNotes>
+  <blogId>1</blogId>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>triki-z-windows</category>
+  </categories>
+  <variables>
+    <variable>
+      <key>metroT</key>
+      <value>BlackScreen</value>
+    </variable>
+    <variable>
+      <key>metroI</key>
+      <value>661_czarny-ekran-w-obs-przy-display-capture</value>
+    </variable>
+    <variable>
+      <key>colorkey</key>
+      <value>BLACK</value>
+    </variable>
+  </variables>
+  <content>&lt;p&gt;[metro] Zainstalowałeś OBS. Chcesz udostępnić sw&amp;oacute;j monitor poprzez "Display Capture" i masz czarny ekran. O co chodzi? Jak to naprawić?&lt;/p&gt;
+&lt;p&gt;Do mnie też ten problem wr&amp;oacute;cił, gdy zainstalowałem system Windows 10 od nowa. Swoją drogą wszystkie pluginy z OBS zachowałem, ponieważ zrobiłem bezpośrednią kopię całego programu&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Z czego ten problem z czarny ekranem wynika. Dotycz on użytkownik&amp;oacute;w, kt&amp;oacute;rzy mają 2 karty graficzne, kt&amp;oacute;re są zintegrowane. Jedna z nich zajmuje się grami/programami druga twoim pulpitem w systemie Windows.&lt;/p&gt;
+&lt;p&gt;OBS, gdy chce rzutować ekran, to korzysta ze złej karty graficznej. Trzeba powiedzieć OBS, aby korzystał z kart graficznej odpowiedzialnej za pulpit/ekran twojego komputera.&lt;/p&gt;
+&lt;p&gt;Przejdźmy więc do rozwiązania [more]&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/____637559687567482479.png" alt="Problem z OBS czarny ekran" width="385" height="225" /&gt;&lt;/p&gt;
+&lt;p&gt;Na pulpicie kliknij&amp;nbsp; prawym przyciskiem myszki i wybierz ustawienia ekranu.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___1_637559687567600104.png" alt="Ustawienia ekranu na pulpicie" width="277" height="322" /&gt;&lt;/p&gt;
+&lt;p&gt;Potem z tego okna twoich monitor&amp;oacute;w znajdź na samym dole "Ustawienia grafiki".&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___2_637559687567625912.png" alt="Ustawienia grafiki w oknie ekran Windows 10" width="336" height="199" /&gt;&lt;/p&gt;
+&lt;p&gt;W tym oknie naciśnij przycisk przegląd.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___3_637559687567661128.PNG" alt="Ustawienia grafiki więcej opcji Windows 10" width="480" height="314" /&gt;&lt;/p&gt;
+&lt;p&gt;Znajdź sw&amp;oacute;j program OBS&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___6_637559687567706249.png" alt="Szukamy programu OBS" width="673" height="311" /&gt;&lt;/p&gt;
+&lt;p&gt;Teraz gdy masz na liście program OBS to wciśnij przycisk "Opcję".&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___5_637559710869604363.png" alt="OBS Studio wciśnij przycisk przegląd" width="483" height="263" /&gt;&lt;/p&gt;
+&lt;p&gt;W preferencjach dotyczącej grafiki wybierz opcję "oszczędzania energii" albo wybierz kartę graficzną, kt&amp;oacute;ra odpowiada za ekran/pulpit.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___4_637559687567731600.png" alt="Preferencje grafiki oszczędzanie energii" width="393" height="297" /&gt;&lt;/p&gt;
+&lt;p&gt;To wszystko. Jednak gdybyś chciał udostępniać tylko ekran swojej przeglądarki i wtedy masz czarny ekran to wtedy w tej chromo-podobnej przeglądarce musisz wyłączyć opcję "Use hardware acceleration when available"&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___7_637559687567758696.PNG" alt="Use hardware acceleration when available Google Chrome" width="475" height="136" /&gt;&lt;/p&gt;</content>
+</post>

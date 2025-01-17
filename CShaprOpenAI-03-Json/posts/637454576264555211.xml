@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Podsumowanie roku 2020 na blogu i nie tylko</title>
+  <slug>podsumowanie-roku-2020-na-blogu-i-nie-tylko</slug>
+  <pubDate>2021-01-05T15:40:50.767Z</pubDate>
+  <lastModified>2021-01-07T13:28:37.511Z</lastModified>
+  <excerpt></excerpt>
+  <privateNotes></privateNotes>
+  <blogId>1</blogId>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>blog</category>
+  </categories>
+  <variables>
+    <variable>
+      <key>metroT</key>
+      <value>2020</value>
+    </variable>
+    <variable>
+      <key>metroI</key>
+      <value>643_podsumowanie-roku-2020-na-blogu-i-nie-tylko</value>
+    </variable>
+    <variable>
+      <key>colorkey</key>
+      <value>B2</value>
+    </variable>
+  </variables>
+  <content>&lt;p&gt;[metro] Jeśli chodzi o podsumowania bloga to ostatnie&lt;a href="https://cezarywalenciuk.pl/blog/programing/rok-2015---355600-unikatowych-wyswietlen-i-130000-uzytkownikow" target="_blank" rel="noopener"&gt;&amp;nbsp;robiłem w styczniu 2016 roku&lt;/a&gt;. Dużo się od tego czasu się zmieniło.&lt;/p&gt;
+&lt;p&gt;W roku 2020 wr&amp;oacute;ciłem do swojej strony internetowej. Miałem dwuletnią przerwę w tworzeniu wpisu na bloga. Nie ma co ukrywać, ale czasem w życiu są ważniejsze rzeczy.&lt;/p&gt;
+&lt;p&gt;Statystki Google Analytics pokazują brutalna prawdę faktu, że większość wpis&amp;oacute;w na tym blogu się zestarzała. Chociaż Kurs C# nadal się trzyma. Ktoś m&amp;oacute;głby powiedzieć, że ten blog programistyczny tonie. Tak mogłoby być, gdyby coś z tym nie zrobił.&lt;/p&gt;
+&lt;p&gt;Do strony wprowadziłem wiele zmian. Oto one:&lt;/p&gt;
+&lt;p&gt;W roku 2020 zrobiłem &lt;a href="https://cezarywalenciuk.pl/blog/programing/przeniesienie-bloga-na-aspnet-core-3-1" target="_blank" rel="noopener"&gt;migrację bloga z ASP.NET MVC do ASP.NET CORE 3.2. &lt;/a&gt;Strona dzięki temu dostała ciekawy &lt;a href="https://cezarywalenciuk.pl/blog/programing/aspnet-core-response-compression-na-blog" target="_blank" rel="noopener"&gt;algorytm kompresji każdego zapytania HTTP.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Poprawiłem stronę gł&amp;oacute;wną, kt&amp;oacute;ra przez wiele lat wyglądała tak: [more]&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/stara szata graficzna_637454605099464604.PNG" alt="Stara szata graficzna" width="500" height="391" /&gt;&lt;/p&gt;
+&lt;p&gt;Aż wstyd było się chwalić swoim blogiem, gdy moja młoda morda w tej szarości Ciebie witała.&lt;/p&gt;
+&lt;p&gt;Pomysł graficzny nie był zbyt dobry, a potem nie miałem czasu tego poprawić, aż do roku 2020? Jak wiesz każdy wpisy na blogu programistyczny mają sw&amp;oacute;j dominujący kolor. Teraz ja te kolory wykorzystać na stronie gł&amp;oacute;wnej. Po długich analizach uznałem, że taki odcień fioletu jest najlepszym kolorem do podkreślania tej tęczy kolor&amp;oacute;w.&lt;/p&gt;
+&lt;p&gt;Dodatkowo kolor ż&amp;oacute;łty jest kolorem, kt&amp;oacute;ry wstępuje najmniej na blogu programistycznym.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/stara szata graficzna.23232_637454605099639159.PNG" alt="Nowa strona gł&amp;oacute;wna Cezary Walenciuk" width="498" height="393" /&gt;&lt;/p&gt;
+&lt;p&gt;Zawsze też mi brakowało dobrego paska nawigacyjnego, kt&amp;oacute;ry byłby sp&amp;oacute;jny na wszystkich stronach i podstronach.&lt;/p&gt;
+&lt;p&gt;Pojawiły się także lepsze listy do wpis&amp;oacute;w z danego cyklu. Chciałem to zrobić od zawsze, a nigdy nie było na to czasu.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/lepsze_637454605099717441.PNG" alt="Lista wpis&amp;oacute;w z kurs&amp;oacute;w" width="400" height="349" /&gt;&lt;/p&gt;
+&lt;p&gt;Ponownie ciesze się, że te kolory oraz ikonki metro udało mi się wykorzystać w sensowny spos&amp;oacute;b. Wiedzieć, że ten blog żyje dłużej niż filozofia Metro UI z Windows Phone.&lt;/p&gt;
+&lt;p&gt;Została także dodana lista wszystkich kurs&amp;oacute;w i cykli. Z bloga usunąłem też nieintuicyjne meni, kt&amp;oacute;re pokazywało kategorie. Teraz kategorię są na dole pod każdym wpisem.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Z bloga został usunięty pomocniczy dodatek "AddThis", kt&amp;oacute;ry dodawał przyciski do Social Media. Zobaczyłem, że spamuje on skryptami śledzącymi i stwierdziłem, że w dzisiejszych&amp;nbsp; czasach i tak nie wiele os&amp;oacute;b ma nawyk publikowania wpis&amp;oacute;w na swoich kanałach social media.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cezarywalenciuk.pl/blog/programing/mailchimp-i-aspnet--stworzenie-newslettera" target="_blank" rel="noopener"&gt;Do bloga doszedł także newsletter.&lt;/a&gt; Chociaż jest to przyszłościowe narzędzie, bo na razie nie spełnia żadnej większej funkcji.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cezarywalenciuk.pl/blog/speech" target="_blank" rel="noopener"&gt;Blog o przemawianiu został,&lt;/a&gt; ale nie wiem czy posiadanie dw&amp;oacute;ch blog&amp;oacute;w na tej stronie było dobrym pomysłem. Jedyne co wiem to niekt&amp;oacute;re wpisy z bloga o przemawianiu całkiem dobrze sobie radzą więc, aż tak źle nie jest.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cezarywalenciuk.pl/webinars" target="_blank" rel="noopener"&gt;Do strony gł&amp;oacute;wnej doszła lista webinar&amp;oacute;w.&lt;/a&gt; Skoro robię webinary to fajnie by było mieć ich listę. O liście swoich prelekcji marzyłem od zawsze, ale nigdy bym nie przewidział, że będą to linki do prezentacji, kt&amp;oacute;re sam organizuje.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/lepsze2_637454605099871429.PNG" alt="Lista webinar&amp;oacute;w" width="496" height="396" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cezarywalenciuk.pl/blog/programing/aplikacja-wpf-do-formatowania-kodu" target="_blank" rel="noopener"&gt;Stworzyłem program w WPF,&lt;/a&gt; aby łatwiej mi było dodawać kod do bloga.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Zrobiłem też przegląd wpis&amp;oacute;w pod względem SEO i błęd&amp;oacute;w ortograficznych. Na przykład tytuły pewnych wpis&amp;oacute;w były za długie i je skracałem. Pomogło mi w tym płatne narzędzie :&amp;nbsp;&lt;a href="https://neilpatel.com/seo-analyzer/" target="_blank" rel="noopener"&gt;https://neilpatel.com/seo-analyzer/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;W roku 2020 dwa razy ten blog został uznany, za jeden z najlepszych blog&amp;oacute;w na temat programowania.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/saskasa_637454605100011163.PNG" alt="TOP 10 w blogach programistycznych" width="400" height="348" /&gt;&lt;/p&gt;
+&lt;p&gt;Zawsze coś, bo wiem, jaką mam konkurencję.&lt;/p&gt;
+&lt;p&gt;Co zrobię w przyszłości, jeśli chodzi o ten blog:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dla szybkości może usunę Google Analytics i tak tych statystyk nie przeglądam i zastanawiam się czy mają one sens w dobie program&amp;oacute;w, kt&amp;oacute;re zacierają twoje ślady przeglądania internetu&lt;/li&gt;
+&lt;li&gt;Dalszy przegląd starych wpis&amp;oacute;w, ponieważ błędy językowe zawsze można znaleźć&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To wszystko. Rok 2020 był bardzo owocny. O swoje strony trzeba dbać po inaczej odejdą one w zapomnienie.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Do zobaczenia za 5 lat.&lt;/p&gt;</content>
+</post>

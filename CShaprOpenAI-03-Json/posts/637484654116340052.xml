@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>SoundPad i Touch Portal : Dźwięki do webinariów, Streamu</title>
+  <slug>soundpad-i-touch-portal-dzwieki-do-webinariow-streamu</slug>
+  <pubDate>2021-02-09T11:05:08.009Z</pubDate>
+  <lastModified>2021-02-09T11:58:05.780Z</lastModified>
+  <excerpt></excerpt>
+  <privateNotes></privateNotes>
+  <blogId>1</blogId>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>triki-z-windows</category>
+  </categories>
+  <variables>
+    <variable>
+      <key>metroT</key>
+      <value>Sound</value>
+    </variable>
+    <variable>
+      <key>metroI</key>
+      <value>659_soundpad-i-touch-portal-dzwieki-do-webinariow-streamu</value>
+    </variable>
+    <variable>
+      <key>colorkey</key>
+      <value>R1</value>
+    </variable>
+  </variables>
+  <content>&lt;p&gt;[metro] Staram się używam najlepszych narzędzi do robienia webinar&amp;oacute;w. StreamYard w połączeniu z OBS daje radę, ale nawet tutaj można coś ulepszyć. Na swoich webinarach programistycznych lubię puszczać dźwięki z Gothica, Warcrafta 3, Windows 98, Diablo 2 oraz Heroes 3.&lt;/p&gt;
+&lt;p&gt;Pod koniec webinaru lubię także puścić na koniec fajną muzyczkę, kt&amp;oacute;ra nie ma praw autorskich, żebym nie miał problemu.&lt;/p&gt;
+&lt;p&gt;Tutaj pojawia się prosty problem.&lt;/p&gt;
+&lt;p&gt;O ile używając TouchPortal jestem w stanie puszczać kr&amp;oacute;tkie dźwięki pod danych klawiszy to oczywiście jakoś takie dźwięku jest beznadziejna. W końcu idzie on przez m&amp;oacute;j laptop do mojego mikrofonu.&lt;/p&gt;
+&lt;p&gt;Trzeba więc programu, kt&amp;oacute;ry doda do kanału "mikrofonu" bezpośrednie odpowiednie dźwięki.&lt;/p&gt;
+&lt;p&gt;Taki program oczywiście istnieje i nazywa się SoundPad. [more]&lt;/p&gt;
+&lt;h3&gt;TouchPortal, jakie pluginy&amp;nbsp;&lt;/h3&gt;
+&lt;p&gt;Jesteś pierwszy raz na moim blogu i pierwszy raz słyszysz o TouchPortal? TouchPortal to program, kt&amp;oacute;ry pozwala twojemu tabletowi bądź telefonu zostać elastyczną klawiaturą, kt&amp;oacute;ra potrafi zrobić wszystko co jej powiesz.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/soundpad-i-touch-portal-dzwieki-do-webinariow-streamu/Klawisze_637484685854098655.PNG" alt="TouchPortal Klawisze" width="732" height="422" /&gt;&lt;/p&gt;
+&lt;p&gt;Robiąc webinary zauważyłem, że domyślne funkcje do puszczania muzyki robią na moim komputerze zbyt duże op&amp;oacute;źnienie od naciśnięcia klawisza.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/soundpad-i-touch-portal-dzwieki-do-webinariow-streamu/O-01_637484685854265263.PNG" alt="Normalna obsługa dzwięku z TouchPortal" width="566" height="109" /&gt;&lt;/p&gt;
+&lt;p&gt;Plugin SoundBox, kt&amp;oacute;ry można pobrać &lt;a href="https://www.christophecvb.com/touch-portal/plugins/soundbox/" target="_blank" rel="noopener"&gt;tutaj&lt;/a&gt; rozwiązał problem z op&amp;oacute;źnionym dźwiękiem.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/soundpad-i-touch-portal-dzwieki-do-webinariow-streamu/O-02_637484685854311006.png" alt="Plugin SoundBox" width="774" height="134" /&gt;&lt;/p&gt;
+&lt;p&gt;Nie zmienia to jednak faktu, że te sample będą dobiegać z twojego głośnika i nie zostaną magiczne zmieszane z twoim mikrofonem.&lt;/p&gt;
+&lt;p&gt;Na pomoc przychodzi jeszcze inny plugin, kt&amp;oacute;ry będzie się komunikował z programem SoundPad, aby to zrobić. Oto &lt;a href="https://www.christophecvb.com/touch-portal/plugins/soundpad/" target="_blank" rel="noopener"&gt;link do tego pluginu.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/soundpad-i-touch-portal-dzwieki-do-webinariow-streamu/o-03_637484685854379788.PNG" alt="SoundPad plugin do TouchPortal" width="237" height="586" /&gt;&lt;/p&gt;
+&lt;p&gt;Dźwięki mogą być odtwarzane po globalnym indeksie lub po nazwie dźwięku. Zanim więc zainstalujesz program SoundPad warto zrobić porządek w nazwach pliku, kt&amp;oacute;re chcesz odtworzyć tak aby łatwo było Ci je znaleźć po ich nazwie.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/soundpad-i-touch-portal-dzwieki-do-webinariow-streamu/o-04_637484685854402156.PNG" alt="SoundPad w użyciu" width="733" height="88" /&gt;&lt;/p&gt;
+&lt;p&gt;Zobaczmy jak wygląda sam program SoundPad.&lt;/p&gt;
+&lt;h3&gt;SoundPad&lt;/h3&gt;
+&lt;p&gt;Program SoundPad dzieli dźwięki na kategorie, ale przypadku użycia tego z Touch Portal to prawie się w og&amp;oacute;le nie sprawdza.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;W samym programie masz opcję nagrywania kanału "Mikrofonu" lub "Głośnika" do 5 minut lub twojego określonego czasu.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Gdy odtwarzasz każdy dźwięk to możesz ustalić czy on powinien być zmiksowany tylko z "Mikrofonem" lub "Głośnikiem".&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/soundpad-i-touch-portal-dzwieki-do-webinariow-streamu/SoundPad_637484685854722082.PNG" alt="SoundPad Interfejs.Co oferuje" width="751" height="529" /&gt;&lt;/p&gt;
+&lt;p&gt;Bez programu Touch Portal program SoundPad oczekuje od Ciebie zdefiniowania skr&amp;oacute;t&amp;oacute;w klawiszowych, kt&amp;oacute;re uruchomią odpowiednie dźwięki.&lt;/p&gt;
+&lt;p&gt;Program SoundPad kosztuje z 24 zł (zależy jak Euro przeliczy się na złot&amp;oacute;wki), ale moim zdaniem jest on warty ceny. Dodatkowo polecam go kupić bezpośrednio na stronie producenta i nie bawić się nie łączyć tego programu ze swoim kontem Steam, chociaż w ten spos&amp;oacute;b można zaoszczędzić pieniądze.&lt;/p&gt;
+&lt;p&gt;Oto link do ich strony :&amp;nbsp;&lt;a href="https://leppsoft.com/soundpad/en/" target="_blank" rel="noopener"&gt;https://leppsoft.com/soundpad/en/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Link do strony aplikacji w Steam :&amp;nbsp;&lt;a href="https://store.steampowered.com/app/629520/Soundpad/" target="_blank" rel="noopener"&gt;https://store.steampowered.com/app/629520/Soundpad/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Pamiętaj jednak, że zakup przez Steam sprawia, że program musi być uruchamiany wraz z klientem Steam, a ja wole oszczędzać zasoby swojego laptopa, gdy robię webinar.&lt;/p&gt;
+&lt;p&gt;To wszystko. Pozostaje Ci tylko szukać śmiesznych dźwięk&amp;oacute;w. Ja, jeśli chodzi o śmieszne dźwięki z gier to ściągnąłem je z YouTube poprzez program Youtube-dl-GUI, kt&amp;oacute;ry opisałem &lt;a href="https://cezarywalenciuk.pl/blog/programing/jak-sciagnac-filmiki-muzyke-z-youtube--youtube-dl-gui" target="_blank" rel="noopener"&gt;tutaj&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;</content>
+</post>

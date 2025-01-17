@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Mapowanie XBOX One Controller na myszkę i klawiaturę</title>
+  <slug>mapowanie-xbox-one-controller-na-myszke-i-klawiature</slug>
+  <pubDate>2021-02-09T09:32:37.912Z</pubDate>
+  <lastModified>2021-06-11T19:01:59.998Z</lastModified>
+  <excerpt></excerpt>
+  <privateNotes></privateNotes>
+  <blogId>1</blogId>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>triki-z-windows</category>
+  </categories>
+  <variables>
+    <variable>
+      <key>metroT</key>
+      <value>GamePad</value>
+    </variable>
+    <variable>
+      <key>colorkey</key>
+      <value>G2</value>
+    </variable>
+    <variable>
+      <key>metroI</key>
+      <value>658_mapowanie-xbox-one-controller-na-myszke-i-klawiature</value>
+    </variable>
+  </variables>
+  <content>&lt;p&gt;[metro] Wszystko zaczęło się od Świąt Bożego Narodzenia gdzie w końcu mogłem znaleźć trochę wolnego czasu, aby sobie pograć. W końcu pomyślałem, że może zagram w sobie "&lt;strong&gt;Beyond good and evil&lt;/strong&gt;". Chciałem w tą grę zagrać od 2003 roku. Kupiłem więc wersje HD na Steam i zainstalowałem pewne MOD-y, aby gra wyglądała ładnie nawet w roku 2021.&lt;/p&gt;
+&lt;p&gt;Pojawił się jednak pewien problem.&lt;/p&gt;
+&lt;p&gt;Ta gra na PC nie wspiera żadnych pad&amp;oacute;w na PC. A przynajmniej tak było w tamte święta.&lt;/p&gt;
+&lt;p&gt;Moim zdaniem nawet gra z 2003 roku powinna obsługiwać pada. Pamiętaj jak grałem w "&lt;strong&gt;Prince Of Persia Warrior Within&lt;/strong&gt;" na padzie, a to jest gra o podobnym sterowaniu i z roku 2004.&lt;/p&gt;
+&lt;p&gt;Tak zaczął się moje zadanie w poszukiwaniu, jak najtańszego i najlepszego rozwiązania tego problemu. Swoją drogą też zapaliła mi się lampka.&lt;/p&gt;
+&lt;p&gt;Gdyby m&amp;oacute;j pad bezprzewodowy XBOX ONE był wystanie ruszać się jak myszka to m&amp;oacute;głbym grać : "&lt;strong&gt;Heroes 3&lt;/strong&gt;" czy "&lt;strong&gt;Civilization 6&lt;/strong&gt;" na ekranie swojego telewizora 4K siedząc na kanapie.&lt;/p&gt;
+&lt;p&gt;Jestem mega fanem bezprzewodowych pad&amp;oacute;w XBOX ONE. Jako kolekcjoner starych konsol kiedyś zaznałem tego, co to znaczy utonąć w kablach.&lt;/p&gt;
+&lt;p&gt;Samo mapowanie pada na myszkę mogło, by mieć także swoje zastosowanie biurowe. Jak więc to zrobić i ile mamy opcji. Zacznijmy od najgorszych. [more]&lt;/p&gt;
+&lt;h3&gt;Script AHK&amp;nbsp;&lt;/h3&gt;
+&lt;p&gt;Używając tego języka skryptowego możesz sobie napisać r&amp;oacute;żne mapowanie klawiszy. Chciałbyś uruchomić program wciskając F7. Nie ma problemu&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs  " data-codetitle="AHK Script"&gt;;Launch Sublime Text
+F7::Run "C:\Program Files\Sublime Text 2\sublime_text.exe"
+return&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Z tym narzędziem można zrobić wiele ciekawych rzeczy. Na przykład zrobić maszynę, kt&amp;oacute;ra coś skopiuje i wklei Ci coś automatycznie do Excela czy Worda.&lt;/p&gt;
+&lt;p&gt;Jeśli chodzi o mapowanie pad&amp;oacute;w to takie skrypty można byłoby napisać do 2017 roku.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs  " data-codetitle="AHK Script"&gt;Joy1::Send {Left}  ; Have button #1 send a left-arrow keystroke.
+Joy2::Click  ; Have button #2 send a click of left mouse button.
+Joy3::Send a{Esc}{Space}{Enter}  ; Have button #3 send the letter "a" followed by Escape, Space, and Enter.
+Joy4::Send Sincerely,{Enter}John Smith  ; Have button #4 send a two-line signature.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Microsoft z kt&amp;oacute;rąś poprawką Windows 10 usuną możliwość komunikacji pada ze skryptem AHK.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Co prawda taki skrypt można napisać korzystając z dodatkowych bibliotek, ale jak widzisz poziom skomplikowania takiego rozwiązania tak gwałtownie ur&amp;oacute;sł, że lepiej dać sobie spok&amp;oacute;j.&lt;/p&gt;
+&lt;h3&gt;Płatne : ReWSAD&lt;/h3&gt;
+&lt;p&gt;Mapowanie pada to, jak widać problem nie tylko m&amp;oacute;j. Ktoś zobaczył w tym możliwość zarobku.&lt;/p&gt;
+&lt;p&gt;Jeśli więc nie szkoda Ci 5 EURO czy 35 EURO to w sumie otrzymasz tonę wsparcia od Community, jeśli chodzi o gry. Co prawda nie ma tam gotowego mapowania do Heroes 3, ale jest do Heroes 5.&lt;/p&gt;
+&lt;p&gt;Moim zdaniem, jeśli miałbym dużo czasu grać przy kanapie z bezprzewodowym padem to taka inwestycja miałaby sens.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/pl_637484617038353580.png" alt="ReWSAD" width="555" height="465" /&gt;&lt;/p&gt;
+&lt;p&gt;Poza tym dostajesz łatwy interfejs i możliwość tworzenia Makr, jeśli kupisz cały pakiet. Dostajesz też możliwość tworzenia klawiszy Auto-Fire, kt&amp;oacute;re osobiście pamięta tylko z Joystik&amp;oacute;w do Amigi.&lt;/p&gt;
+&lt;h3&gt;Stare, ale działa tak jakby : Xpadder&lt;/h3&gt;
+&lt;p&gt;To najbardziej Windows XP-kowy program, jaki widziałem ostatnio. Program najlepiej pobrać od oficjalnego producenta, ponieważ dostaniesz od niego gotowe PROFILE do r&amp;oacute;żnych gier.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://xpadder.xyz/download/" target="_blank" rel="noopener"&gt;https://xpadder.xyz/download/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Po uruchomieniu możesz zobaczyć taki komunikat :&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/unsuported_637484593221369668.PNG" alt="Xpadder" width="505" height="227" /&gt;&lt;/p&gt;
+&lt;p&gt;Myślisz sobie "..ale zaraz ten program miał działać z Windows 10". Program rzeczywiście działa, ale najpierw trzeba dodać do niego Tryb zgodności.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/unsuported2_637484593221462519.PNG" alt="Xpadder tryb zgdoności" width="391" height="240" /&gt;&lt;/p&gt;
+&lt;p&gt;Sam program po wczytaniu pierwszego lepszego pliku konfiguracyjnego widzę, że działa dla gry "Beyond Good and Evil" . Chociaż szkoda, że ze wszystkich profili nie ma go dla tej gry.&lt;/p&gt;
+&lt;p&gt;Sam program też udało mi się zawiesić więc jest to darmowe rozwiązanie, ale sam program jest tak obrzydliwy, że zastanawiam się, dlaczego ktoś nie napisał swojego rozwiązania.&lt;/p&gt;
+&lt;h3&gt;To nie to, ale ciekawe :&amp;nbsp;UCR_v0.9.0&lt;/h3&gt;
+&lt;p&gt;Jak widać ktoś napisał sw&amp;oacute;j program do mapowania pad&amp;oacute;w w WPF.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Można nawet zobaczyć kod źr&amp;oacute;dłowy : https://github.com/Snoothy/UCR&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;To, co mnie zraziło do tego programu to brak Tutorialu jak zmapować pada do klawiatury czy myszki.&lt;/p&gt;
+&lt;p&gt;Program domyślnie też wszystkiego nie instaluje więc nie można tak sobie dodać mapowanie.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/ma_637484593221510602.png" alt="UCR_v0.9.0" width="782" height="352" /&gt;&lt;/p&gt;
+&lt;p&gt;Ze strony :&amp;nbsp;&lt;a href="https://github.com/Snoothy/UCR/wiki/Core-Providers" target="_blank" rel="noopener"&gt;https://github.com/Snoothy/UCR/wiki/Core-Providers&lt;/a&gt; : dowiadujemy się, że do mapowania myszki i klawiatury trzeba zainstalować sterownik z innego repozytorium GitHub&lt;/p&gt;
+&lt;p&gt;Oto instrukcja jego instalacji :&amp;nbsp;&lt;a href="https://github.com/Snoothy/UCR/wiki/Core_Interception" target="_blank" rel="noopener"&gt;https://github.com/Snoothy/UCR/wiki/Core_Interception&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/pobranie_637484598369705463.PNG" alt=" https://github.com/Snoothy/UCR/wiki/Core_Interception Instalacja" width="797" height="141" /&gt;&lt;/p&gt;
+&lt;p&gt;Pozostało mi zresetować komputer i zobaczyć czy to działa.&lt;/p&gt;
+&lt;p&gt;Jak widać mam teraz możliwość mapowania wirtualnych myszek i klawiatur. Tylko jak widzę nie ma tutaj gotowych profili więc trzeba zrobić wszystko samemu.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/pobranie2_637484617038401860.PNG" alt="Wirtualne urządzenia " width="296" height="487" /&gt;&lt;/p&gt;
+&lt;h3&gt;Gopher360 : Najlepsze rozwiązanie do myszki i klawiatury&lt;/h3&gt;
+&lt;p&gt;To rozwiązanie nie sprawdzić się za bardzo gier, ale po tych wszystkich przygodach byłem wrażenie, jakie jest to proste.&lt;/p&gt;
+&lt;p&gt;Program, jak i kod źr&amp;oacute;dłowy w C++ można zobaczyć tutaj :&amp;nbsp;&lt;a href="https://github.com/Tylemagne/Gopher360" target="_blank" rel="noopener"&gt;https://github.com/Tylemagne/Gopher360&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/gopher_637484617038439133.PNG" alt="Gopher360" width="511" height="341" /&gt;&lt;/p&gt;
+&lt;p&gt;Uruchamiasz ten program i DZIAŁA. Nic trzeba kombinować. Domyślny profil ma ustawione co trzeba, aby zobaczyć czy można przeglądać internet przy pomocy Pado-myszki i czy da się grać w Heroes 3.&lt;/p&gt;
+&lt;p&gt;Dodatkowo przytrzymując lewy i prawy spust w padzie możesz kontrolować prędkość kursora.&lt;/p&gt;
+&lt;p&gt;A co jeśli chcesz coś zmienić ? Tutaj zaczynają się schody. W pliku konfiguracyjnym, kt&amp;oacute;ry wygląda tak :&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs  " data-codetitle="Config.Ini"&gt;#    GOPHER DEFAULT CONFIGURATION rev1.0 - Auto generated by Gopher360
+#   If you want a fresh one, just DELETE THIS and re-run Gopher360
+#    Set which controller buttons will activate the configuration events.
+#    SET 0 FOR NO FUNCTION
+#    AVAILABLE VALUES AT&amp;gt; https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.reference.xinput_gamepad(v=vs.85).aspx
+#    TIP: Sum the hex value for double button shortcuts eg. 0x0010(START) 0x0020(BACK) so 0x0030(START+BACK) will trigger the event only when both are pressed.
+
+
+CONFIG_MOUSE_LEFT = 0x1000    # Left mouse button
+CONFIG_MOUSE_RIGHT = 0x4000    # Right mouse button
+CONFIG_MOUSE_MIDDLE = 0x0040    # Middle mouse button
+CONFIG_HIDE = 0x8000        # Hides the terminal
+CONFIG_DISABLE = 0x0030        # Disables the Gopher
+CONFIG_DISABLE_VIBRATION = 0x0011 # Disables Gopher Vibrations
+CONFIG_SPEED_CHANGE =  0x0300    # Change speed
+
+
+#    KEYBOARD SHORTCUTS ON CONTROLLER BUTTONS
+#    SET 0 FOR NO FUNCTION
+#    AVAILABLE VALUES AT&amp;gt; https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731
+
+
+GAMEPAD_DPAD_UP = 0x26
+GAMEPAD_DPAD_DOWN = 0x28
+GAMEPAD_DPAD_LEFT = 0x25
+GAMEPAD_DPAD_RIGHT = 0x27
+GAMEPAD_START = 0x5B
+GAMEPAD_BACK = 0xA8
+GAMEPAD_LEFT_THUMB = 0
+GAMEPAD_RIGHT_THUMB = 0x71
+GAMEPAD_LEFT_SHOULDER = 0xA6
+GAMEPAD_RIGHT_SHOULDER = 0xA7
+GAMEPAD_A = 0
+GAMEPAD_B = 0x0D
+GAMEPAD_X = 0
+GAMEPAD_Y = 0
+GAMEPAD_TRIGGER_LEFT = 0x20
+GAMEPAD_TRIGGER_RIGHT = 0x08
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Możesz przypisać inne klawisze. Jakie klawisze są jaką wartością ? Do tego musisz przejrzeć MSDN:&amp;nbsp;&lt;a href=" https://msdn.microsoft.com/en-us/library/windows/desktop/dd37573" target="_blank" rel="noopener"&gt; https://msdn.microsoft.com/en-us/library/windows/desktop/dd37573&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;O ile do pomocy biurowych i gier jak Heroes 3 czy Civilization 6 ten program da radę. To jednak przy innych grach czuje, że ten program nie może zdać egzaminu.&lt;/p&gt;
+&lt;p&gt;Oto wszystkie opcje, jakie masz do dyspozycji, gdybyś chciał zmapować swojego pada na klawiaturę albo na myszkę.&amp;nbsp;&lt;/p&gt;</content>
+</post>

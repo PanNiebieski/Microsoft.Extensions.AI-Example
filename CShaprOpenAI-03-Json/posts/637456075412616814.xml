@@ -1,0 +1,778 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Co nowego w C# 9.0 ? Rekordy i Pattern Matching</title>
+  <slug>co-nowego-w-c-90-rekordy-pattern-matching</slug>
+  <pubDate>2021-01-07T09:15:28.564Z</pubDate>
+  <lastModified>2021-01-07T13:15:22.167Z</lastModified>
+  <excerpt></excerpt>
+  <privateNotes></privateNotes>
+  <blogId>1</blogId>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>c#</category>
+  </categories>
+  <variables>
+    <variable>
+      <key>colorkey</key>
+      <value>T4ENUM</value>
+    </variable>
+    <variable>
+      <key>metroT</key>
+      <value>9.0</value>
+    </variable>
+    <variable>
+      <key>metroI</key>
+      <value>645_co-nowego-w-c-90-rekordy-pattern-matching</value>
+    </variable>
+  </variables>
+  <content>&lt;p&gt;[metro] W listopadzie 2020 pojawiły się .NET 5 i C# 9.0 . Z ciekawości Ci powiem, że zdarzyło mi się mieć rozmowy kwalifikacyjne na temat C# 9.0 już tydzień po premierze więc czytanie o nowościach języka nigdy nie wiesz, kiedy może Ci się przydać.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Zmotywowało mnie to do zrobienia&lt;a href="https://www.youtube.com/watch?v=ATbLEyd_1Kg" target="_blank" rel="noopener"&gt; webinaru na ten temat.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Miałem też inną rozmowę, na kt&amp;oacute;rej dwaj architekci oczekiwali ode mnie napisania "Pattern Matching" z buta.&amp;nbsp; Trzeba przyznać, że jest to ciekawy problem, ponieważ w firmach pisanie kodu w najnowszych technologiach jest niesamowitym luksusem. Dlatego nie dziw się, jeśli ktoś nie wie co pojawiło się w C# 8.0 albo C# 7.0 ?&lt;/p&gt;
+&lt;p&gt;C# 9.0 ma nowego? Najważniejsze nowości to rekordy i rozwinięcie możliwości Pattern Matching. Przejdźmy jednak po kolei do każdej nowości języka C#? [more]&lt;/p&gt;
+&lt;h3&gt;Top Level Calls&lt;/h3&gt;
+&lt;p&gt;Jak wiesz prosty kod aplikacji konsolowej wymaga dużo kodu rytualnego.&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Top Level Calls"&gt;using System;
+
+namespace ConsoleTopLevelCallsNot
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+            Console.WriteLine(Substract(33, 11));
+
+        }
+
+        private static double Substract(double x, double y)
+        {
+            return x - y;
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ktoś stwierdził, a gdyby tak kod można by było napisać w C# jakby to był Python? Po prostu w każdej linijce piszę co m&amp;oacute;j program ma robić.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Top Level Calls"&gt;using System;
+
+Console.WriteLine("Hello World!");
+Console.WriteLine(Substract2(33, 11));
+
+static double Substract2(double x, double y)
+{
+    return x - y;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Od teraz w C# 9.0 jest to możliwe. Istnieją oczywiście pewne ograniczenia. Na początku kodu nie możesz deklarować klas i metod. Te rzeczy deklarujesz po swoim kodzie.&lt;/p&gt;
+&lt;p&gt;Czy musisz gdzieś m&amp;oacute;wić, że ta klasa jest napisana w takim stylu? Nie&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Kompilator sam to stwierdzi. Istnieje jednak ograniczenie i w całym projekcie może być taka tylko jedna klasa w jednym pliku.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-/toplevel-04_637456104358636121.PNG" alt="dwa pliki z top level calls" width="394" height="158" /&gt;&lt;/p&gt;
+&lt;p&gt;Oto przykład pr&amp;oacute;by użycia "Top Level Calls" dwa razy.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-/dsdsd_637456104359036682.gif" alt="animacja kodu do top level calls c# 9" width="479" height="488" /&gt;&lt;/p&gt;
+&lt;p&gt;Kr&amp;oacute;tkie podsumowanie "Top Level Calls" . Co to robi ?&amp;nbsp;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Usuwanie ceremonii&lt;/li&gt;
+&lt;li&gt;Ułatwienie utworzenie aplikacji konsolowej&lt;/li&gt;
+&lt;li&gt;Jeżeli się uczysz C# to lepiej nie korzystać z tej funkcji&lt;/li&gt;
+&lt;li&gt;Zaraz a gdzie jest args[] ? No właśnie ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Jak wiesz do aplikacjach konsolowych możesz przekazywać parametry wykonawcze.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Top Level Calls"&gt;using System;
+
+namespace ConsoleTopLevelCallsNot
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                System.Console.WriteLine("Please enter a numeric argument.");
+            }
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Mimo iż Visual Studio twierdzi, że "args" nie istnieje to możesz się do niego odwołać w Top Level Calls.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Top Level Calls"&gt;using System;
+
+if (args.Length == 0)
+{
+    System.Console.WriteLine("Please enter a numeric argument.");
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dla pewności masz tutaj obrazek z wykonywanego programu w Visual Studio.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-/toplevel-06_637456104359107994.png" alt="Top Level Args istnieje" width="600" height="89" /&gt;&lt;/p&gt;
+&lt;h3&gt;Initial Setters&lt;/h3&gt;
+&lt;p&gt;Wyobraź sobie, że masz taką klasę, kt&amp;oacute;ra reprezentuje model Pirata z bazy danej.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Setters"&gt;public class PirateModel
+{
+    public int Id { get; set; }
+
+    public string CrewName { get; set; }
+                    
+    public string Name { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nie chciałbyś, aby inny programista m&amp;oacute;gł w tym modelu zmienić jego ID. Czyli "ID" powinno być deklarowane tylko raz.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Setters"&gt;public static class InitialSetterExample
+{
+    public static void Run()
+    {
+        PirateModel m = new PirateModel
+        { Name = "Luffy", CrewName = "StrawHats", Id = 1 };
+                    
+        m.Id = 2;
+        m.Name = "Zorro";
+                    
+        Console.WriteLine($"Hello {m.Name}, Id : {m.Id}");
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Jak się przed tym zabezpieczyć? M&amp;oacute;głbyś ustawić "set" na prywatny, tylko wtedy, jeśli chcesz go ustawić to albo potrzebujesz konstruktora, albo oddzielnej metody.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Setters"&gt;public class PirateModel
+{
+    public int Id { get; private set; }
+                    
+    public string CrewName { get; set; }
+                    
+    public string Name { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W sumie to te rozwiązanie w żaden spos&amp;oacute;b Ci nie pomaga.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Setters"&gt;public class PirateModel
+{
+    public int Id { get; private set; }
+                    
+    public string CrewName { get; set; }
+                    
+    public string Name { get; set; }
+                    
+    public void UpdateId(int newId)
+    {
+        Id = newId;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Na szczęście w C# 9.0 masz słowo kluczowe "init", kt&amp;oacute;re deklaruje daną właściwość tylko do jeden deklaracji.&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Setters"&gt;public class PirateModel
+{
+    public int Id { get; init; }
+                    
+    public string CrewName { get; set; }
+                    
+    public string Name { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Teraz gdy inny programista będzie pr&amp;oacute;bował nadpisać twoje ID to mu to nie wyjdzie. Właściwość stała się wartością niezmienną.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-/InitialSetters-01_637456104359284926.PNG" alt="InitialSetters" width="454" height="121" /&gt;&lt;/p&gt;
+&lt;h3&gt;Kr&amp;oacute;tsza wersja tworzenia klas&lt;/h3&gt;
+&lt;p&gt;Chciałbyś tworzyć klasy jeszcze kr&amp;oacute;cej. To teraz możesz bez pisania całej nazwy klasy?&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="new()"&gt;PirateModel m3 = new();
+
+PirateModel m4 = new()
+{ Name = "Zorro", CrewName = "StrawHats", Id = 2 };&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Oczywiście nie możesz użyć takiej składni mając słowo kluczowe "var", ponieważ wtedy kompilator nie wie o co ci chodzi.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="new()"&gt;//var m5 = new();&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Konrad Kokosa dodał wspaniałego Twitta pokazujący jak tą składnie wykorzystać do wkurzających pytań rekrutacyjnych.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-/111111_637456086234912063.PNG" alt="Konrad Kokosa Twitter" width="500" height="335" /&gt;&lt;/p&gt;
+&lt;p&gt;Dodatkowo tą nową składnią można stworzyć nieczytelny kod.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="new()"&gt;PirateModel m6;
+
+//1000 linjek kodu p&amp;oacute;źniej
+
+m6 = new();&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Pattern Matching w switch&lt;/h3&gt;
+&lt;p&gt;Pattern Matching to potężna funkcjonalność dla większości programist&amp;oacute;w c# wywołuje ona atak euforii i radości. W końcu, zamiast pisać tonę "if, else" lub "switch, case" możesz teraz to wszystko skr&amp;oacute;cić odpowiedni wyrażeniem.&lt;/p&gt;
+&lt;p&gt;Aby to wszystko wyjaśnić potrzebujemy jakichś przykład&amp;oacute;w. Standardowo będę pokazywał Ci klasy, z jakich korzystam...oraz&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;public class Weather
+{
+    public DateTime Date { get; set; }
+                    
+    public int TemperatureC { get; set; }
+                    
+    public string Desc { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kod generujący losowe obiekty do mielenia przez te nowe cudowne wyrażenia warunkujące przypływ poleceń w kodzie&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;public static List&amp;lt;Weather&amp;gt; CreateExample()
+{
+    DateTime now = DateTime.Now;
+    var rng = new Random();
+                
+    var exampleCollection = Enumerable.Range(1, 14).Select
+        (index =&amp;gt; new Weather
+        {
+            Date = now.AddDays(index),
+            TemperatureC = rng.Next(-10, 40)
+        }
+    ).ToList();
+                
+    return exampleCollection;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Zamiast pisać IF-y, els-y teraz możesz napisać taką logikę przepływu programu, kt&amp;oacute;ra jest zależna od podanej temperatury.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;foreach (var weather in exampleList)
+{
+    weather.Desc = weather.TemperatureC switch
+    {
+        &amp;lt;= 6 and &amp;gt; 1 =&amp;gt; "Nie ciekawie. Ubrać sie trzeba",
+        10 or 9 or 8 or 7 =&amp;gt; "Zimno",
+        11 =&amp;gt; "Uwaga Łatwo zachorować",
+        12 =&amp;gt; "Uwaga Kurtka",
+        13 =&amp;gt; "Uwaga",
+        &amp;lt;= 15 =&amp;gt; "Super",
+        &amp;lt;= 20 =&amp;gt; "Ok",
+        &amp;lt;= 28 =&amp;gt; "Gorąco",
+        &amp;gt;= 30 =&amp;gt; "Upał",
+        _ =&amp;gt; "Nie wiem"
+    };
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Zauważ, że "_" jest symbole specjalnym i określa wszystkie inne przypadki. Do łączenia warunk&amp;oacute;w korzystam z "and". Aby określi, że dany kod ma się wykonać dla dw&amp;oacute;ch warunk&amp;oacute;w to korzystam z "or".&lt;/p&gt;
+&lt;p&gt;Jakbyś chciał zrobić negację warunku to zawsze możesz skorzystać z "not"&lt;/p&gt;
+&lt;p&gt;Poza tym, jak piszesz takie warunki to łatwo się pomylić. Pattern Matching pilnuje Cię i zaznaczy czy dany warunek jest, aż zbyt obszerny i nie blokuje następnych.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-/pattermatching-01_637456104359653136.png" alt="pattermatching-01.png" width="600" height="165" /&gt;&lt;/p&gt;
+&lt;p&gt;Pora na kolejny przykład. Mieliśmy temperaturę, teraz czas na Pizzę.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Pizza ma właściwość określająca jej nazwę i fakty takie jak czy mają one mięsa lub ananasa.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;public class Pizza
+{
+    public string Name { get; set; }
+                    
+    public bool HasMeat { get; set; }
+                    
+    public bool HasAnanas { get; set; }
+                    
+    public void Deconstruct(out string name, out bool hasMeat, out bool hasAnanas)
+    {
+        name = Name;
+        hasMeat = HasMeat;
+        hasAnanas = HasAnanas;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Do klasy także dodałem Dekonstruktor. Jest to specjalna metoda, kt&amp;oacute;ra pozwoli mi rozbić instancje danej klasy na poszczeg&amp;oacute;lne zmienne. Przydaje się to także do Pattern Matching.&lt;/p&gt;
+&lt;p&gt;Pizza także będzie miała sw&amp;oacute;j opis i uzupełnimy go korzystając z Pattern Matching.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;public string Desc { get; set; }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Podobnie jak wcześniej tworzę metodę, kt&amp;oacute;ra generuje mi losowe obiekty.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;public static List&amp;lt;Pizza&amp;gt; CreateExample()
+{
+    var rng = new Random();
+                
+    var exampleCollection = Enumerable.Range(1, 14).Select
+        (index =&amp;gt; new Pizza
+        {
+            Name = "P" + index.ToString() + rng.Next(1, 10).ToString(),
+            HasMeat = rng.NextDouble() &amp;gt;= 0.5,
+            HasAnanas = rng.NextDouble() &amp;gt;= 0.5
+        }
+    ).ToList();
+                
+    return exampleCollection;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dekonstruktor pozowała na szybkie przypisanie zmiennych w taki spos&amp;oacute;b.&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;Pizza a = new Pizza() { HasAnanas = false, HasMeat = true, Name = "Marinara" };
+Pizza b = new Pizza() { HasAnanas = false, HasMeat = true, Name = "Peperoni" };
+            
+var (name, hasananas, hasmeat) = a;
+var (name2, hasananas2, hasmeat2) = b;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W JavScript m&amp;oacute;wi się na to operator "spread". Możesz kojarzysz temat o to przykład:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs js "&gt;function mojaFunkcja(x, y, z) { }
+var args = [0, 1, 2];
+mojaFunkcja(...args);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Mając Dekonstruktor mogę warunki napisać w taki spos&amp;oacute;b.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;var exampleList = CreateExample();
+
+Pizza a = new Pizza() { HasAnanas = false, HasMeat = true, Name = "Marinara" };
+Pizza b = new Pizza() { HasAnanas = false, HasMeat = true, Name = "Peperoni" };
+exampleList.Add(b); exampleList.Add(a);
+            
+foreach (var pizza in exampleList)
+{
+    pizza.Desc = pizza switch
+    {
+        ("1", true, false) =&amp;gt; "Taką zjem",
+        ("2", true, true) =&amp;gt; "Ujdzie",
+        ("Peperoni", _, _) =&amp;gt; "Moja ulubiona",
+        ("Marinara", _, _) =&amp;gt; "Często jadam",
+        (_, _, true) =&amp;gt; "Tej nie zjem",
+        _ =&amp;gt; "Nie wiem"
+    };
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Używając discarda "_" mogę nawet pomimo parametry, kt&amp;oacute;re mnie nie interesują. Może w danym warunku interesuje mnie tylko nazwa Pizzy, a pozostałe parametry są dla mnie nieważne.&lt;/p&gt;
+&lt;p&gt;Dodatkowo mogę przypisać zmienną w warunku i p&amp;oacute;źniej z niej skorzystać.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;foreach (var pizza in exampleList)
+{
+    pizza.Desc = pizza switch
+    {
+        ("2", _, var czymaAnans) =&amp;gt; $"Pizza z Ananasem : {czymaAnans}",
+        { HasMeat : true} =&amp;gt; "Ma mieso"
+    };
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Mogę też odwołać się do konkretnej właściwości, jeśli nie pamiętam kolejności ich dekonstrukcji w danej klasie.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;foreach (var pizza in exampleList)
+{
+    pizza.Desc = pizza switch
+    {
+        ("2", _, var czymaAnans) =&amp;gt; $"Pizza z Ananasem : {czymaAnans}",
+        (HasMeat: true) =&amp;gt; $"Ma mieso",
+        _ =&amp;gt; throw new NotImlementedException()
+    };
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dla wszystkich innych warunk&amp;oacute;w zawsze mogę wyrzucić wyjątek. Od tego jest discard symbol "_".&lt;/p&gt;
+&lt;p&gt;Jeśli z jakiegoś powodu nie mogę skorzystać z dekonstrukcji to zawsze mogę utworzyć Tuplet i na jego bazie tworzyć warunki.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Pattern"&gt;foreach (var pizza in exampleList)
+{
+    pizza.Desc = (pizza.HasMeat, pizza.HasAnanas) switch
+    {
+        (true, false) =&amp;gt; "Super",
+        (false, true) =&amp;gt; "Poprostu nie",
+        (false, false) =&amp;gt; "Bez mięsa ?"
+    };
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Wzor&amp;oacute;w w jest kilka. Jakby Ciebie to interesowało o to ich fachowe nazwy.&lt;/p&gt;
+&lt;p&gt;Patterns w C# 9.0&amp;nbsp;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Łączące "and"&lt;/li&gt;
+&lt;li&gt;Lub "or"&lt;/li&gt;
+&lt;li&gt;Negacji "not"&lt;/li&gt;
+&lt;li&gt;Nawiasowy ()&lt;/li&gt;
+&lt;li&gt;Type (po typie)&lt;/li&gt;
+&lt;li&gt;Relational pattern, czyli relacyjny wz&amp;oacute;r&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Właśnie jeszcze Ci nie pokazałem jak wykorzystać Pattern Matching, gdy chcemy pisać warunki operujące na typie obiektu.&amp;nbsp; Już nie będziesz musiał pisać "== typeof(coś)".&lt;/p&gt;
+&lt;p&gt;Oto kolejne klasy do przykład&amp;oacute;w. Tym razem będą to testy. Jak widzisz mamy klasę bazową Test oraz dwie klasy dziedziczące RedTest i GreenTest.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Type"&gt;public class GreenTest : Test
+{
+                    
+}
+                    
+public class RedTest : Test
+{
+                    
+}
+                    
+public class Test
+{
+                    
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Znowu mamy klasę generującą losowe obiekty.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Type"&gt;public static List&amp;lt;Test&amp;gt; CreateExample()
+{
+    var rng = new Random();
+    
+    List&amp;lt;Test&amp;gt; tests = new List&amp;lt;Test&amp;gt;();
+    
+    for (int i = 0; i &amp;lt; 15 ; i++)
+    {
+        if (rng.Next(1,100)  % 2 == 0)
+            tests.Add(new GreenTest());
+        else
+            tests.Add(new RedTest());
+    }
+    
+    return tests;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Jeśli chcesz utworzyć warunek po typie obiektu to po prostu piszesz jego nazwę typu / klasy.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Type"&gt;var exampleList = CreateExample();
+
+foreach (var test in exampleList)
+{
+    string outcome = test switch
+    {
+        GreenTest =&amp;gt; "Postive",
+        RedTest =&amp;gt; "Negative",
+        _ =&amp;gt; "unknow"
+    };
+    Console.WriteLine(outcome);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Relational pattern określa warunek, kt&amp;oacute;ry łączy wszystkie możliwe dostępne mechanizmy.&lt;/p&gt;
+&lt;p&gt;Dodajmy do klasy bazowej Test Dekonstruktor, aby to pokazać.&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Relational"&gt;public class Test
+{
+    public bool IsValid { get; set; }
+    public DateTimeOffset TestedOn { get; set; }
+                    
+    public void Deconstruct(out int minutesSinceTest, out bool isValid)
+    {
+        minutesSinceTest = (int)(DateTimeOffset.UtcNow - TestedOn).TotalMinutes;
+        isValid = IsValid;
+    }
+}
+
+public class GreenTest : Test
+{
+                    
+}
+                    
+public class RedTest : Test
+{
+                    
+}
+        &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Teraz mogę powiedzieć, że dla testu, kt&amp;oacute;ry żyje dłużej niż 48 godzin i zakończył się błędem napiszę się taki napis&amp;nbsp; "&lt;/p&gt;
+&lt;p&gt;Mogę też powiedzieć, że konkretnie dla typu GreenTest, kt&amp;oacute;ry żyje dłużej niż 24 godziny i wykonał się poprawnie wyświetlić jeszcze inny napis.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Relational"&gt;var exampleList = CreateExample();
+
+foreach (var test in exampleList)
+{
+    string outcome = test switch
+    {
+        ( &amp;lt; 60 * 24 * 2, false) =&amp;gt; "Nie poprawny test kt&amp;oacute;rych jest młodszy niż 2 dni",
+        GreenTest(&amp;gt; 60 * 24, true) =&amp;gt; "Postive, ale warto go po 24 godzinach zrobić ponownie",
+        _ =&amp;gt; "unknow"
+    };
+    Console.WriteLine(outcome);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To wszystko, jeśli chodzi o Pattern Matching. To nie koniec nowości w C# 9.0/&lt;/p&gt;
+&lt;h3&gt;Is not&lt;/h3&gt;
+&lt;p&gt;"Is not" to alternatywny spos&amp;oacute;b pisania "!=" i sprawdzania czy dana zmienna nie ma przypisanej wartości NULL.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Is not"&gt;PirateModel m1 = new PirateModel
+{ Name = "Luffy", CrewName = "StrawHats", Id = 1 };
+            
+PirateModel m2 = new()
+{ Name = "Zorro", CrewName = "StrawHats", Id = 2 };
+            
+PirateModel m3 = null;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ten kod jest poprawny&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Is not"&gt;if (m3 is null)
+{
+            
+}
+            
+if (m2 is not null)
+{
+            
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ten już nie ponieważ "is not" nie służy do por&amp;oacute;wnań obiekt&amp;oacute;w.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Is not"&gt;//if (m1 is not m2)
+//{
+            
+//}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dlaczego to istnieje? Szczerze to sam bym nie wiedział, ale na webinarze ktoś słusznie zwr&amp;oacute;cił uwagę, że operatory "==" i "!=" można nadpisać, a wyrażenia "is not" i "is" już nie.&lt;/p&gt;
+&lt;h3&gt;Jak użyć rekord&amp;oacute;w z sensem?&lt;/h3&gt;
+&lt;p&gt;Przejdźmy do rekord&amp;oacute;w. Co to jest? Czyżby C# potrzebował czegoś innego niż struktury i klasy? Po co one są? Czy to tylko kr&amp;oacute;tszy spos&amp;oacute;b pisania klasy?&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Moje pierwsze spojrzenie na rekordy było zdecydowanie negatywne, Patrzysz na taki kod definicji rekordu i zapewne ty masz mn&amp;oacute;stwo pytań.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;public record Record1(int  FirstNumber, int SecondNumber);
+
+//Czy Rekordy są typem wartościowym, 
+//Czy typem referencyjnym?&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Po pierwsze czy rekord jest typem wartościowym, czy referencyjnym? M&amp;oacute;głbyś przeczytać dokumentację, ale możesz też to sprawdzić pisząc taki kod.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;Record1 rA = new(1, 2);
+Record1 rAtest = rA;
+Console.WriteLine(ReferenceEquals(rA, rAtest));
+
+//true&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Referencje w wyniku przyr&amp;oacute;wnania się zgadzają, czyli rekordy są typem referencyjnym.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Czy rekord to kr&amp;oacute;tszy styl pisania klasy?&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;//Czy rekord jako klasa wygląda tak
+
+public class Record2
+{
+    public string FirstNumber { get; set; }
+                    
+    public string SecondNumber { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Istnieją duże r&amp;oacute;żnice pomiędzy rekordem i klasą i nawet ten kod poniżej nie pokazuje wszystkiego.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;//Podobne do tej klasy, ale to jednak nie to samo
+//o tym za chwilę
+public class Record3
+{
+    public string FirstNumber { get; init; }
+                    
+    public string SecondNumber { get; init; }
+                    
+    public Record3(string firstName, string lastName)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Brakuje to jeszcze Dekonstruktora, aby ta składnia była całkowicie poprawna...Chociaż i to jeszcze nie wszystko :)&lt;/p&gt;
+&lt;p&gt;Rekord można też deklarować bardziej rozbudowaną składnią.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;//To jest poprawny rekord
+public record Record4
+{
+    public int Number1 { get; init; }
+    public int Number2 { get; init; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Istnieje tutaj jeden problem. Dla rekord&amp;oacute;w wszystkie ich właściwości powinny być deklarowane tylko raz. Pamiętasz to nowe słowo kluczowe "init", kt&amp;oacute;re om&amp;oacute;wiliśmy wiele zdań temu.&lt;/p&gt;
+&lt;p&gt;O ile Visual Studio na razie pozwala Ci na napisanie takiego rekordu to jest to łamanie gł&amp;oacute;wnej filozofii ich działania.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;//Tutaj jest problem z nie jasnym działem rekordu
+
+public record Record4
+{
+    public int Number1 { get; set; }
+    public int Number2 { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dobra, jakie są jeszcze inne r&amp;oacute;żnice pomiędzy rekordem a klasą. Oto klasa, kt&amp;oacute;ra ma takie same właściwości ja m&amp;oacute;j rekord.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;public class Class3
+{
+    public int FirstNumber { get; init; }
+                    
+    public int SecondNumber { get; init; }
+                    
+    public Class3(int firstNumber, int secondNumber)
+    {
+        FirstNumber = firstNumber;
+        SecondNumber = secondNumber;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Utworze 2 rekordy i klasy z właściwościami o takich samych wartościach. Trzeci rekord i klasa będzie miała zupełnie inną wartość.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;Record1 rA = new(1, 2);
+Record1 rB = new(1, 2);
+Record1 rC = new(100, 200);
+            
+Class3 classA = new(1, 2);
+Class3 classB = new(1, 2);
+Class3 classC = new(100, 200);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Wykonajmy na nich metodę Equals.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;Console.WriteLine($"Record1 rA = new(1, 2);");
+Console.WriteLine($"Record1 rB = new(1, 2);");
+Console.WriteLine($"Check if they are Equal : {Equals(rA, rB)}");
+
+Console.WriteLine("***");
+
+Console.WriteLine($"Class3 classA = new(1, 2);");
+Console.WriteLine($"Class3 classB = new(1, 2);");
+Console.WriteLine($"Check if they are Equal : {Equals(classA, classB)}");&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Wynik jest następujący :&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-02_637456120641174987.PNG" alt="rekordy w C# 9.0 Equals" width="400" height="189" /&gt;&lt;/p&gt;
+&lt;p&gt;Dla rekord&amp;oacute;w Equals zwr&amp;oacute;cił : True, a dla klasy mamy wartość : False&lt;/p&gt;
+&lt;p&gt;Wniosek jest jeden rekordy były por&amp;oacute;wnane po wartościach właściwości. Wartości są takie same więc mamy prawdę.&lt;/p&gt;
+&lt;p&gt;Natomiast klasa jest por&amp;oacute;wnywana w Equals także po referencji. Mamy dwie zmienne więc są dwie r&amp;oacute;żne referencje.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;Console.WriteLine($"Record1 rA = new(1, 2);");
+Console.WriteLine($"Record1 rB = new(1, 2);");
+        
+Console.WriteLine($"Check if they are Equal : {Equals(rA, rB)}");
+        
+Console.WriteLine($"Check if they are ReferenceEquals :" +
+$"{ ReferenceEquals(rA, rB)}");&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Reference Equals jak sprawdziliśmy wcześniej zwr&amp;oacute;ci fałsz. Kompilator więc magicznie nie łączy rekord&amp;oacute;w do jednej referencji, jeśli mają te same wartości.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-03_637456120641264567.PNG" alt="rekordy w C# 9.0 ReferenceEquals" width="500" height="109" /&gt;&lt;/p&gt;
+&lt;p&gt;Co zrobi operator "==" dla rekord&amp;oacute;w?&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;Console.WriteLine($"Record1 rA = new(1, 2);");
+Console.WriteLine($"Record1 rB = new(1, 2);");
+
+Console.WriteLine($"Check if they are Equal : {Equals(rA, rB)}");
+
+Console.WriteLine($"Check if they are ReferenceEquals 
+: {ReferenceEquals(rA, rB)}");
+
+Console.WriteLine($"Check if they are == : {rA == rB}");&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Wykona metodę Equals i zrobi por&amp;oacute;wnanie po wartościach raz jeszcze.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-04_637456120641369164.PNG" alt="rekordy w C# 9.0 == operator" width="513" height="136" /&gt;&lt;/p&gt;
+&lt;p&gt;Istnieje jeszcze jednak r&amp;oacute;żnica pomiędzy klasą a rekordem.&lt;/p&gt;
+&lt;p&gt;Na przykład możesz się zastanawiać, dlaczego ten kod dla klas jest poprawny, ale ten sam kod dla rekord&amp;oacute;w wyrzuci wyjątek dla słownik&amp;oacute;w.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-13_637456120641447172.PNG" alt="Problem ze słownikiem record" width="676" height="458" /&gt;&lt;/p&gt;
+&lt;p&gt;Jeśli wrzucisz obiekt jako "klucz" do słownika to czym tak naprawdę jest ten klucz?&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Prawda leży w metodzie "GetHasCode()". To ona tworzy klucz dla słownika. Czyli ten kod stworzył dla rekord&amp;oacute;w dwa razy ten sam klucz stąd ten wyjątek.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Zobaczmy co metoda "GetHasCode()" zwr&amp;oacute;ci:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;Console.WriteLine($"Record1 rA = new(1, 2);");
+Console.WriteLine($"Record1 rB = new(1, 2);");
+
+Console.WriteLine($"Check if they are Equal : {Equals(rA, rB)}");
+
+Console.WriteLine($"Check if they are ReferenceEquals : 
+{ReferenceEquals(rA, rB)}");
+
+Console.WriteLine($"Check if they are == : {rA == rB}");
+
+Console.WriteLine($"Hash Code rA: {rA.GetHashCode()}");
+Console.WriteLine($"Hash Code rB: {rB.GetHashCode()}");
+Console.WriteLine($"Record1 rC = new(100, 200);");
+Console.WriteLine($"Hash Code rC: {rC.GetHashCode()}");
+
+Console.WriteLine($"Check if they are != : {rA != rC}");&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Jak widzisz, jeśli wartości w rekordzie są takie same to metoda "GetHashCode()" zwr&amp;oacute;ci to samą wartość.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-05_637456120641550192.PNG" alt="GetHashCode Record" width="524" height="261" /&gt;&lt;/p&gt;
+&lt;p&gt;Zobaczmy dla przypomnienia jak to wygląda dla klas.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="records"&gt;Console.WriteLine($"Record3 classA = new(1, 2);");
+Console.WriteLine($"Record3 classB = new(1, 2);");
+
+Console.WriteLine($"Check if they are Equal : {Equals(classA, classB)}");
+Console.WriteLine($"Check if they are ReferenceEquals : 
+{ReferenceEquals(classA, classB)}");
+
+Console.WriteLine($"Check if they are == : {classA == classB}");
+
+Console.WriteLine($"Hash Code rA: {classA.GetHashCode()}");
+Console.WriteLine($"Hash Code rB: {classB.GetHashCode()}");
+Console.WriteLine($"Record3 classC = new(100, 200);");
+Console.WriteLine($"Hash Code rC: {classC.GetHashCode()}");
+
+Console.WriteLine($"Check if they are != : {classA != classC}");&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dla klas, nawet jeśli wartości właściwość są takie same to metoda "GetHashCode()" bierze także pod uwagę adres do referencji obiektu więc wartości są r&amp;oacute;żne.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-06_637456120641655533.PNG" alt="Dla klas GetHasCode" width="561" height="277" /&gt;&lt;/p&gt;
+&lt;h3&gt;Deconstructor&lt;/h3&gt;
+&lt;p&gt;Dekonstruktory już mogłeś zobaczyć w użyciu w Pattern Matching. Czy jednak wiesz, że rekordy domyślnie tworzą go dla wszystkich właściwości?&amp;nbsp; Taki kod jest wiec poprawny&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;Record1 rA = new(1, 2);
+
+var (a, b) = rA;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nawet Visual Studio może zaproponować Ci małe poprawki.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-08_637456120641737051.png" alt="Deconstructor rekordy" width="569" height="229" /&gt;&lt;/p&gt;
+&lt;p&gt;Visual Studio naturalnie też widzi taką metodę.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-08_637456120641789375.png" alt="Deconstructor Visual Studio" width="674" height="88" /&gt;&lt;/p&gt;
+&lt;h3&gt;Użycie "with" aby utworzyć nowy rekord z istniejącego&lt;/h3&gt;
+&lt;p&gt;Gł&amp;oacute;wna filozofia Rekord&amp;oacute;w polega na tym, aby były one niezmienne (immutable). Czyli jeśli chcesz zmienić coś w rekordzie to sorry musisz utworzyć nowy rekord.&lt;/p&gt;
+&lt;p&gt;Jak jednak szybko utworzyć kopie rekordy zmieniając w nim tylko jedną właściwość. Na pomoc przychodzi słowo kluczowe "with".&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;Record1 rA = new(1, 2);
+Record1 rAtest = rA;
+Console.WriteLine(ReferenceEquals(rA, rAtest));
+            
+Record1 newRa = rA with
+{
+    SecondNumber = 200
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Teraz pora odpowiedź szybko na masę innych pytań związanymi z rekordami&lt;/h3&gt;
+&lt;p&gt;Czy można utworzyć rekordy generyczne ? Tak&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public record Data&amp;lt;T&amp;gt;(int id, T Data);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Czy rekordy mogą implementować interfejs ? Tak&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public interface IProduct&amp;lt;T&amp;gt;
+{
+   T Data { get; }
+}
+
+public record Game&amp;lt;T&amp;gt; : Audit ,IProduct&amp;lt;T&amp;gt;
+{
+    public T Data { get; init; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Rekordy nie mogą dziedziczyć po klasach&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-11_637456120641841862.PNG" alt="dziedziczenie rekord&amp;oacute;w" width="500" height="174" /&gt;&lt;/p&gt;
+&lt;p&gt;Rekordy mogę dziedziczyć po rekordach.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-11_637456120641889790.PNG" alt="dziedziczenie rekord&amp;oacute;w gdy rekord" width="350" height="182" /&gt;&lt;/p&gt;
+&lt;p&gt;Czy rekordy mogą być partial ? Tak&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public partial record Data(string Name);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Czy rekordy mogą użyć atrybut&amp;oacute;w? Tak, ale składnia jest średnio czytelna. Jak widzisz atrybut mogę dodać nawet to p&amp;oacute;l.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public record Data([property:JsonPropertyName("dataName")] string Name, 
+   [property:JsonPropertyName("dataCity")]string City);
+
+
+public record Data([field:Foo("field")][property:Foo("prop")] string Name);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;oto przykład dodania swojego atrybutu.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;[AttributeUsage(AttributeTargets.All)]
+class MyAttribute : Attribute
+{
+   public MyAttribute(string _) { }
+}
+ 
+public record Data([My("param")][field:My("field")][property:My("prop")] string Name);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W takich wpadkach bardziej rozbudowana definicja rekordu na pewno jest czytelniejsza.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public record Numbers
+{
+    [JsonPropertyName("One")]
+    public string First { get; init; }
+                    
+    [JsonPropertyName("Two")]
+    public string Second { get; init; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pamiętaj jednak aby wszystkie właściwości rekord&amp;oacute;w były tylko do inicjalizacji.&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;//To jest tutaj problem z nie jasnym działem rekordu
+
+public record Record4
+{
+    public int Number1 { get; set; }
+    public int Number2 { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Czy można dodać metod i właściwości do rekord&amp;oacute;w ? Oczywiście, że można. Możesz nawet w ten spos&amp;oacute;b nadpisać poziom dostępność danej właściwości.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public record Record5(int FirstNumber, int SecondNumber);
+
+public record Record6(int FirstNumber, int SecondNumber)
+{
+    internal int SecondNumber { get; init; } = SecondNumber;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Z ciekawości możesz zobaczyć jak działa metoda "ToString()" dla rekord&amp;oacute;w. Właściwości niepubliczne nie są dodawane do metody "ToString()".&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-14_637456120641936900.PNG" alt="Metoda ToString()" width="658" height="370" /&gt;&lt;/p&gt;
+&lt;p&gt;Oto przykład dodania właściwości do rekordu.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public record Record7(int FirstNumber, int SecondNumber)
+{
+    internal int SecondNumber { get; init; } = SecondNumber;
+                    
+    public string JavaScriptLikeSumOfNumbers { get =&amp;gt; $"{FirstNumber}{SecondNumber}"}
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tutaj natomiast dodaliśmy metodę, kt&amp;oacute;ra zwraca dwie wartości spakowane jako Tuple.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public record Record8(int FirstNumber, int SecondNumber)
+{
+    public (int,int) ReturnHasCodes()
+    {
+        return (FirstNumber.GetHashCode(), SecondNumber.GetHashCode());
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A tutaj dla twojej ciekawości wyniki metody "ToString()".&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-15_637456120642080226.PNG" alt="Metoda ToString()" width="700" height="496" /&gt;&lt;/p&gt;
+&lt;p&gt;Jeśli chodzi o dziedziczenie rekord&amp;oacute;w to pamiętaj, że właściwości muszą być uzupełnione w każdym konstruktorze.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/co-nowego-w-c-90-redkory-pattern-matching/rekordy-16_637456120642146913.PNG" alt="Dziedziczenie rekord&amp;oacute;w" width="600" height="149" /&gt;&lt;/p&gt;
+&lt;p&gt;Dokument nie definicji "IsDeleted" i "wasUpdated" dlatego dziedziczenie nie może zajść.&lt;/p&gt;
+&lt;h3&gt;Zalety Rekord&amp;oacute;w?&lt;/h3&gt;
+&lt;p&gt;Po co są rekordy? No c&amp;oacute;ż, przynajmniej ustaliśmy, że nie są one inaczej zapisaną klasą.&lt;/p&gt;
+&lt;p&gt;Oto ich zalety :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kr&amp;oacute;tsza składnia&lt;/li&gt;
+&lt;li&gt;Bezpieczne wielowątkowo, ponieważ są one niezmienne (immutable)&lt;/li&gt;
+&lt;li&gt;Łatwe są w użyciu&lt;/li&gt;
+&lt;li&gt;Posiadają domyślny dekonstuktor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kiedy ich użyć :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gdy masz dane, kt&amp;oacute;re wiesz, że mają się nie zmieniać&lt;/li&gt;
+&lt;li&gt;Do wywołania API&lt;/li&gt;
+&lt;li&gt;Do przetwarzania danych&lt;/li&gt;
+&lt;li&gt;Gdy masz dane tylko do odczytu&lt;/li&gt;
+&lt;li&gt;Gdy operujesz na wielu-wątkach&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kiedy ich nie użyć:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kiedy musisz zmienić dane&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Inne zmiany : Natywne Int&lt;/h3&gt;
+&lt;p&gt;Zmiany w C# 9.0 na tym się nie kończą. Chociaż musiałem bardziej pogrzebać w internecie aby je znaleźć.&lt;/p&gt;
+&lt;p&gt;Jak wiesz .NET 5 może działać na Linux i MAC. W tym celu dla nich powstała obsługa ich natywnych liczb całkowitych.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs " data-codetitle="Int"&gt;nint nativeInt = 55;
+
+Console.WriteLine(nint.MaxValue);
+
+Compiled in x86 Configuration
+Output: 2147483647
+Compiled in x64 Configuration
+Output: 9223372036854775807&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Inne zmiany : Discard w Lambda&lt;/h3&gt;
+&lt;p&gt;Discard może być wykorzystany w wyrażeniu lambda&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;Func&amp;lt;int,int,int&amp;gt; zero = (_,_) =&amp;gt; 0;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Inne zmiany : partial w metodzie&lt;/h3&gt;
+&lt;p&gt;Jeśli klasa jest partial to metoda też może być partial.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;partial class Doing
+{
+    internal partial bool DoSomething(string s, out int i);
+}
+
+partial class Doing
+{
+    internal partial bool DoSomething(string s, out int i)
+    {
+        i = 0;
+        return true;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Inne zmiany : Konwariancyjne typy zwracane&lt;/h3&gt;
+&lt;p&gt;Ta zmiana akurat rozwaliła mi głowę. Pomyśl, że masz dwie klasy Cat i Tigger. Klasa Cat ma metodę GetCat().&lt;/p&gt;
+&lt;p&gt;Przed C# 9.0 musiałeś nadpisywać metodę bazową w taki spos&amp;oacute;b.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public virtual Cat GetCat()
+{
+    // This is the parent (or base) class.
+    return new Cat();
+}
+
+public override Cat GetCat
+{
+    //You can return the child class, but still return a Cat
+    return new Tigger();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Teraz w C# 9.0 możesz jawnie powiedzieć, ,że zwr&amp;oacute;cisz dziedziczącą klasę w takiej bazowej metodzie.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public virtual Cat GetCat()
+{
+    // This is the parent (or base) class.
+    return new Cat();
+}
+
+public override Tiger GetCat()
+{
+    return new Tigger();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Żyjemy w ciekawych czasach.&lt;/p&gt;
+&lt;h3&gt;Inne zmiany : GetEnumerator jako extension method&lt;/h3&gt;
+&lt;p&gt;Metoda GetEnumerator&amp;lt;T&amp;gt; daje możliwość wykonywania pętli foreach na danym typie.&lt;/p&gt;
+&lt;p&gt;Teraz metoda GetEnumerator&amp;lt;T&amp;gt; może być metodą rozszerzeniową.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public static class Extensions
+{
+    public static IEnumerator&amp;lt;T&amp;gt; GetEnumerator&amp;lt;T&amp;gt; (this IEnumerator&amp;lt;T&amp;gt; enumerator) =&amp;gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Możesz więc teraz napisać swoją interpretacje pętli foreach dla typ&amp;oacute;w zamkniętych jak : int, bool, byte czy enum.&lt;/p&gt;
+&lt;p&gt;Link do webinaru na ten temat masz tutaj :&amp;nbsp;&lt;a href="https://www.youtube.com/watch?v=ATbLEyd_1Kg" target="_blank" rel="noopener"&gt;https://www.youtube.com/watch?v=ATbLEyd_1Kg&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+</post>

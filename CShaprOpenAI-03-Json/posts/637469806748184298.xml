@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>MediatR : CQRS i wzorzec projektowy Mediator w ASP.NET CORE</title>
+  <slug>mediatr-cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core</slug>
+  <pubDate>2021-01-23T06:48:59.714Z</pubDate>
+  <lastModified>2022-02-07T10:32:12.388Z</lastModified>
+  <excerpt></excerpt>
+  <privateNotes></privateNotes>
+  <blogId>1</blogId>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>wzorce-projektowe</category>
+  </categories>
+  <variables>
+    <variable>
+      <key>metroT</key>
+      <value>Mediator</value>
+    </variable>
+    <variable>
+      <key>metroI</key>
+      <value>657_mediatr-cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core</value>
+    </variable>
+    <variable>
+      <key>colorkey</key>
+      <value>B3</value>
+    </variable>
+  </variables>
+  <content>&lt;p&gt;[metro] Ostatnio zrobiłem webinar na temat budowania aplikacji w C# od zera. Skoncentrowałem się na dobrych praktykach oraz na najlepszych paczkach NuGet, kt&amp;oacute;re obecnie są w ofercie dla C# i dla .NET.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;MediatR na pewno jest w pierwszej piątce najlepszy paczek Nuget.&lt;/p&gt;
+&lt;p&gt;MediatR pomaga Ci szybko napisać aplikację przy pomocy wzorca projektowego mediator oraz zastosować CQRS.&amp;nbsp; [more]&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mediatr--cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core/mediator_637469813397560493.png" alt="mediator jaki problem rozwiązuje" width="400" height="225" /&gt;&lt;/p&gt;
+&lt;p&gt;O co chodzi? Chodzi o to, że masz jeden obiekt, kt&amp;oacute;rego zadaniem jest określenie komunikacji między innymi obiektami. W ten spos&amp;oacute;b unikasz faktu, że obiekty muszą gadać bezpośrednio do siebie (czyli tworzyć swoje instancje) albo muszą korzystać ze swoich interfejs&amp;oacute;w.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mediatr--cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core/mediator2_637469813397684033.png" alt="mediator w akcji" width="400" height="225" /&gt;&lt;/p&gt;
+&lt;p&gt;Wyobraź sobie &lt;strong&gt;sekretarkę&lt;/strong&gt;, kt&amp;oacute;ra wie, jakie dokumenty mają iść do jakiej osoby w biurowcu. Chcesz więc wysłać swoje dokumenty więc idziesz do sekretarki.&lt;/p&gt;
+&lt;p&gt;Bezpośrednio ty nie wiesz do kogo p&amp;oacute;jdą twoje papiery. Ważne, że to &lt;strong&gt;sekretarka&lt;/strong&gt; wie. &lt;strong&gt;Sekretarka&lt;/strong&gt; jest takim mediatorem.&lt;/p&gt;
+&lt;p&gt;Dzięki temu twoje klasy nie będą między sobą powiązane.&amp;nbsp;Unikniemy w ten spos&amp;oacute;b referencji jednej klasy do drugiej.&lt;/p&gt;
+&lt;p&gt;Zalety :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Zmiany w kodzie potem łatwo dokonać&lt;/li&gt;
+&lt;li&gt;Kod taki łatwo się testuje&lt;/li&gt;
+&lt;li&gt;Cały tw&amp;oacute;j kod ma pewien wz&amp;oacute;r, kt&amp;oacute;ry potem może być użyty ponownie w kodzie przez innego programistę bez problemu&lt;/li&gt;
+&lt;li&gt;Łatwo znaleźć odpowiednie funkcje w kodzie&lt;/li&gt;
+&lt;li&gt;Zasada "Single Responsibility Principle" tutaj jest traktowana bardzo poważnie. Nie można już tej zasady spełnić lepiej.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MediatR potrafi także na dwa sposoby przetworzyć komunikaty&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Request : Wysyła komunikaty do jednego obiektu/serwisu. Może (ale nie musi) zwr&amp;oacute;cić rezultat bezpośrednio do klasy, kt&amp;oacute;ra wywoła tego mediatora.&lt;/li&gt;
+&lt;li&gt;Notfications : Wysyła komunikaty do wielu obiekt&amp;oacute;w/serwis&amp;oacute;w. Niestety wtedy nic nie może zostać zwr&amp;oacute;cone.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dla stylu wysłania "Request" mamy następujące interfejsy.&lt;/p&gt;
+&lt;p&gt;Oto dwa interfejsy do wysłania wiadomości do naszej &lt;strong&gt;sekretarki&lt;/strong&gt;&amp;nbsp;("mediatora")&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IRequest : Określa komunikat, kt&amp;oacute;ry będziemy wysyłać do naszej sekretarki ("mediatora")&lt;/li&gt;
+&lt;li&gt;IRequestHandler : Określa co ma zostać zwr&amp;oacute;cone do klasy, kt&amp;oacute;ra wykorzystuje mediatora (sekretarki już nie wykorzystujemy)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zobaczmy jak działa to w praktyce w ASP.NET CORE 5.O.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mediatr-cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core/01_637469864045778263.PNG" alt="ASP.NET CORE 5.O. " width="697" height="246" /&gt;&lt;/p&gt;
+&lt;p&gt;Instalujemy odpowiednie paczki NuGet i jedziemy&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mediatr-cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core/02_637469864045835543.PNG" alt="MediatR paczka NuGet" width="649" height="277" /&gt;&lt;/p&gt;
+&lt;p&gt;W klasie Startup musimy zarejestrować użycie MediatR. W końcu ta paczka NuGet musi potem wykryć wszystkie obiekty, kt&amp;oacute;re będą implementować odpowiednie interfejsy.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;// Startup.cs
+public void ConfigureServices(IServiceCollection services)
+{
+  // other services
+
+  services.AddMediatR(typeof(Startup));
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Jeśli korzystasz z innego kontenera wstrzykiwania zależności to nie ma problemu. Wiki nadchodzi Ci z pomocą :&amp;nbsp;&lt;a href="https://github.com/jbogard/MediatR/wiki" target="_blank" rel="noopener"&gt;https://github.com/jbogard/MediatR/wiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Do zabawy przydadzą się jakieś klasy statyczne z gotowymi listami obiekt&amp;oacute;w. Patrz oto klasy reprezentujące wpisy i kategorię na bloga.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public static class DummyPosts
+{
+    public static List&amp;lt;Post&amp;gt; Get()
+    {
+        var cat = DummyCategories.Get();
+
+        Post p1 = new Post()
+        {
+            Author = "Damian",
+            Date = DateTime.Now.AddMonths(-6),
+            Description = @"Nasze aplikacje ASP.NET CORE coraz częściej są tylko aplikacją REST. To oczywiście wymaga Walidacji po stronie klienta i po stronie serwera
+Jak taką walidację jak najszybciej zrobić.Może przecież sam napisać takie warunki,
+            ale przy dużej ilości klas,
+            kt&amp;oacute;re występują jako parametry mija się to z celem.
+
+Możesz też skorzystać z atrybut&amp;oacute;w i oznaczyć reguły do każdej właściwości.",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 1,
+            Rate = 8,
+            CategoryId = DummySeed.Aspnet,
+            Title = "Walidacja z FluentValidation w ASP.NET Core + Swagger",
+            Url = "https://cezarywalenciuk.pl/blog/programing/walidacja-z-fluentvalidation-waspnet-core--swagger"
+        };
+
+        Post p2 = new Post()
+        {
+            Author = "Damian",
+            Date = DateTime.Now.AddMonths(-6),
+            Description = @"Programiści codziennie tworzą jakąś aplikację sieciową typu REST. Teraz nastaje pytanie, jak najlepiej zrozumieć jak dane API działa. Do tego mamy dokumentacje, ale jeśli pracujesz w szybkich, zamkniętych projektach to takiej dokumentacji może nie być.",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 2,
+
+            CategoryId = DummySeed.Aspnet,
+            Rate = 7,
+            Title = "Swagger UI : Dokumentowanie API w ASP.NET CORE",
+            Url = "https://cezarywalenciuk.pl/blog/programing/swagger-ui--dokumentowanie-api-w-aspnet-core"
+        };
+
+        Post p3 = new Post()
+        {
+            Author = "Stefan",
+            Date = DateTime.Now.AddMonths(-12),
+            Description = @"W pod koniec roku 2017 zacząłem ćwiczyć. Proste ćwiczenia rzeczywiście robią r&amp;oacute;żnice, gdy masz siedzący tryb życia. A co z bieganiem ?
+Pamiętam jak pierwszy raz na bieżni nie byłem w stanie wytrzymać 5 minut normalnego spaceru. Powoli z tygodnia na dzień zacząłem sobie stawiać wyższe progi i tak odkryłem, że o ile jest to na początku bolesne to jak twoje ciało da Ci te endorfiny to już...aż chce się biegać więcej. ",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 3,
+            CategoryId = DummySeed.Filzofia,
+            Rate = 5,
+            Title = "Bieganie jak się do tego zmotywować : Zdrowie Programisty",
+            Url = "https://cezarywalenciuk.pl/blog/programing/bieganie-jak-sie-do-tego-zmotywowac--zdrowie-programisty"
+        };
+
+        Post p4 = new Post()
+        {
+            Author = "Damian",
+            Date = DateTime.Now.AddMonths(-12),
+            Description = @"Logowanie działania aplikacji. Jak wiedzieć w końcu, gdy coś nie działa. M&amp;oacute;j blog jest napisany w C# i działa po ASP.NET CORE. Jak to jednak bywa z napisaną przez siebie aplikacją pojawiają się błędy więc do bloga dodałem mechanizm logowania błęd&amp;oacute;w. W taki spos&amp;oacute;b znalazłem wiele dziwnych przypadk&amp;oacute;w uszkodzonych wpis&amp;oacute;w w formacie XML, kt&amp;oacute;re rozwalały Parser. Znalazłem też złe zbudowane przez ze mnie lista kurs&amp;oacute;w. ",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 4,
+            CategoryId = DummySeed.Aspnet,
+            Rate = 5,
+            Title = "NLog z ASP.NET Core : Logowanie błęd&amp;oacute;w w aplikacji",
+            Url = "https://cezarywalenciuk.pl/blog/programing/nlog-z-aspnet-core--logowanie-b%C5%82edow-w-aplikacji"
+        };
+
+        Post p5 = new Post()
+        {
+            Author = "Damian",
+            Date = DateTime.Now.AddMonths(-12),
+            Description = @"Logowanie działania aplikacji. Jak wiedzieć w końcu, gdy coś nie działa. M&amp;oacute;j blog jest napisany w C# i działa po ASP.NET CORE. Jak to jednak bywa z napisaną przez siebie aplikacją pojawiają się błędy więc do bloga dodałem mechanizm logowania błęd&amp;oacute;w. W taki spos&amp;oacute;b znalazłem wiele dziwnych przypadk&amp;oacute;w uszkodzonych wpis&amp;oacute;w w formacie XML, kt&amp;oacute;re rozwalały Parser. Znalazłem też złe zbudowane przez ze mnie lista kurs&amp;oacute;w. ",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 5,
+            CategoryId = DummySeed.Aspnet,
+            Rate = 5,
+            Title = "NLog z ASP.NET Core : Logowanie błęd&amp;oacute;w w aplikacji",
+            Url = "https://cezarywalenciuk.pl/blog/programing/nlog-z-aspnet-core--logowanie-b%C5%82edow-w-aplikacji"
+        };
+
+        Post p6 = new Post()
+        {
+            Author = "Damian",
+            Date = DateTime.Now.AddMonths(-8),
+            Description = @"W tym  artykule zobaczymy jak zintegrować AutoMapper  z ASP.NET CORE dla .NET 5, chociaż bądźmy szczerzy możesz skorzystać z tej biblioteki w każdym projekcie w C#.",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 6,
+            CategoryId = DummySeed.Aspnet,
+            Rate = 9,
+            Title = "AutoMapper z ASP.NET CORE czyli mapowanie klas",
+            Url = "https://cezarywalenciuk.pl/blog/programing/automapper-z-aspnet-core"
+        };
+
+        Post p7 = new Post()
+        {
+            Author = "Adrian",
+            Date = DateTime.Now.AddMonths(-14),
+            Description = @"Nagrywanie Gif - &amp;oacute;w ? Robienie obrazk&amp;oacute;w na bloga ? Jak to robić jeszcze szybciej ? ",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 7,
+            CategoryId = DummySeed.TrikiZWindows,
+            Rate = 4,
+            Title = "ShareX : Lepszy PrintScreen oraz robienie Gif-&amp;oacute;w twojego pulpitu?",
+            Url = "https://cezarywalenciuk.pl/blog/programing/sharex-lepszy-printscreen-oraz-robienie-gif-ow"
+        };
+
+        Post p8 = new Post()
+        {
+            Author = "Adrian",
+            Date = DateTime.Now.AddMonths(-15),
+            Description = @"Jak jeszcze lepiej ulepszyć system operacyjny Windows.
+
+Czy być może programy tobie, kt&amp;oacute;re za chwilę to śmieci, kt&amp;oacute;re nie będą ci potrzebne?
+
+Zazwyczaj w tym cyklu pokazuje programy, z kt&amp;oacute;re moim bardzo zmieniają przepływ mojej pracy.",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 8,
+            CategoryId = DummySeed.TrikiZWindows,
+            Rate = 5,
+            Title = "QuickLook, TeraCopy, ProcessExplorer czy to potrzebne jest ?",
+            Url = "https://cezarywalenciuk.pl/blog/programing/sharex-lepszy-printscreen-oraz-robienie-gif-ow"
+        };
+
+        Post p9 = new Post()
+        {
+            Author = "Adrian",
+            Date = DateTime.Now.AddMonths(-15),
+            Description = @"Jak jeszcze lepiej ulepszyć system operacyjny Windows.
+
+Czy być może programy tobie, kt&amp;oacute;re za chwilę to śmieci, kt&amp;oacute;re nie będą ci potrzebne?
+
+Zazwyczaj w tym cyklu pokazuje programy, z kt&amp;oacute;re moim bardzo zmieniają przepływ mojej pracy.",
+            ImageUrl = "https://cezarywalenciuk.pl/Posts/programing/icons/_withbackground/R2/656_walidacja-z-fluentvalidation-waspnet-core--swagger.png",
+            PostId = 9,
+            CategoryId = DummySeed.Docker,
+            Rate = 9,
+            Title = "Docker File dla Go, ASP.NET Core, .NET 5, Java Spring, NodeJS, Python",
+            Url = "https://cezarywalenciuk.pl/blog/programing/docker-file-dla-go-aspnet-core-net-5-java-spring-nodejs-python"
+        };
+
+        List&amp;lt;Post&amp;gt; p = new List&amp;lt;Post&amp;gt;();
+        p.Add(p1); p.Add(p3);
+        p.Add(p2); p.Add(p4);
+        p.Add(p5); p.Add(p6);
+        p.Add(p8); p.Add(p7);
+        p.Add(p9);
+
+        return p;
+    }
+}
+
+public static class DummyCategories
+{
+    public static List&amp;lt;Category&amp;gt; Get()
+    {
+        Category c1 = new Category()
+        {
+            CategoryId = DummySeed.Csharp,
+            Name = "CSharp",
+            DisplayName = "C#"
+        };
+
+        Category c2 = new Category()
+        {
+            CategoryId = DummySeed.Aspnet,
+            Name = "aspnet",
+            DisplayName = "ASP.NET"
+        };
+
+        Category c3 = new Category()
+        {
+            CategoryId = DummySeed.TrikiZWindows,
+            Name = "triki-z-windows",
+            DisplayName = "Triki z Windows"
+        };
+
+        Category c4 = new Category()
+        {
+            CategoryId = DummySeed.Docker,
+            Name = "docker",
+            DisplayName = "Docker"
+        };
+
+        Category c5 = new Category()
+        {
+            CategoryId = DummySeed.Filzofia,
+            Name = "filozofia",
+            DisplayName = "Filozofia"
+        };
+
+
+        List&amp;lt;Category&amp;gt; p = new List&amp;lt;Category&amp;gt;();
+        p.Add(c1); p.Add(c3);
+        p.Add(c2); p.Add(c4);
+        p.Add(c5);
+
+        return p;
+
+    }
+}
+
+public static class DummySeed
+{
+    public static int Csharp = 1;
+    public static int Aspnet = 2;
+    public static int TrikiZWindows = 3;
+    public static int Docker = 4;
+    public static int Filzofia = 5;
+}
+
+public class Post
+{
+    public int PostId { get; set; }
+
+    //[Required]
+    //[StringLenght(80)]
+    public string Title { get; set; }
+
+    //[StringLenght(40)]
+    public string Author { get; set; }
+
+    public DateTime Date { get; set; }
+    public string Description { get; set; }
+
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
+
+    public string ImageUrl { get; set; }
+    public string Url { get; set; }
+
+    //[Range(0, 100)]
+    public int Rate { get; set; }
+}
+
+public class Category
+{
+    public int CategoryId { get; set; }
+
+    public string Name { get; set; }
+
+    public string DisplayName { get; set; }
+
+    public ICollection&amp;lt;Post&amp;gt; Posts { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Teraz w naszym kontrolerze chciałbym pobrać wszystkie wpisy.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class PostController : Controller
+{
+    [HttpGet(Name = "GetAllPosts")]
+    public async Task&amp;lt;ActionResult&amp;lt;List&amp;lt;Post&amp;gt;&amp;gt;&amp;gt; GetAllPosts()
+    {
+
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Wysyłanie Request-&amp;oacute;w&lt;/h3&gt;
+&lt;p&gt;Nasze zapytanie do mediatora powinno implementować interfejs IRequest albo IRequest&amp;lt;TResponse&amp;gt;. Wszystko zależy od tego, czy chcesz zwracać dane, czy nie.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Gdybyśmy chcieli dodać jakieś parametry do tego zapytania to zrobiliśmy by to tutaj.&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class GetAllPostsQuery 
+    : IRequest&amp;lt;List&amp;lt;Post&amp;gt;&amp;gt;
+{
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dodajmy więc typ wyliczeniowy, aby to pokazać.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public enum OrderByPostOptions
+{
+    None = 0,
+    ByTitle = 1,
+    ByDate = 2,
+    ByAuthor = 3
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Będzie sortować naszą zwracaną listę wpis&amp;oacute;w.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class GetAllPostsQuery
+    : IRequest&amp;lt;List&amp;lt;Post&amp;gt;&amp;gt;
+{
+    public OrderByPostOptions OrderBy { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Teraz musimy stworzyć klasę, kt&amp;oacute;ra obsłuży to zapytanie. Musi ona implementować IRequestHandler w następujący spos&amp;oacute;b.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class GetAllPostsQueryHandler : IRequestHandler
+    &amp;lt;GetAllPostsQuery, List&amp;lt;Post&amp;gt;&amp;gt;
+{
+    public Task&amp;lt;List&amp;lt;Post&amp;gt;&amp;gt; Handle(GetAllPostsQuery request, 
+        CancellationToken cancellationToken)
+    {
+        var posts = DummyPosts.Get();
+        if (request.OrderBy == OrderByPostOptions.ByAuthor)
+            return Task.FromResult
+                (posts.OrderBy(p =&amp;gt; p.Author).ToList());
+        else if (request.OrderBy == OrderByPostOptions.ByDate)
+            return Task.FromResult
+                (posts.OrderBy(p =&amp;gt; p.Date).ToList());
+        else if (request.OrderBy == OrderByPostOptions.ByTitle)
+            return Task.FromResult
+                (posts.OrderBy(p =&amp;gt; p.Title).ToList()); 
+        
+        return Task.FromResult
+               (posts);
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Teraz chcemy wywołać nasze zapytanie w naszym mediatorze. Oto jak to robimy.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class PostController : Controller
+{
+    private readonly IMediator _mediator;
+    public PostController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+    [HttpGet(Name = "GetAllPosts")]
+    public async Task&amp;lt;ActionResult&amp;lt;List&amp;lt;Post&amp;gt;&amp;gt;&amp;gt; GetAllPosts()
+    {
+        var request = new GetAllPostsQuery 
+        {
+            OrderBy = OrderByPostOptions.ByDate
+        };
+        var result = await _mediator.Send(request);
+
+        return result;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Jak widzisz musimy strzyknąć IMediator do naszego kontrolera. Sam kontroler nie wie kto wykona jego zapytanie. Ważne, że otrzyma listę wpis&amp;oacute;w, o kt&amp;oacute;rą poprosił.&lt;/p&gt;
+&lt;p&gt;Warto zaznaczyć, że gdybyś miał polecenie, kt&amp;oacute;re nic nie zwraca to wtedy musisz skorzystać ze specjalnej klasy &lt;strong&gt;UNIT&lt;/strong&gt;, kt&amp;oacute;ra reprezentuje dla MediatR NIC.&lt;/p&gt;
+&lt;p&gt;Oto przykład takiego przypadku gdy chcemy aktualizować wpis i otrzymać NIC po wykonaniu takiego polecenia.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class PostController : Controller
+{
+    [HttpPut(Name = "UpdatePost")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
+    public async Task&amp;lt;ActionResult&amp;gt; Update([FromBody]
+        UpdatePostCommand updatePostCommand)
+    {
+        await _mediator.Send(updatePostCommand);
+
+        return NoContent();
+    }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Oto polecenie aktualizacji wpisu.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class UpdatePostCommand : IRequest
+{
+    public int PostId { get; set; }
+    public string Title { get; set; }
+    public string Author { get; set; }
+
+    public DateTime Date { get; set; }
+    public string Description { get; set; }
+
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
+
+    public string ImageUrl { get; set; }
+    public string Url { get; set; }
+    public int Rate { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W klasie obsługujące te polecenie będziemy zwracać właśnie specjalną wartość UNIT, kt&amp;oacute;ra określa, że nic nie zwracamy.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class UpdatePostCommandHandler : IRequestHandler
+    &amp;lt;UpdatePostCommand, Unit&amp;gt;
+{
+    public Task&amp;lt;Unit&amp;gt; Handle(UpdatePostCommand request,
+        CancellationToken cancellationToken)
+    {
+        Post p = new Post()
+        {
+            Author = request.Author,
+            Category = request.Category,
+            CategoryId = request.CategoryId,
+            Date = request.Date,
+            Description = request.Description,
+            ImageUrl = request.ImageUrl,
+            PostId = request.PostId,
+            Rate = request.Rate,
+            Title = request.Title,
+            Url = request.Url
+        };
+
+        //UPDATED
+
+        return  Task.FromResult(Unit.Value);
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;CQRS ?&lt;/h3&gt;
+&lt;p&gt;Jak widzisz zrobiłem mały podział. Komunikaty dzielą się na : Polecenia (Command) i na zapytania (Query).&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mediatr-cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core/3_637469864045882731.PNG" alt="CQRS jak to wygląda w projekcie" width="397" height="387" /&gt;&lt;/p&gt;
+&lt;p&gt;Skr&amp;oacute;t CQRS rozwijamy do "Command Query Responsibility Segregation".&lt;/p&gt;
+&lt;p&gt;Jak widzisz zrobiłem szybką segregację komunikat&amp;oacute;w na Polecenia i zapytania.&lt;/p&gt;
+&lt;p&gt;Filozofia jest prosta.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Query to zapytanie, kt&amp;oacute;re zwraca jakąś informację, ale &lt;strong&gt;nie zmienia&lt;/strong&gt; systemu np. pobranie wszystkich wpis&amp;oacute;w.&lt;/li&gt;
+&lt;li&gt;Natomiast Command, czyli Polecenie &lt;strong&gt;ma za zadanie zmienić system, ale ma nic nie zwracać&lt;/strong&gt; (chociaż tutaj można się kł&amp;oacute;cić, bo status wykonania polecenia może zostać zwr&amp;oacute;cony)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Jak widzisz nawet bez twojej wiedzy w bardzo łatwy spos&amp;oacute;b wyjaśniłem Ci jak możesz wprowadzić CQRS do swojej aplikacji bez dłuższego gadania filozoficznego, o co chodzi z tym wzorcem projektowym.&lt;/p&gt;
+&lt;p&gt;Oto przykład tego, jak na moim webinarze ostatecznie projekt EduZbieracz wyglądał, gdy skończyłem implementacje CQRS.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mediatr-cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core/4_637469864045934422.PNG" alt="CQRS w EduZbieraczu mn&amp;oacute;stwo klas" width="498" height="715" /&gt;&lt;/p&gt;
+&lt;p&gt;Wadą całego tego wzorca CQRS oraz Mediator jest fakt, że będziesz miał mn&amp;oacute;stwo klas. Natomiast przynajmniej możesz spać spokojnie, bo zasada "Single Responsibility Principle" nie może już być realizowana lepiej.&lt;/p&gt;
+&lt;p&gt;Zalety CQRS:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Skalowanie&lt;/li&gt;
+&lt;li&gt;Bezpieczeństwo&lt;/li&gt;
+&lt;li&gt;Łatwe do zmiany&lt;/li&gt;
+&lt;li&gt;Uczy schematu działania i szukania w kodzie element&amp;oacute;w&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Wady CQRS :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Zwiększa liczbę klas 😱&lt;/li&gt;
+&lt;li&gt;Zwiększona złożoność aplikacji 🥴&lt;/li&gt;
+&lt;li&gt;Dobry pomysł dla dużych aplikacji 🤠&amp;nbsp; . Dla małych nie&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mediatr-cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core/5_637469864046036930.PNG" alt="Slajd CQRS z prelekcji Aplikacja C# od Zera : Architektura, CQRS, Dobre praktyki" width="700" height="392" /&gt;&lt;/p&gt;
+&lt;h3&gt;Wysyłanie Notyfikacji&lt;/h3&gt;
+&lt;p&gt;MediatR daje też możliwość wysyłania Notyfikacji. Wygląda to podobnie do wysyłania request&amp;oacute;w.&lt;/p&gt;
+&lt;p&gt;R&amp;oacute;żnica polega na tym, że stworzyć wiele obiekt&amp;oacute;w, kt&amp;oacute;re będą obsługiwać tę notyfikację.&lt;/p&gt;
+&lt;p&gt;Nie wiem jak traktować Notyfikacje do wzorca CQRS wiem jedno skoro Notyfikacje nie mogą niczego zwracać to możemy to traktować jako Command, czyli polecenie&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;[cloud-blue2Po co są notyfikację?] W trakcie pisania tego wpisu nie zdawałem sobie, że w sumie notyfikację w swoim działaniu mogą reprezentować zdarzenia domenowe w naszym systemie.&lt;/p&gt;
+&lt;p&gt;Czym są zdarzenie z punktu widzenia aplikacji CQRS? Zrobiłem o tym innym wpis, kt&amp;oacute;ry opisuje problem, co się dzieje, gdy jeden Command uruchamiania inny Command i jak zdarzenia ratują nas przed tym problemem.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cezarywalenciuk.pl/blog/programing/command-wywolujacy-kolejny-command-to-kiepski-pomysl" target="_blank" rel="noopener"&gt;https://cezarywalenciuk.pl/blog/programing/command-wywolujacy-kolejny-command-to-kiepski-pomysl&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[cg]&lt;/p&gt;
+&lt;p&gt;Zakładamy, że notyfikację wykonują jakąś zmianę w systemie.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mediatr-cqrs-i-wzorzec-projektowy-mediator-w-aspnet-core/6_637469884550723331.PNG" alt="Wysłanie Notyfikacji projekt" width="404" height="365" /&gt;&lt;/p&gt;
+&lt;p&gt;Chociaż zapewne dla bezpieczeństwa lepiej by byłoby nie mieszać tych Notyfikacji do wzorca CQRS.&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class WritePostNotification
+    : INotification
+{
+    public string WhatToWrite { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Zapiszemy w konsoli wynik naszej notyfikacji.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class WritePostNotificationConsoleHandler :
+    INotificationHandler&amp;lt;WritePostNotification&amp;gt;
+{
+    public Task Handle(WritePostNotification notification,
+        CancellationToken cancellationToken)
+    {
+        Console.WriteLine(notification.WhatToWrite);
+
+        return Task.CompletedTask;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Odpalimy także tę klasę.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class WritePostNotificationDebuggerHandler :
+    INotificationHandler&amp;lt;WritePostNotification&amp;gt;
+{
+    public Task Handle(WritePostNotification notification, 
+        CancellationToken cancellationToken)
+    {
+        Debugger.Log(1,"Info",
+            notification.WhatToWrite);
+
+        return Task.CompletedTask;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Kontroler korzysta z metody "&lt;strong&gt;Publish&lt;/strong&gt;", aby wysłać notyfikacje.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class PostController : Controller
+{
+    [HttpGet(Name = "WritePost")]
+    public async Task&amp;lt;ActionResult&amp;gt; WritePost(string message)
+    {
+        await _mediator.
+            Publish(
+            new WritePostNotification()
+            { 
+                WhatToWrite = message
+            });
+
+        return NoContent();
+    }&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Pipeline Behaviours&lt;/h3&gt;
+&lt;p&gt;Pipeline Behaviours to typ &lt;strong&gt;middleware&lt;/strong&gt;, czyli pośrednika, kt&amp;oacute;ry uruchamia się przed i po twoim zapytaniu, czy poleceniu, czy notyfikacji.&lt;/p&gt;
+&lt;p&gt;Mogą one się przydać w logowaniu i przechwytywania błęd&amp;oacute;w oraz walidacji.&lt;/p&gt;
+&lt;p&gt;Pośrednik&amp;oacute;w możesz łączyć w łańcuch wywołań. Oto dwa przykład Logowania z&amp;nbsp; Pipeline Behaviours:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class ConsoleWriteLineBehavior&amp;lt;TRequest, TResponse&amp;gt; :
+IPipelineBehavior&amp;lt;TRequest, TResponse&amp;gt;
+{
+
+    public ConsoleWriteLineBehavior()
+    {
+
+    }
+
+    public async Task&amp;lt;TResponse&amp;gt; Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate&amp;lt;TResponse&amp;gt; next)
+    {
+        Console.WriteLine($"Handling {typeof(TRequest).Name}");
+
+        // go to the next behaviour in the chain/to the request handler
+        var response = await next();
+
+        Console.WriteLine($"Handled {typeof(TResponse).Name}");
+
+        return response;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Logowanie powinno być bardziej porządne niż jakieś Console.WriteLine&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class LoggingBehavior&amp;lt;TRequest, TResponse&amp;gt; : 
+    IPipelineBehavior&amp;lt;TRequest, TResponse&amp;gt;
+{
+    private readonly ILogger&amp;lt;LoggingBehavior&amp;lt;TRequest, TResponse&amp;gt;&amp;gt; _logger;
+
+    public LoggingBehavior(ILogger&amp;lt;LoggingBehavior&amp;lt;TRequest, TResponse&amp;gt;&amp;gt; logger)
+    {
+        _logger = logger;
+    }
+
+    public async Task&amp;lt;TResponse&amp;gt; Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate&amp;lt;TResponse&amp;gt; next)
+    {
+        _logger.LogInformation($"Handling {typeof(TRequest).Name}");
+
+        var response = await next();
+
+        _logger.LogInformation($"Handled {typeof(TResponse).Name}");
+
+        return response;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Na koniec pozostało ci zarejestrować te zachowania.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMediatR(typeof(Startup));
+
+    services.AddTransient(typeof(IPipelineBehavior&amp;lt;,&amp;gt;),
+        typeof(LoggingBehavior&amp;lt;,&amp;gt;));
+
+    services.AddTransient(typeof(IPipelineBehavior&amp;lt;,&amp;gt;),
+        typeof(ConsoleWriteLineBehavior&amp;lt;,&amp;gt;));&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Podsumowanie&lt;/h3&gt;
+&lt;p&gt;Jak widzisz dzięki paczce MediatR jak łatwo jest użyć wzorca Mediator z CQRS.&lt;/p&gt;
+&lt;p&gt;Zobaczyłeś jak możesz wywołać polecenia i zapytania w stylu jeden do jednego.&lt;/p&gt;
+&lt;p&gt;Zobaczyłeś także jak możesz wysłać notyfikację w stylu jeden do wielu.&lt;/p&gt;
+&lt;p&gt;Masz także możliwość pisania swoich pośrednik&amp;oacute;w (Pipeline Behaviours) i pisania logiki do swoich komunikat&amp;oacute;w, gdy logika w nich się powtarza. W sumie to programowanie Aspektowe :)&lt;/p&gt;
+&lt;p&gt;Miłego programowania i polecam obejrzeć sw&amp;oacute;j webinar, na kt&amp;oacute;rym krok po kroku napisałem bardzo rozbudowaną aplikację używając CQRS.&lt;/p&gt;
+&lt;p&gt;Kod do pobrania tutaj :&amp;nbsp;&lt;a href="https://github.com/PanNiebieski/example-MediatR-ASPNETCORE5-CQRS" target="_blank" rel="noopener"&gt;https://github.com/PanNiebieski/example-MediatR-ASPNETCORE5-CQRS&lt;/a&gt;&lt;/p&gt;</content>
+</post>

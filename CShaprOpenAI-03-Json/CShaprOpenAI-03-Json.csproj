@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<RootNamespace>CShaprOpenAI_03_Json</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="posts\637454462344558544.xml" />
+		<None Remove="posts\637454576264555211.xml" />
+		<None Remove="posts\637455162199575585.xml" />
+		<None Remove="posts\637456075412616814.xml" />
+		<None Remove="posts\637460503198045939.xml" />
+		<None Remove="posts\637460784040222073.xml" />
+		<None Remove="posts\637469806748184298.xml" />
+		<None Remove="posts\637484561321706473.xml" />
+		<None Remove="posts\637484654116340052.xml" />
+		<None Remove="posts\637484791100543537.xml" />
+		<None Remove="posts\637559685921639672.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="posts\637454462344558544.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637454576264555211.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637455162199575585.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637456075412616814.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637460503198045939.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637460784040222073.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637469806748184298.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637484561321706473.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637484654116340052.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637484791100543537.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="posts\637559685921639672.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.AI" Version="9.1.0-preview.1.25064.3" />
+		<PackageReference Include="Microsoft.Extensions.AI.Ollama" Version="9.1.0-preview.1.25064.3" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
+	</ItemGroup>
+</Project>

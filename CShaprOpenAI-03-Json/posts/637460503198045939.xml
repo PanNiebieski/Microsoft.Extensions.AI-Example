@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<post>
+  <title>Swagger UI : Dokumentowanie API w ASP.NET CORE</title>
+  <slug>swagger-ui--dokumentowanie-api-w-aspnet-core</slug>
+  <pubDate>2021-01-12T12:40:23.258Z</pubDate>
+  <lastModified>2021-01-31T09:36:03.670Z</lastModified>
+  <excerpt></excerpt>
+  <privateNotes></privateNotes>
+  <blogId>1</blogId>
+  <ispublished>true</ispublished>
+  <categories>
+    <category>asp.net</category>
+  </categories>
+  <variables>
+    <variable>
+      <key>metroT</key>
+      <value>Swagger</value>
+    </variable>
+    <variable>
+      <key>colorkey</key>
+      <value>G2</value>
+    </variable>
+    <variable>
+      <key>metroI</key>
+      <value>655_swagger-ui--dokumentowanie-api-w-aspnet-core</value>
+    </variable>
+  </variables>
+  <content>&lt;p&gt;[metro] Programiści codziennie tworzą jakąś aplikację sieciową typu REST. Teraz nastaje pytanie, jak najlepiej zrozumieć jak dane API działa. Do tego mamy dokumentacje, ale jeśli pracujesz w szybkich, zamkniętych projektach to takiej dokumentacji może nie być.&lt;/p&gt;
+&lt;p&gt;Potem ktoś dziedziczy projekt i nie wie na co on patrzy.&lt;/p&gt;
+&lt;p&gt;Wypadałoby znać wszystkie metody, klasy typy zwracane, argumenty w danym API. Dołączyć do tego możliwość szybkiego uruchomienia danej metody z przykładami. [more]&lt;/p&gt;
+&lt;h3&gt;Swagger i Open API&lt;/h3&gt;
+&lt;p&gt;Swagger to specyfikacja służąca do opisywania działania API REST-owych. Swagger też często jest nazywany jako Open API.&amp;nbsp; Ma on pozwalać ci zrozumieć co potrafi dana usługa.&lt;/p&gt;
+&lt;p&gt;Pomysł jest bardzo dobry. Nawet nie wiesz ile razy w karierze musiałem sprawdzać działanie aplikacji REST korzystając z jakichś narzędzi jak&amp;nbsp; : PostMan.&lt;/p&gt;
+&lt;p&gt;Specyfikacja Swagger jest tak naprawdę plikiem swagger.json i jest on generowany przez odpowiednie biblioteki. Opisuje on zdolności danej usługi.&lt;/p&gt;
+&lt;p&gt;Swagger UI nazywamy interfejs graficzny, kt&amp;oacute;ry pozwala na te wszystkie informacji wyświetlić w przyjazny spos&amp;oacute;b.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Domyślnie dl .NET znajduje się on w paczce NuGet : Swashbuckle. Dodatkowo ta paczka jest domyślnie dodawana do szablonu ASP.NET CORE Web API dla .NET 5.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/contr_637460569713106795.png" alt="Swagger UI w ASP.NET CORE 5" width="600" height="201" /&gt;&lt;/p&gt;
+&lt;p&gt;Trzeba tylko zaznaczyć opcję : Enable OpenAPI support.&lt;/p&gt;
+&lt;p&gt;Skoro Microsoft dodał ten framework do swoich domyślnych szablon&amp;oacute;w to rozumiesz, że narzędzie tutaj omawiane musi być bardzo dobre.&lt;/p&gt;
+&lt;h3&gt;Integracja Swagger UI z twoją aplikacją&lt;/h3&gt;
+&lt;p&gt;Jeśli z jakiego powodu nie korzystasz z szablon&amp;oacute;w możesz zadać sobie pytanie, jak to wszystko dodać do swojego projektu.&lt;/p&gt;
+&lt;p&gt;Wszystko jest tak jak m&amp;oacute;wiłem wcześniej w paczkce : Swashbuckle.AspNetCore&lt;/p&gt;
+&lt;p&gt;A ona zawiera :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Swashbuckle.AspNetCore.Swagger : Zawiera on middleware dla ASP.NET CORE, kt&amp;oacute;ry wystawi obiekt SwaggerDocument jako plik JSON.&lt;/li&gt;
+&lt;li&gt;Swashbuckle.AspNetCore.SwaggerGen : Generator obiektu SwaggerDocument, kt&amp;oacute;ry utworzy się podstawie twoich kontroler&amp;oacute;w i metod&lt;/li&gt;
+&lt;li&gt;Swashbuckle.AspNetCore.SwaggerUI: Wersja narzędzia Swagger UI. Pobierze on plik JSON i wyświetli informacje o twojej usłudze jako piękną stronę internetową.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Instalujesz więc paczkę Swashbuckle.AspNetCore&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs  "&gt;Install-Package Swashbuckle.AspNetCore &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W klasie startup.cs dodajesz generator Swagger do kolekcji usług.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public void ConfigureServices(IServiceCollection services)
+{
+    // Możesz dodać więcej niż jeden Swagger dokument
+    services.AddSwaggerGen(c =&amp;gt;
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "AddingStuffAndCheckingI", Version = "v1" });                
+    });
+    services.AddControllers();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W metodzie Configure określasz, pod jaki adresem ma być tw&amp;oacute;j dokument JSON oraz strona internetowa z Swagger UI.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        // middleware kt&amp;oacute;ry doda Swagger JSON
+        app.UseSwagger();
+        // middleware do swagger-ui (HTML, JS, CSS, etc.),
+        // tutaj określasz endpoint dla Swagger JSON
+        app.UseSwaggerUI(c =&amp;gt;
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "AddingStuffAndChecking v1");
+        });
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Co dalej:&lt;/h3&gt;
+&lt;p&gt;Dodajmy jakąś klasę, aby zrobić szybkie demo.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class Student
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Będziemy także potrzebowali jakiegoś kontrolera.&amp;nbsp;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;[Route("api/[controller]")]
+[ApiController]
+public class StudnetController : Controller
+{
+    // GET: api/Student
+    [HttpGet]
+    public IEnumerable&amp;lt;Student&amp;gt; Get()
+    {
+        return GetStudents();
+    }
+
+    // GET: api/Student/5
+    [HttpGet("{id}", Name = "Get")]
+    public Student Get(int id)
+    {
+        return GetStudents().Find(e =&amp;gt; e.Id == id);
+    }
+
+    // POST: api/Student
+    [HttpPost]
+    [Produces("application/json")]
+    public Student Post([FromBody] Student Student)
+    {
+        return new Student();
+    }
+
+    // PUT: api/Student/5
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] Student Student)
+    {
+    }
+
+    // DELETE: api/Student/5
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
+    }
+
+    private List&amp;lt;Student&amp;gt; GetStudents()
+    {
+        return new List&amp;lt;Student&amp;gt;()
+        {
+            new Student()
+            {
+                Id = 1,
+                FirstName= "Jax",
+                LastName = "Brighth",
+            },
+            new Student()
+            {
+                Id = 2,
+                FirstName= "Johny",
+                LastName = "Cage",
+            }
+        };
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W projekcie miałem inne kontrolery z innych wpis&amp;oacute;w na temat fajnych rzeczy w ASP.NET CORE. Dla ułatwienie za komentowałem te kontrolery.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/inne kontrolery_637460569713159877.PNG" alt="moje kontrolery" width="248" height="84" /&gt;&lt;/p&gt;
+&lt;p&gt;Uruchommy teraz naszą aplikacje.&lt;/p&gt;
+&lt;p&gt;Pod adresem "https://localhost:44384/swagger/v1/swagger.json." mogę sobie zobaczyć następujący plik JSON. Pamiętaj, że port u Ciebie będzie innym.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs json "&gt;{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AddingStuffAndChecking",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Studnet": {
+      "get": {
+        "tags": [
+          "Studnet"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Student"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Student"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Student"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Studnet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Studnet/{id}": {
+      "get": {
+        "tags": [
+          "Studnet"
+        ],
+        "operationId": "Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Studnet"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Studnet"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Student": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pod adresem "https://localhost:44384/swagger/index.html" znajdziesz Swagger UI. Pamiętaj, że port u Ciebie będzie inny.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/swa-01_637460569713210181.PNG" alt="Swagger UI jak wygląda" width="580" height="716" /&gt;&lt;/p&gt;
+&lt;p&gt;W każdej chwili możesz przejrzeć typy danych, na jakich twoja usługa operuje.&lt;/p&gt;
+&lt;p&gt;Tak nawet nie wiesz, jak ważną informacją może być czy coś może być NULL czy nie.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/swa-02_637460569713242553.PNG" alt="Klasa student w swagger ui" width="568" height="240" /&gt;&lt;/p&gt;
+&lt;p&gt;Swagger daje Ci możliwość wypr&amp;oacute;bowania każdej metody pod klawiszem "Try it out"&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/swa-04_637460569713277557.PNG" alt="testowanie metody w Swagger UI" width="572" height="556" /&gt;&lt;/p&gt;
+&lt;p&gt;Kto by pomyślał, że to może być aż takie proste. Chociaż domyślam się, że testowanie tak metod gdzie istnieją warstwy autoryzacji może być utrudnione to nie powiem robi to wrażenie.&lt;/p&gt;
+&lt;h3&gt;Jak możesz to rozszerzyć?&lt;/h3&gt;
+&lt;p&gt;Możliwości tutaj się nie kończą. Po pierwsze możesz do opisu dokumentacji dodać informację o jego tw&amp;oacute;rcy oraz licencje.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;services.AddSwaggerGen(c =&amp;gt;
+{
+    c.SwaggerDoc("v1",
+        new OpenApiInfo
+        {
+            Title = "AddingStuffAndChecking",
+            Version = "v1",
+            Description = "An API to get students",
+            TermsOfService = new Uri("https://mojafirmalichydziwg.com/terms"),
+            Contact = new OpenApiContact
+            {
+                Name = "Cezary Walenciuk",
+                Email = "cezary222@gmail.com",
+                Url = new Uri("https://twitter.com/walenciukc"),
+            },
+            License = new OpenApiLicense
+            {
+                Name = "Employee API ",
+                Url = new Uri("https://mojafirmalichydziwg.com/license"),
+            }
+        });
+});&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Zostanie ona dodana tak do strony.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/SWA-06_637460569713313921.PNG" alt="Dodanie więcej informacji w Swagger UI" width="550" height="204" /&gt;&lt;/p&gt;
+&lt;p&gt;Co, jeśli chciałbyś dodać jakieś swoje komentarze na temat danej metody.&lt;/p&gt;
+&lt;p&gt;Chciałbyś, aby te komentarze było widać w Swagger UI. Nie ma problemu, ale najpierw w opcjach projektu musi włączyć dokumentacje XML.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/swa-05_637460569713343755.PNG" alt="Dokumentacja XML w projekcie" width="545" height="165" /&gt;&lt;/p&gt;
+&lt;p&gt;Ten XML będzie załączony do Swagger. Trzeba mu tylko o tym powiedzieć.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;services.AddSwaggerGen(c =&amp;gt;
+{
+    c.SwaggerDoc("v1",
+        new OpenApiInfo
+        {
+            Title = "AddingStuffAndChecking",
+            Version = "v1",
+            Description = "An API to get students",
+            TermsOfService = new Uri("https://mojafirmalichydziwg.com/terms"),
+            Contact = new OpenApiContact
+            {
+                Name = "Cezary Walenciuk",
+                Email = "cezary222@gmail.com",
+                Url = new Uri("https://twitter.com/walenciukc"),
+            },
+            License = new OpenApiLicense
+            {
+                Name = "AddingStuffAndChecking API ",&lt;br /&gt;                Url = new Uri("https://mojafirmalichydziwg.com/license"),
+            }
+        });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Możesz na przykład dodać tylko opis do metody.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;/// &amp;lt;summary&amp;gt;
+/// Pobiera listę student&amp;oacute;w
+/// &amp;lt;/summary&amp;gt;
+/// &amp;lt;returns&amp;gt;Zwraca liste student&amp;oacute;w&amp;lt;/returns&amp;gt;
+// GET: api/Student
+[HttpGet]
+public IEnumerable&amp;lt;Student&amp;gt; Get()
+{
+    return GetStudents();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Możesz też dodać cały opis użycia danej metody oraz jakie odpowiedzi HTTP może zwr&amp;oacute;cić. Ciekawe, że Swagger UI potrafi zauważyć, że coś innego jest zwracane dla inne kodu HTTP.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;/// &amp;lt;summary&amp;gt;
+/// Dodaje studenta
+/// &amp;lt;/summary&amp;gt;
+/// &amp;lt;remarks&amp;gt;
+/// Sample request:
+///
+///     POST api/Student
+///     {
+///       "firstName": "Jacek",
+///       "lastName": "Stefaniuk",
+///       "emailId": "Jacek.Stefaniuk@gmail.com"
+///     }
+/// &amp;lt;/remarks&amp;gt;
+/// response code="201"&amp;gt;Zwraca nowego studenta/response&amp;gt;
+/// &amp;lt;response code="400"&amp;gt;Jeśli był przesłany NULL&amp;lt;/response&amp;gt;
+/// &amp;lt;response code="500"&amp;gt;Coś poszło nie tak&amp;lt;/response&amp;gt;
+// POST: api/Student
+[HttpPost]
+[ProducesResponseType(201)]
+[ProducesResponseType(400)]
+[ProducesResponseType(500)]
+[Produces("application/json")]
+public Student Post([FromBody] Student Student)
+{
+    if (Student == null)
+    {
+        this.HttpContext.Response.StatusCode = 400;&lt;br /&gt;        return null;
+    }
+
+    return new Student();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Oto jak to widać w dokumentacji.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/SWA-09_637460569713431797.PNG" alt="jak to działa w Swagger UI. Mamy tutaj 200,400,500" width="347" height="644" /&gt;&lt;/p&gt;
+&lt;p&gt;Jeśli chodzi o same klasy, kt&amp;oacute;re określają nasze parametry to zawsze możesz skorzystać z atrybut&amp;oacute;w. Powiedzieć, że dane pole jest wymagane, a dany napis ma limit swojej długości.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;public class Student
+{
+    [Required]
+    public int Id { get; set; }
+
+    [StringLength(255)]
+    public string FirstName { get; set; }
+    [StringLength(255)]
+    public string LastName { get; set; }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W Swagger to też będzie można zobaczyć. Jak widzisz gwiazdka przy "Id" określa, że pole jest wymagane.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/swa-10_637460569713525798.PNG" alt="Klasa Student opisana w Swagger UI" width="298" height="177" /&gt;&lt;/p&gt;
+&lt;p&gt;Nie podoba Ci się domyślny wygląd Swagger. Zawsze możesz dołączyć sw&amp;oacute;j plik CSS do niego.&lt;/p&gt;
+&lt;p&gt;Dodaj app.UseStaticFiles(), ponieważ domyślny szablon nie ma tej konfiguracji.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs cs "&gt;app.UseStaticFiles();
+if (env.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI
+        (c =&amp;gt;
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                "AddingStuffAndChecking v1");
+                c.InjectStylesheet("/Swagger/Ui/StyleSheet.css");
+            }
+
+        );
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;W UseSwaggerUI skorzystajmy z metody "InjectStyleSheet". Plik CSS oczywiście musi się tam znajdować.&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/swa-11_637460569713547643.PNG" alt="Dodanie StyleSheet" width="249" height="80" /&gt;&lt;/p&gt;
+&lt;p&gt;Zmienie pewne style, abyśmy mieli dow&amp;oacute;d, że to działa.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs css "&gt;.swagger-ui .topbar {
+    background-color: #444444;
+    border-bottom: 3px solid red;
+}
+
+    .swagger-ui .topbar .download-url-wrapper .select-label {
+        color: greenyellow !important;
+    }
+
+        .swagger-ui .topbar .download-url-wrapper .select-label select {
+            border: 2px solid red;
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Jak widzisz obramowanie jest teraz czerwone w dw&amp;oacute;ch miejscach. Zmieniłem też tło paska oraz zmieniłem kolor napisu "Select a definition".&lt;/p&gt;
+&lt;p&gt;&lt;img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/swagger-ui--dokumentowanie-api-w-aspnet-core/swa-12_637460569713605724.PNG" alt="Przykład InjectCSS w Swagger UI" width="669" height="72" /&gt;&lt;/p&gt;
+&lt;p&gt;Zamiast wstrzykiwania CSS zawsze możesz pobrać cały jego projekt z GitHuba :&lt;a href="https://github.com/swagger-api/swagger-ui/tree/master/dist" target="_blank" rel="noopener"&gt;&amp;nbsp;https://github.com/swagger-api/swagger-ui/tree/master/dist&amp;nbsp;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wtedy będziesz miał pełną kontrolę nad wyglądem takie dokumentacji.&lt;/p&gt;
+&lt;p&gt;To wszystko, jeśli chodzi o Swagger UI. Miłego tworzenia dokumentacji.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Kod można pobrać tutaj :&amp;nbsp;&lt;a href="https://github.com/PanNiebieski/example-FluentValidation-NLog-AutoMapper-SwaggerUI-ASPNETCORE5"&gt;GitHub - PanNiebieski/example-FluentValidation-NLog-AutoMapper-SwaggerUI-ASPNETCORE5&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content>
+</post>
