@@ -1,0 +1,59 @@
+====================================================
+====================================================
+The article discusses new features and improvements in C# 9.0, including:
+
+* Record classes: allow for creating immutable data structures with minimal code.
+* Pattern matching: enables more efficient and readable code for working with objects.
+* Partial methods: allows partial implementation of a method.
+* Covariant return types: makes it easier to implement interfaces that inherit from another interface.
+* `nint` type: provides a way to work with native integers on Linux and macOS platforms.
+* Discard in lambda expressions: enables using the `discard` keyword in lambda expressions.
+* Extension GetEnumerator: allows enumerators to be used as extension methods.
+
+The article also highlights some best practices for when to use these new features, such as:
+
+* Use record classes when you have immutable data structures that need to be created and worked with.
+* Use pattern matching when working with objects and trying to determine what type they are or what their properties are.
+* Use partial methods when implementing a method in a partial class.
+* Use covariant return types when implementing interfaces that inherit from another interface.
+
+The article concludes by mentioning that C# 9.0 is an exciting release, and provides links to further learning resources.
+====================================================
+ Możesz przetłumaczyć swoją poprzednią odpowiedź na jezyk polski?
+====================================================
+Artykuł omawia nowe funkcje i udoskonalenia w C# 9.0, w tym:
+
+* Klasa record: pozwala na tworzenie niezmiennej struktury danych z minimalnym kodem.
+* Wyrażenie zgodności: umożliwia bardziej efektywny i czytelny kod dla pracy z obiektami.
+* Metody częściowe: pozwalają na implementację metod partial.
+* Zmienne typu covariant: ułatwia implementację interfejsów, które dziedziczą po innym interfejsie.
+* Typ `nint`: zapewnia sposób pracy z liczbami naturalnymi na platformach Linux i macOS.
+* Odrzuć w wyrażeniach lambda: umożliwia użycie słowa kluczowego `discard` w wyrażeniach lambda.
+* Rozszerzenie GetEnumerator: pozwalają enumeratorów na użycie jako metod rozszerzeń.
+
+Artykuł również podkreśla pewne najlepsze praktyki dotyczące użycia tych nowych funkcji, takich jak:
+
+* Użyj klas record, gdy masz niezmienne struktury danych, które trzeba stworzyć i obsłużyć.
+* Użyj wyrażenia zgodności, gdy pracujesz z obiektami i próbujesz określić ich typ czy właściwości.
+* Użyj metod częściowych, gdy implementujesz metodę w klasie partial.
+* Użyj zmiennych typu covariant, gdy implementujesz interfejsy, które dziedziczą po innym interfejsie.
+
+Artykuł kończy się stwierdzeniem, że C# 9.0 jest wyjątkowym wydaniem i dostarcza linków do dalszych źródeł uczenia się.
+====================================================
+Format your previous answer to JSON
+Only provide a RFC8259 compliant JSON response following this format without deviation.
+Don't forget '}' at the end of the JSON object.
+{
+   "summary": "Summarize the article in no more than 100 words"
+}
+====================================================
+{
+"summary": "The article discusses new features and improvements in C# 9.0, including record classes, pattern matching, partial methods, covariant return types, nint type, discard in lambda expressions, and extension GetEnumerator. It highlights best practices for using these features, such as when to use record classes or pattern matching. The article concludes that C# 9.0 is an exciting release with new ways to improve code readability and efficiency."
+}
+====================================================
+ Możesz przetłumaczyć swoją poprzednią odpowiedź na jezyk polski. 
+Zachowując format JSON. Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+====================================================
+{
+"streszczenie": "Artykuł omawia nowe funkcje i udoskonalenia w C# 9.0, w tym klasy record, wyrażenie zgodności, metody częściowe, zmienne typu covariant, typ nint, odrzuć w wyrażeniach lambda i rozszerzenie GetEnumerator. Podkreśla najlepsze praktyki użycia tych funkcji, np. kiedy używać klas record lub wyrażenia zgodności. Artykuł kończy się stwierdzeniem, że C# 9.0 jest emocjonującym wydaniem z nowymi sposobami poprawy czytelności i efektywności kodu."
+}

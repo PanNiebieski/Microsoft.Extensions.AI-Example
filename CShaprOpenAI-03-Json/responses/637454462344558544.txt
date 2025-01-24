@@ -1,0 +1,35 @@
+====================================================
+====================================================
+The article is a personal account of the author's experience buying an apartment in Warsaw. The author describes the challenges they faced during the process, including delays and issues with the property's ownership records. Despite these obstacles, the author was eventually able to secure a mortgage and purchase the apartment.
+
+The author highlights the benefits of owning one's own home, including having control over renovations and decorating. They also mention that their previous experiences with renting apartments had been difficult, with uncooperative landlords and limited flexibility. The author concludes that buying an apartment is a valuable investment, allowing them to have a sense of security and stability.
+
+The article includes some humorous anecdotes about the author's experiences with renting and the challenges they faced during the purchasing process. Overall, the author presents their experience as a positive one, emphasizing the benefits of owning one's own home and the sense of accomplishment that comes with it.
+====================================================
+ Możesz przetłumaczyć swoją poprzednią odpowiedź na jezyk polski?
+====================================================
+Oczywiście! Tutaj jest moja odpowiedź przetłumaczona na język polski:
+
+Artykuł to osobiowy relacja autora o jego doświadczeniu kupna mieszkania w Warszawie. Autor opisuje wyzwania, które napotkał podczas procesu, w tym opóźnienia i problemy z dokumentami własnościowymi nieruchomości. Pomimo tych przeszkód autorowi udało się ostatecznie uzyskać kredyt hipoteczny i kupić mieszkanie.
+
+Autor podkreśla korzyści posiadania własnego domu, w tym kontrolę nad renowacjami i dekoracją. Wymienił również swoje dotychczasowe doświadczenia z wynajmem mieszkań, które były trudne, ze współpracującymi właścicielami i ograniczoną elastycznością. Autor kończy, że kupno mieszkania to wartościowy inwestycja, pozwalająca mu mieć poczucie bezpieczeństwa i stabilności.
+
+Artykuł zawiera także dowcipowe anegdoty o doświadczeniach autora z wynajmem i wyzwaniach, które napotkał podczas procesu kupna. Ogólnie rzecz biorąc, autor prezentuje swoje doświadczenie jako pozytywne, podkreślając korzyści posiadania własnego domu i poczucie sukcesu, które towarzyszy temu.
+====================================================
+Format your previous answer to JSON
+Only provide a RFC8259 compliant JSON response following this format without deviation.
+Don't forget '}' at the end of the JSON object.
+{
+   "summary": "Summarize the article in no more than 100 words"
+}
+====================================================
+{
+  "summary": "The author shares their personal experience buying an apartment in Warsaw. They faced challenges including delays and issues with property ownership records, but eventually secured a mortgage and purchased the apartment. The author highlights the benefits of owning one's own home, including control over renovations and decorating, and mentions their previous difficulties with renting apartments."
+}
+====================================================
+ Możesz przetłumaczyć swoją poprzednią odpowiedź na jezyk polski. 
+Zachowując format JSON. Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+====================================================
+{
+  "summary": "Autor podzielił się swoim osobistym doświadczeniem kupna mieszkania w Warszawie. Napotkał wyzwania, w tym opóźnienia i problemy z dokumentami własnościowymi nieruchomości, ale ostatecznie uzyskał kredyt hipoteczny i kupił mieszkanie. Autor podkreśla korzyści posiadania własnego domu, w tym kontrolę nad renowacjami i dekoracją, a także wspomina trudności z wynajmem mieszkań."
+}

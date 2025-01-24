@@ -1,0 +1,43 @@
+====================================================
+====================================================
+The article discusses how to use Swagger UI for API documentation in an ASP.NET Core 5 project. Swagger is a popular tool for generating documentation and testing APIs, and Swagger UI provides a web-based interface for exploring and testing APIs.
+
+To get started with Swagger UI, you need to install the Swashbuckle NuGet package in your ASP.NET Core project. You then need to configure Swagger settings such as the API version and endpoint URL.
+
+The article also covers how to customize the look and feel of Swagger UI using CSS files. This allows you to change the layout, colors, and fonts used by the interface.
+
+Some examples of customizations include changing the background color and border styles of the top bar, and modifying the text color and font style of select labels. The article also mentions that you can use a pre-built CSS file from the Swagger UI repository on GitHub if you want full control over the design.
+
+The article concludes by saying that this is all there is to know about using Swagger UI for API documentation in an ASP.NET Core 5 project, and invites readers to check out an example code repository on GitHub.
+====================================================
+ Możesz przetłumaczyć swoją poprzednią odpowiedź na jezyk polski?
+====================================================
+Oczywiście! Oto tłumaczenie mojej poprzedniej odpowiedzi:
+
+Artykuł omawia sposób użycia Swagger UI do dokumentacji API w projekcie ASP.NET Core 5. Swagger jest popularnym narzędziem do generowania dokumentacji i testowania API, a Swagger UI zapewnia internetowy interfejs użytkownika dla eksploracji i testowania API.
+
+Aby zacząć korzystać ze Swagger UI, należy zainstalować pakiet Swashbuckle w swoim projekcie ASP.NET Core. Następnie należy skonfigurować ustawienia Swagger, takie jak wersja API i URL punktu końcowego.
+
+Artykuł także omawia sposób indywidualizacji wyglądu Swagger UI za pomocą plików CSS. To pozwala na zmianę układu, kolorów i czcionek używanych przez interfejs.
+
+Przykłady personalizacji to zmiana koloru tła i stylów brzegowych paska nagłówka, a także modyfikacja koloru tekstu i stylu czcionki etykiet. Artykuł dodatkowo wymienia, że można użyć gotowego pliku CSS z repository Swagger UI na GitHub, jeśli chcesz mieć pełny kontrolę nad projektem.
+
+Artykuł kończy się stwierdzeniem, że to wszystko, co trzeba wiedzieć o użyciu Swagger UI do dokumentacji API w projekcie ASP.NET Core 5, i zaprasza czytelników do sprawdzenia przykładowego repozytorium na GitHub.
+====================================================
+Format your previous answer to JSON
+Only provide a RFC8259 compliant JSON response following this format without deviation.
+Don't forget '}' at the end of the JSON object.
+{
+   "summary": "Summarize the article in no more than 100 words"
+}
+====================================================
+{
+   "summary": "The article discusses how to use Swagger UI for API documentation in an ASP.NET Core 5 project. It explains how to install Swashbuckle and configure Swagger settings such as API version and endpoint URL. The article also covers customizing the look and feel of Swagger UI using CSS files. Finally, it concludes that this is all there is to know about using Swagger UI for API documentation in an ASP.NET Core 5 project."
+}
+====================================================
+ Możesz przetłumaczyć swoją poprzednią odpowiedź na jezyk polski. 
+Zachowując format JSON. Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+====================================================
+{
+   "summary": "Artykuł omawia sposób użycia Swagger UI do dokumentacji API w projekcie ASP.NET Core 5. Wyjaśnia, jak zainstalować Swashbuckle i skonfigurować ustawienia Swagger, takie jak wersja API i URL punktu końcowego. Artykuł także omawia indywidualizację wyglądu Swagger UI za pomocą plików CSS. Wreszcie, stwierdza, że to wszystko, co trzeba wiedzieć o użyciu Swagger UI do dokumentacji API w projekcie ASP.NET Core 5."
+}

@@ -1,0 +1,35 @@
+====================================================
+====================================================
+The article discusses the importance of finding a balance between career, relationships, and personal life. The author shares their own experiences and insights, arguing that it's not necessarily one or the other - career vs. family vs. happiness. Instead, they suggest that people should strive to find a balance that works for them.
+
+The author notes that some families may prioritize their partner's career over their own desires, while others may focus on building a life together. They also share examples of successful programmers who have found ways to balance their work and personal lives, such as waking up early to spend time with family or taking breaks to recharge.
+
+Ultimately, the article suggests that it's not about choosing between one thing or another, but rather finding a way to make all aspects of life work together in harmony. The author concludes that as people get older, they tend to value happiness and relationships more than success and wealth, and that this shift can bring greater fulfillment and contentment.
+====================================================
+ Możesz przetłumaczyć swoją poprzednią odpowiedź na jezyk polski?
+====================================================
+Oczywiście! Odpowiedź została przetłumaczona na język polski:
+
+Artykuł omawiaimportancję znalezienia równowagi między karierą, relacjami i życiem osobistym. Autor dzieli swoje własne doświadczenia i wskazuje, że nie trzeba wybierać między tymi elementami - kariera vs. rodzina vs. szczęście. Zamiast tego sugeruje, aby ludzie starali się znaleźć równowagę, która działa dla nich.
+
+Autor podkreśla, że niektóre rodzinne mogą przywierać partnerstwu w karierze ponad własne oczekiwania, zaś inni mogą zwracać się ku budowaniu życia razem. Podziela również przykłady programistów, którzy znaleźli sposoby równoważenia pracy i życia osobistego, np. wstają wczesnym rankiem, aby spędzić czas z rodziną, czy też podejmują przerwy, aby odświeżyć się.
+
+Ostatecznie artykuł sugeruje, że nie jest o to wybierać między tymi elementami, ale raczej znaleźć sposób, aby wszystkie aspekty życia współistniały w harmonii. Autor wnioskuje, że gdy ludzie starszą się, tendują oni coraz bardziej doceniać szczęście i relacje niż sukces i bogactwo, a to może przynosić większe zadowolenie i satysfakcję.
+====================================================
+Format your previous answer to JSON
+Only provide a RFC8259 compliant JSON response following this format without deviation.
+Don't forget '}' at the end of the JSON object.
+{
+   "summary": "Summarize the article in no more than 100 words"
+}
+====================================================
+{
+    "summary": "\"The article discusses the importance of finding a balance between career, relationships, and personal life. It argues that people should strive to find a way to make all aspects of life work together in harmony, rather than choosing one over another. The author shares their own experiences and insights, highlighting the value of happiness and relationships as people get older.\""
+}
+====================================================
+ Możesz przetłumaczyć swoją poprzednią odpowiedź na jezyk polski. 
+Zachowując format JSON. Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+====================================================
+{
+    "summary": ""Artykuł omawiaimportancję znalezienia równowagi między karierą, relacjami i życiem osobistym. Sugeruje, aby ludzie starali się znaleźć sposób, aby wszystkie aspekty życia współistniały w harmonii, a nie wybierać między tymi elementami." ""
+}
