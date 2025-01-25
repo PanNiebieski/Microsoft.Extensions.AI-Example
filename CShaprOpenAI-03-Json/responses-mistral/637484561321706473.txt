@@ -1,0 +1,145 @@
+==================================================
+# Summary
+Prompt:
+Summarize the article in no more than 300 words.
+Write a summary as if you were the author of the text
+
+# Article content:
+
+<p>[metro] Wszystko zaczęło się od Świąt Bożego Narodzenia gdzie w końcu mogłem znaleźć trochę wolnego czasu, aby sobie pograć. W końcu pomyślałem, że może zagram w sobie "<strong>Beyond good and evil</strong>". Chciałem w tą grę zagrać od 2003 roku. Kupiłem więc wersje HD na Steam i zainstalowałem pewne MOD-y, aby gra wyglądała ładnie nawet w roku 2021.</p>
+<p>Pojawił się jednak pewien problem.</p>
+<p>Ta gra na PC nie wspiera żadnych pad&oacute;w na PC. A przynajmniej tak było w tamte święta.</p>
+<p>Moim zdaniem nawet gra z 2003 roku powinna obsługiwać pada. Pamiętaj jak grałem w "<strong>Prince Of Persia Warrior Within</strong>" na padzie, a to jest gra o podobnym sterowaniu i z roku 2004.</p>
+<p>Tak zaczął się moje zadanie w poszukiwaniu, jak najtańszego i najlepszego rozwiązania tego problemu. Swoją drogą też zapaliła mi się lampka.</p>
+<p>Gdyby m&oacute;j pad bezprzewodowy XBOX ONE był wystanie ruszać się jak myszka to m&oacute;głbym grać : "<strong>Heroes 3</strong>" czy "<strong>Civilization 6</strong>" na ekranie swojego telewizora 4K siedząc na kanapie.</p>
+<p>Jestem mega fanem bezprzewodowych pad&oacute;w XBOX ONE. Jako kolekcjoner starych konsol kiedyś zaznałem tego, co to znaczy utonąć w kablach.</p>
+<p>Samo mapowanie pada na myszkę mogło, by mieć także swoje zastosowanie biurowe. Jak więc to zrobić i ile mamy opcji. Zacznijmy od najgorszych. [more]</p>
+<h3>Script AHK&nbsp;</h3>
+<p>Używając tego języka skryptowego możesz sobie napisać r&oacute;żne mapowanie klawiszy. Chciałbyś uruchomić program wciskając F7. Nie ma problemu</p>
+<pre><code class="hljs  " data-codetitle="AHK Script">;Launch Sublime Text
+F7::Run "C:\Program Files\Sublime Text 2\sublime_text.exe"
+return</code></pre>
+<p>Z tym narzędziem można zrobić wiele ciekawych rzeczy. Na przykład zrobić maszynę, kt&oacute;ra coś skopiuje i wklei Ci coś automatycznie do Excela czy Worda.</p>
+<p>Jeśli chodzi o mapowanie pad&oacute;w to takie skrypty można byłoby napisać do 2017 roku.</p>
+<pre><code class="hljs  " data-codetitle="AHK Script">Joy1::Send {Left}  ; Have button #1 send a left-arrow keystroke.
+Joy2::Click  ; Have button #2 send a click of left mouse button.
+Joy3::Send a{Esc}{Space}{Enter}  ; Have button #3 send the letter "a" followed by Escape, Space, and Enter.
+Joy4::Send Sincerely,{Enter}John Smith  ; Have button #4 send a two-line signature.</code></pre>
+<p>Microsoft z kt&oacute;rąś poprawką Windows 10 usuną możliwość komunikacji pada ze skryptem AHK.&nbsp;</p>
+<p>Co prawda taki skrypt można napisać korzystając z dodatkowych bibliotek, ale jak widzisz poziom skomplikowania takiego rozwiązania tak gwałtownie ur&oacute;sł, że lepiej dać sobie spok&oacute;j.</p>
+<h3>Płatne : ReWSAD</h3>
+<p>Mapowanie pada to, jak widać problem nie tylko m&oacute;j. Ktoś zobaczył w tym możliwość zarobku.</p>
+<p>Jeśli więc nie szkoda Ci 5 EURO czy 35 EURO to w sumie otrzymasz tonę wsparcia od Community, jeśli chodzi o gry. Co prawda nie ma tam gotowego mapowania do Heroes 3, ale jest do Heroes 5.</p>
+<p>Moim zdaniem, jeśli miałbym dużo czasu grać przy kanapie z bezprzewodowym padem to taka inwestycja miałaby sens.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/pl_637484617038353580.png" alt="ReWSAD" width="555" height="465" /></p>
+<p>Poza tym dostajesz łatwy interfejs i możliwość tworzenia Makr, jeśli kupisz cały pakiet. Dostajesz też możliwość tworzenia klawiszy Auto-Fire, kt&oacute;re osobiście pamięta tylko z Joystik&oacute;w do Amigi.</p>
+<h3>Stare, ale działa tak jakby : Xpadder</h3>
+<p>To najbardziej Windows XP-kowy program, jaki widziałem ostatnio. Program najlepiej pobrać od oficjalnego producenta, ponieważ dostaniesz od niego gotowe PROFILE do r&oacute;żnych gier.</p>
+<p><a href="https://xpadder.xyz/download/" target="_blank" rel="noopener">https://xpadder.xyz/download/</a></p>
+<p>Po uruchomieniu możesz zobaczyć taki komunikat :</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/unsuported_637484593221369668.PNG" alt="Xpadder" width="505" height="227" /></p>
+<p>Myślisz sobie "..ale zaraz ten program miał działać z Windows 10". Program rzeczywiście działa, ale najpierw trzeba dodać do niego Tryb zgodności.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/unsuported2_637484593221462519.PNG" alt="Xpadder tryb zgdoności" width="391" height="240" /></p>
+<p>Sam program po wczytaniu pierwszego lepszego pliku konfiguracyjnego widzę, że działa dla gry "Beyond Good and Evil" . Chociaż szkoda, że ze wszystkich profili nie ma go dla tej gry.</p>
+<p>Sam program też udało mi się zawiesić więc jest to darmowe rozwiązanie, ale sam program jest tak obrzydliwy, że zastanawiam się, dlaczego ktoś nie napisał swojego rozwiązania.</p>
+<h3>To nie to, ale ciekawe :&nbsp;UCR_v0.9.0</h3>
+<p>Jak widać ktoś napisał sw&oacute;j program do mapowania pad&oacute;w w WPF.&nbsp;</p>
+<p>Można nawet zobaczyć kod źr&oacute;dłowy : https://github.com/Snoothy/UCR&nbsp;</p>
+<p>To, co mnie zraziło do tego programu to brak Tutorialu jak zmapować pada do klawiatury czy myszki.</p>
+<p>Program domyślnie też wszystkiego nie instaluje więc nie można tak sobie dodać mapowanie.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/ma_637484593221510602.png" alt="UCR_v0.9.0" width="782" height="352" /></p>
+<p>Ze strony :&nbsp;<a href="https://github.com/Snoothy/UCR/wiki/Core-Providers" target="_blank" rel="noopener">https://github.com/Snoothy/UCR/wiki/Core-Providers</a> : dowiadujemy się, że do mapowania myszki i klawiatury trzeba zainstalować sterownik z innego repozytorium GitHub</p>
+<p>Oto instrukcja jego instalacji :&nbsp;<a href="https://github.com/Snoothy/UCR/wiki/Core_Interception" target="_blank" rel="noopener">https://github.com/Snoothy/UCR/wiki/Core_Interception</a></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/pobranie_637484598369705463.PNG" alt=" https://github.com/Snoothy/UCR/wiki/Core_Interception Instalacja" width="797" height="141" /></p>
+<p>Pozostało mi zresetować komputer i zobaczyć czy to działa.</p>
+<p>Jak widać mam teraz możliwość mapowania wirtualnych myszek i klawiatur. Tylko jak widzę nie ma tutaj gotowych profili więc trzeba zrobić wszystko samemu.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/pobranie2_637484617038401860.PNG" alt="Wirtualne urządzenia " width="296" height="487" /></p>
+<h3>Gopher360 : Najlepsze rozwiązanie do myszki i klawiatury</h3>
+<p>To rozwiązanie nie sprawdzić się za bardzo gier, ale po tych wszystkich przygodach byłem wrażenie, jakie jest to proste.</p>
+<p>Program, jak i kod źr&oacute;dłowy w C++ można zobaczyć tutaj :&nbsp;<a href="https://github.com/Tylemagne/Gopher360" target="_blank" rel="noopener">https://github.com/Tylemagne/Gopher360</a></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/mapowanie-xbox-one-controller-na-myszke-i-klawiature/gopher_637484617038439133.PNG" alt="Gopher360" width="511" height="341" /></p>
+<p>Uruchamiasz ten program i DZIAŁA. Nic trzeba kombinować. Domyślny profil ma ustawione co trzeba, aby zobaczyć czy można przeglądać internet przy pomocy Pado-myszki i czy da się grać w Heroes 3.</p>
+<p>Dodatkowo przytrzymując lewy i prawy spust w padzie możesz kontrolować prędkość kursora.</p>
+<p>A co jeśli chcesz coś zmienić ? Tutaj zaczynają się schody. W pliku konfiguracyjnym, kt&oacute;ry wygląda tak :</p>
+<pre><code class="hljs  " data-codetitle="Config.Ini">#    GOPHER DEFAULT CONFIGURATION rev1.0 - Auto generated by Gopher360
+#   If you want a fresh one, just DELETE THIS and re-run Gopher360
+#    Set which controller buttons will activate the configuration events.
+#    SET 0 FOR NO FUNCTION
+#    AVAILABLE VALUES AT&gt; https://msdn.microsoft.com/en-us/library/windows/desktop/microsoft.directx_sdk.reference.xinput_gamepad(v=vs.85).aspx
+#    TIP: Sum the hex value for double button shortcuts eg. 0x0010(START) 0x0020(BACK) so 0x0030(START+BACK) will trigger the event only when both are pressed.
+
+
+CONFIG_MOUSE_LEFT = 0x1000    # Left mouse button
+CONFIG_MOUSE_RIGHT = 0x4000    # Right mouse button
+CONFIG_MOUSE_MIDDLE = 0x0040    # Middle mouse button
+CONFIG_HIDE = 0x8000        # Hides the terminal
+CONFIG_DISABLE = 0x0030        # Disables the Gopher
+CONFIG_DISABLE_VIBRATION = 0x0011 # Disables Gopher Vibrations
+CONFIG_SPEED_CHANGE =  0x0300    # Change speed
+
+
+#    KEYBOARD SHORTCUTS ON CONTROLLER BUTTONS
+#    SET 0 FOR NO FUNCTION
+#    AVAILABLE VALUES AT&gt; https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731
+
+
+GAMEPAD_DPAD_UP = 0x26
+GAMEPAD_DPAD_DOWN = 0x28
+GAMEPAD_DPAD_LEFT = 0x25
+GAMEPAD_DPAD_RIGHT = 0x27
+GAMEPAD_START = 0x5B
+GAMEPAD_BACK = 0xA8
+GAMEPAD_LEFT_THUMB = 0
+GAMEPAD_RIGHT_THUMB = 0x71
+GAMEPAD_LEFT_SHOULDER = 0xA6
+GAMEPAD_RIGHT_SHOULDER = 0xA7
+GAMEPAD_A = 0
+GAMEPAD_B = 0x0D
+GAMEPAD_X = 0
+GAMEPAD_Y = 0
+GAMEPAD_TRIGGER_LEFT = 0x20
+GAMEPAD_TRIGGER_RIGHT = 0x08
+</code></pre>
+<p>Możesz przypisać inne klawisze. Jakie klawisze są jaką wartością ? Do tego musisz przejrzeć MSDN:&nbsp;<a href=" https://msdn.microsoft.com/en-us/library/windows/desktop/dd37573" target="_blank" rel="noopener"> https://msdn.microsoft.com/en-us/library/windows/desktop/dd37573</a></p>
+<p>O ile do pomocy biurowych i gier jak Heroes 3 czy Civilization 6 ten program da radę. To jednak przy innych grach czuje, że ten program nie może zdać egzaminu.</p>
+<p>Oto wszystkie opcje, jakie masz do dyspozycji, gdybyś chciał zmapować swojego pada na klawiaturę albo na myszkę.&nbsp;</p>
+--------------------------------------------------
+Response:
+ To jest podsumowanie artykułu o aplikacji Gopher360, która pozwala na mapowanie przycisków kontrolera do akcji klawiatury lub myszy. Aplikacja jest stworzona dla gracza, który chce używać kontrolera w grach biurowych i strategicznych takich jak Heroes 3 czy Civilization 6, ale może też być pomocna w innych sytuacjach.
+   Aplikacja posiada liczne opcje konfiguracyjne pozwalające na przypisanie różnych funkcji do poszczególnych przycisków kontrolera i użycie go w złożonych sytuacjach gry. Można zmienić prędkość kursora, ukryć okno terminala lub nawet wyłączyć Gopher360 samemu.
+   Aby dodać inne klawisze lub zmienić wartości istniejących, trzeba przejrzeć MSDN (Microsoft Developer Network) aby poznać jakie klawisze są jaką wartością. Można jednak korzystać z domyślnych ustawień, które umożliwiają grę w Heroes 3 i Civilization 6.
+   W artykule podano, że ten program nie wydaje się być optymalny dla gier, które mają bardziej złożone ustawienia kontrolera albo niewykorzystują kompatybilnej biblioteki DirectInput. Jednak do pomocy w grach biurowych i strategicznych takich jak Heroes 3 czy Civilization 6, ten program może być znacznie przydatny.
+==================================================
+==================================================
+# Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski?
+--------------------------------------------------
+Response:
+ W poniższej odpowiedzi przedstawiono podsumowanie artykułu o aplikacji Gopher360, która umożliwia użycie kontrolera w grach biurowych i strategicznych. Aplikacja pozwala na mapowanie przycisków kontrolera do akcji klawiatury lub myszy i ma liczne opcje konfiguracyjne, dzięki którym można ułatwić sobie grę w Heroes 3 czy Civilization 6. Jednak, program nie wydaje się być optymalny dla gier, które mają bardziej złożone ustawienia kontrolera lub nie wykorzystują kompatybilnej biblioteki DirectInput.
+==================================================
+==================================================
+# JSON Format
+Prompt:
+Format your previous answer to JSON.
+Only provide a RFC8259 compliant JSON response following this format without deviation:
+{
+    "summary": "Summarize the article in no more than 100 words. Write a summary as if you were the author of the text"
+}
+--------------------------------------------------
+Response:
+ {
+      "summary": "The Gopher360 application allows for mapping controller buttons to keyboard or mouse actions, making it ideal for gamers looking to use a controller in office and strategy games such as Heroes 3 or Civilization 6. The app offers numerous configurable options, including assigning different functions to individual controller buttons and accommodating complex game scenarios. It's worth noting that this program may not be optimal for games with more complex controller settings or those not utilizing a compatible DirectInput library. However, for office and strategy games like Heroes 3 and Civilization 6, Gopher360 can prove to be a valuable tool."
+   }
+==================================================
+==================================================
+# JSON Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski, zachowując format JSON?
+Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+--------------------------------------------------
+Response:
+ {
+      "summary": "Aplikacja Gopher360 pozwala mapować przyciski kontrolera do akcji klawiatury lub myszy, co jest idealne dla graczy, którzy chcą używać kontrolera w grach biurowych i strategicznych takich jak Heroes 3 czy Civilization 6. Aplikacja ma liczne opcje konfiguracyjne, które umożliwiają przypisywanie różnych funkcji do poszczególnych przycisków kontrolera i ułatwiają grę w Heroes 3 czy Civilization 6. Jednak, program nie wydaje się być optymalny dla gier złożonych ustawień kontrolera lub tych, które nie wykorzystują kompatybilnej biblioteki DirectInput."
+   }
+==================================================

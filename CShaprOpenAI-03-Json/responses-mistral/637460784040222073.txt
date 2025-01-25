@@ -1,0 +1,351 @@
+==================================================
+# Summary
+Prompt:
+Summarize the article in no more than 300 words.
+Write a summary as if you were the author of the text
+
+# Article content:
+
+<p>[metro] Nasze aplikacje ASP.NET CORE coraz częściej są tylko aplikacją REST. To oczywiście wymaga Walidacji po stronie klienta i po stronie serwera.</p>
+<p>Jak taką walidację jak najszybciej zrobić. Może przecież sam napisać takie warunki, ale przy dużej ilości klas, kt&oacute;re występują jako parametry mija się to z celem.&nbsp;</p>
+<p>Możesz też skorzystać z atrybut&oacute;w i oznaczyć reguły do każdej właściwości.</p>
+<p>Co, jeśli chcesz oddzielić logikę walidacyjną od samej klasy. Nie zastąpi to oczywiście dodawania adnotacji do encji w&nbsp;Entity Framework. M&oacute;wimy tutaj tylko przesyłaniu danych do serwera.</p>
+<p>FluentValidation idzie Ci z pomocą. W tym wpisie też zobaczymy jak FluentValidation wsp&oacute;łpracuje z Swagger UI. [more]</p>
+<p>Na początku zainstaluj paczkę "FluentValidation.AspNetCore" będzie tam miał wszystko co potrzebne.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/walidacja-z-fluentvalidation-waspnet-core--swagger/f-01_637460830982762593.PNG" alt="f-01.PNG" width="614" height="154" /></p>
+<p>Aby dodać tą walidacje do kontroler&oacute;w,widok&oacute;w oraz modeli musisz ją załączyć do opcji "AddControlers()".</p>
+<pre><code class="hljs cs ">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllers().AddFluentValidation(opt =&gt;
+    {
+        opt.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+    });</code></pre>
+<p>Domyślnie chcemy zarejestrować wszystkie walidacje w naszej bibliotece</p>
+<p>Pora stworzyć klasę, kt&oacute;re nam przetestuje te mechanizmy. Oto łowca potwor&oacute;w. Student i pracownik był już w poprzednich wpisach o ASP.NET CORE.</p>
+<pre><code class="hljs cs ">public class MonsterHunter
+{
+    public string Title { get; set; }
+    public int Strenght { get; set; }
+    public int Magic { get; set; }
+    public int Life { get; set; }
+
+    public int Age { get; set; }
+    public HeroType Type { get; set; }
+
+    public IEnumerable&lt;Monster&gt; DefeatedMonsters { get; set; }
+}
+
+public enum HeroType
+{
+    Warrior = 1,
+    Mage = 2,
+    Barbarian = 3,
+    Thief = 4,
+    Priest = 5
+}</code></pre>
+<p>Nasz łowca potwor&oacute;w będzie miał listę pokonanych potwor&oacute;w.&nbsp;</p>
+<pre><code class="hljs cs ">public class Monster
+{
+    public string Name { get; set; }
+    public int Power { get; set; }
+    public FightType FightType { get; set; }
+}
+
+public enum FightType
+{
+    Magic = 1,
+    Strenght = 2
+}</code></pre>
+<p>Teraz jak utworzyć logikę walidacyjną.&nbsp; Tworzysz na to oddzielną klasę, kt&oacute;ra musi dziedziczyć po AbstractValidator&lt;T&gt;.</p>
+<pre><code class="hljs cs ">public class MonsterHunterValidator : AbstractValidator&lt;MonsterHunter&gt;
+{
+    public MonsterHunterValidator()
+    {
+        RuleFor(c =&gt; c.Age).InclusiveBetween(0, 100);
+        RuleFor(c =&gt; c.Title).MaximumLength(100)
+            .NotNull();
+        RuleFor(c =&gt; c.Type).IsInEnum();
+        RuleForEach(c =&gt; c.DefeatedMonsters).NotEmpty();
+
+        RuleFor(c =&gt; c.Strenght).GreaterThanOrEqualTo(1);
+        RuleFor(c =&gt; c.Magic).GreaterThanOrEqualTo(1);
+        RuleFor(c =&gt; c.Life).GreaterThanOrEqualTo(1);
+    }
+}</code></pre>
+<p>W konstruktorze opisujesz reguły do każdej właściwości. Możesz na przykład upewnić, że typ wyliczeniowy, kt&oacute;ry tak naprawdę będzie liczbą całkowitą będzie miał wartości z tego typu wyliczeniowego. Możesz ustawić maksymalne wartości lub ich zakresy.</p>
+<p>Możesz też ustalić, że dana kolekcja nie może być pusta.</p>
+<p>Dla potwora pokaże Ci jeszcze inne reguły. Mogę też dodać swoją własną metodę walidacyjną. W niej m&oacute;głbym na przykład sprawdzać bazę danych czy na przykład dane miasto istnieje w Polsce. Tutaj tylko robię prostą walidacje liczby całkowitej.</p>
+<p>Użyłem też "WithMessage". Ta wiadomość powinna się pojawić, gdy dam złą wartości dla "Power".</p>
+<pre><code class="hljs cs ">public class MonsterValidator : AbstractValidator&lt;Monster&gt;
+{
+    public MonsterValidator()
+    {
+        RuleFor(c =&gt; c.Name).Length(3, 100)
+            .NotNull().NotEmpty().NotEqual("-");
+        RuleFor(c =&gt; c.Power).
+            Must(BeAValidPostcode).
+            WithMessage("Please specify a valid Power");
+
+        RuleFor(c =&gt; c.FightType).IsInEnum();
+    }
+
+    private bool BeAValidPower(int power)
+    {
+        if (power &lt; 0)
+            return false;
+        return true;
+    }
+}</code></pre>
+<p>Czy FluentValidation automatycznie będzie sprawdzał elementy zagnieżdżone? Odpowiedź brzmi :&nbsp; nie.</p>
+<p>Możemy to rozwiązać na dwa sposoby. Do kolekcji potwor&oacute;w w łowcy potwor&oacute;w możemy ustawić jawnie klasę do sprawdzania właściwości w tej kolekcji.</p>
+<pre><code class="hljs cs ">public class MonsterHunterValidator : AbstractValidator&lt;MonsterHunter&gt;
+{
+    public MonsterHunterValidator()
+    {
+        RuleForEach(c =&gt; c.DefeatedMonsters).NotEmpty()
+            .SetValidator(new MonsterValidator());</code></pre>
+<p>Możemy też do ustawień FluentValidation dodać taką opcję, abyśmy nie robili tego za każdym razem.</p>
+<pre><code class="hljs cs ">.AddFluentValidation(configuration =&gt;
+    {
+        ...
+        configuration.ImplicitlyValidateChildProperties = true;
+        ...
+    })</code></pre>
+<p>Pozostało nam napisać kontroler, kt&oacute;ry sprawdzi czy to wszystko działa.</p>
+<p>Tutaj Ciebie zaskoczę, ponieważ nie musisz pisać takiego kodu.</p>
+<pre><code class="hljs cs ">[ApiController]
+[Route("[controller]")]
+public class MonsterHunterController : Controller
+{
+    [HttpPost]
+    public HttpResponseMessage Add(MonsterHunter hunter)
+    {
+        if (!ModelState.IsValid)
+        {
+            return new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Content = new StringContent("Validation failed.")
+            };
+        }
+
+        return new HttpResponseMessage
+        {
+            StatusCode = HttpStatusCode.OK,
+            Content = new StringContent("OK")
+        };
+    }
+}</code></pre>
+<p>Domyślnie FluentValidation automatycznie sprawdza czy wysłany parametr do metody jest poprawny. Nie musisz więc pisać "ModelState.IsValid".</p>
+<pre><code class="hljs cs ">[HttpPost]
+[ProducesResponseType(400)]
+[ProducesResponseType(200)]
+public HttpResponseMessage Add(MonsterHunter hunter)
+{
+    //if (!ModelState.IsValid)
+    //{
+
+    //}
+
+    return new HttpResponseMessage
+    {
+        StatusCode = HttpStatusCode.OK,
+        Content = new StringContent("OK")
+    };
+}</code></pre>
+<p>Gdybyś jednak chciał ręcznie sprawdzać warunki poprzez "ModelState.IsValid"&nbsp;i zwracać wtedy odpowiednie wartości w swoim kontrolerze.</p>
+<p>To programiści od FluentValidation zalecają abyś po prostu zarejestrował swoje klasy Walidacyjne w inny spos&oacute;b tak aby ten automat nie działał.</p>
+<p>Tak takie są oficjalne zalecenia.</p>
+<pre><code class="hljs cs ">public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllers();
+    var assembliesToRegister = new List&lt;Assembly&gt;() { GetType().Assembly };
+    AssemblyScanner.FindValidatorsInAssemblies(assembliesToRegister).ForEach(pair =&gt;
+    {
+        services.Add(ServiceDescriptor.Transient(pair.InterfaceType, pair.ValidatorType));
+    });</code></pre>
+<p>...</p>
+<p>Dla ułatwienia dodałem też sobie akcję, kt&oacute;ra zwr&oacute;ci mi poprawnego Łowcę potwor&oacute;w.</p>
+<pre><code class="hljs cs ">[HttpGet]
+public MonsterHunter Get()
+{
+    MonsterHunter mh = new MonsterHunter();
+
+    mh.Title = "Aloha Katora";
+    mh.Age = 100;
+    mh.Magic = 5;
+    mh.Type = HeroType.Mage;
+    mh.Strenght = 1;
+    mh.Life = 3;
+    mh.DefeatedMonsters = new List&lt;Monster&gt;()
+    {
+        new Monster()
+        { FightType = FightType.Magic , Name = "Ghost", Power = 4}
+    };
+
+    return mh;
+}</code></pre>
+<p>Ten JSON za chwilę będzie mi potrzebny do test&oacute;w.</p>
+<pre><code class="hljs json ">{
+  "title": "Aloha Katora",
+  "strenght": 1,
+  "magic": 5,
+  "life": 3,
+  "age": 100,
+  "type": 2,
+  "defeatedMonsters": [
+    {
+      "name": "Ghost",
+      "power": 4,
+      "fightType": 1
+    }
+  ]
+}</code></pre>
+<p>W Swagger UI, kt&oacute;ry om&oacute;wiłem tutaj zaraz przetestujemy działanie tego całego FluentValidation.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/walidacja-z-fluentvalidation-waspnet-core--swagger/f-03_637460830982815384.PNG" alt="f-03.PNG" width="569" height="644" /></p>
+<p>To są oczywiście poprawne wartości.</p>
+<p>Zmienie teraz "Power" potwora na -4. To powinno zwr&oacute;cić mi błąd 400 z moją treścią błędu.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/walidacja-z-fluentvalidation-waspnet-core--swagger/f-04_637460830982850234.PNG" alt="f-04.PNG" width="572" height="227" /></p>
+<p>Jak widać walidacja działa&nbsp;</p>
+<h3>Integracja ze Swagger jest taka sobie</h3>
+<p>Swagger UI dokumentuje twoje REST API . Potrafi ono także pokazać jak poprawnie powinieneś wywołać daną metodę.</p>
+<p>Swagger domyślnie nie widzi twojej logiki napisanej w FluentValidation</p>
+<pre><code class="hljs cs ">public class AddFluentValidationRules : ISchemaFilter
+{
+    private readonly IValidatorFactory _factory;
+
+    /// &lt;summary&gt;
+    ///     Default constructor with DI
+    /// &lt;/summary&gt;
+    /// &lt;param name="factory"&gt;&lt;/param&gt;
+    public AddFluentValidationRules(IValidatorFactory factory)
+    {
+        _factory = factory;
+    }
+
+    /// &lt;summary&gt;
+    ///     To convert case as swagger may be using lower camel case
+    /// &lt;/summary&gt;
+    /// &lt;param name="inputString"&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    private static string ToPascalCase(string inputString)
+    {
+        // If there are 0 or 1 characters, just return the string.
+        if (inputString == null) return null;
+        if (inputString.Length &lt; 2) return inputString.ToUpper();
+        return inputString.Substring(0, 1).ToUpper() + inputString.Substring(1);
+    }
+
+    public void Apply(OpenApiSchema model, SchemaFilterContext context)
+    {
+        // use IoC or FluentValidatorFactory to get AbstractValidator&lt;T&gt; instance
+        var validator = _factory.GetValidator(context.Type);
+        if (validator == null) return;
+        if (model.Required == null)
+            model.Required = new SortedSet&lt;string&gt;();
+
+        var validatorDescriptor = validator.CreateDescriptor();
+        foreach (var key in model.Properties.Keys)
+        {
+            foreach (var propertyValidator in validatorDescriptor
+                .GetValidatorsForMember(ToPascalCase(key)))
+            {
+                if (propertyValidator is NotNullValidator
+                  || propertyValidator is NotEmptyValidator)
+                    model.Required.Add(key);
+
+                if (propertyValidator is LengthValidator lengthValidator)
+                {
+                    if (lengthValidator.Max &gt; 0)
+                        model.Properties[key].MaxLength = lengthValidator.Max;
+
+                    model.Properties[key].MinLength = lengthValidator.Min;
+                }
+
+                if (propertyValidator is RegularExpressionValidator expressionValidator)
+                    model.Properties[key].Pattern = expressionValidator.Expression;
+
+                // Add more validation properties here;
+            }
+        }
+    }
+}</code></pre>
+<p>M&oacute;głbyś napisać sam taką wtyczkę pomiędzy tymi bibliotekami, ale po co, gdy masz na to gotową paczkę NuGet.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/walidacja-z-fluentvalidation-waspnet-core--swagger/f-05_637460830982892905.PNG" alt="f-05.PNG" width="672" height="159" /></p>
+<p>Pozostaje Ci przy rejestracji Swagger dodać "SchemaFilter".</p>
+<pre><code class="hljs cs ">services.AddSwaggerGen(c =&gt;
+{
+    c.SchemaFilter&lt;AddFluentValidationRules&gt;();
+    c.SwaggerDoc("v1",
+        new OpenApiInfo
+        {
+            Title = "AddingStuffAndChecking",
+            Version = "v1",
+            Description = "An API to get students",
+            TermsOfService = new Uri("https://mojafirmalichydziwg.com/terms"),
+            Contact = new OpenApiContact
+            {
+                Name = "Cezary Walenciuk",
+                Email = "cezary222@gmail.com",
+                Url = new Uri("https://twitter.com/walenciukc"),
+            },
+            License = new OpenApiLicense
+            {
+                Name = "AddingStuffAndChecking API",
+                Url = new Uri("https://mojafirmalichydziwg.com/license"),
+            },
+        });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+    
+});</code></pre>
+<p>Niestety możesz też zobaczyć tutaj ograniczenia. O ile dla napis&oacute;w wszystkie informacje o ograniczeniach się zachowały to dla typ&oacute;w liczbowych te informację nie zostały przekazane dalej.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/walidacja-z-fluentvalidation-waspnet-core--swagger/f-06_637460830982942972.PNG" alt="f-06.PNG" width="376" height="479" /></p>
+<p>Zakładam, że to wynika z samego ograniczenia Swagger UI. W taki wypadku musiałbyś w komentarzach XML poinformować użytkownika o ograniczeniach twojego REST API.</p>
+<p>Kod można pobrać tutaj :&nbsp;<a href="https://github.com/PanNiebieski/example-FluentValidation-NLog-AutoMapper-SwaggerUI-ASPNETCORE5">GitHub - PanNiebieski/example-FluentValidation-NLog-AutoMapper-SwaggerUI-ASPNETCORE5</a></p>
+<p>l</p>
+--------------------------------------------------
+Response:
+ W tym postapie przedstawiono sposób integracji walidacji danych przy użyciu biblioteki FluentValidation z interfejsem Swagger UI w ramach aplikacji ASP.NET Core 5. Przy pomocy wtyczki, którą można zaimplementować samemu lub skorzystać z pakietu NuGet, możemy dodawać informacje o walidacji danych do odpowiednich schematów i dokumentacji Swagger.
+   Wymieniono również kod źródłowy, który zawiera wtyczkę odpowiadającą za przekazanie informacji o walidacji danych do schématów Swagger oraz rejestracji tej wtyczki podczas rejestracji Swagger w aplikacji.
+   Warto zwrócić uwagę na to, że w niektórych przypadkach informacje o walidacji danych mogą być ograniczone i może zostać zaproszony użytkownik do skorzystania z komentarzy XML dla uzyskania dodatkowych informacji.
+   Ostatecznie, kod źródłowy można pobrać z GitHuba na adresie: <a href="https://github.com/PanNiebieski/example-FluentValidation-NLog-AutoMapper-SwaggerUI-ASPNETCORE5">GitHub - PanNiebieski/example-FluentValidation-NLog-AutoMapper-SwaggerUI-ASPNETCORE5</a>
+==================================================
+==================================================
+# Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski?
+--------------------------------------------------
+Response:
+ W tym przykladzie przedstawiono sposób integrowania walidacji danych za pomocą biblioteki FluentValidation z interfejsem Swagger UI w ramach aplikacji ASP.NET Core 5. Używając modułu, który można utworzyć samodzielnie lub pobrać z pakietu NuGet, możemy dodać informacje o walidacji danych do odpowiednich schematów i dokumentacji Swagger.
+   Wymieniono również kod źródłowy, który zawiera moduł odpowiadający za przekazanie informacji o walidacji danych do schématów Swagger oraz rejestrację tej modułu podczas rejestracji Swagger w aplikacji.
+   Warto zwrócić uwagę na to, że w niektórych przypadkach informacje o walidacji danych mogą być ograniczone i może zostać zaproszony użytkownik do skorzystania z komentarzy XML dla uzyskania dodatkowych informacji.
+   Ostatecznie, kod źródłowy można pobrać z GitHuba na adresie: <https://github.com/PanNiebieski/example-FluentValidation-NLog-AutoMapper-SwaggerUI-ASPNETCORE5>
+==================================================
+==================================================
+# JSON Format
+Prompt:
+Format your previous answer to JSON.
+Only provide a RFC8259 compliant JSON response following this format without deviation:
+{
+    "summary": "Summarize the article in no more than 100 words. Write a summary as if you were the author of the text"
+}
+--------------------------------------------------
+Response:
+ {
+      "summary": "In this example, integration of data validation using FluentValidation with Swagger UI is demonstrated for an ASP.NET Core 5 application. By using a plugin, which can either be self-created or obtained from NuGet, information about data validation can be added to relevant Swagger schemas and documentation. The code provided includes a plugin responsible for passing data validation information to the Swagger schemas as well as registering this plugin during Swagger registration in the application."
+   }
+==================================================
+==================================================
+# JSON Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski, zachowując format JSON?
+Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+--------------------------------------------------
+Response:
+ {
+      "summary": "W tym przykładzie pokazano sposób integracji walidacji danych za pomocą biblioteki FluentValidation z interfejsem Swagger UI w ramach aplikacji ASP.NET Core 5. Korzystając z modułu, który można utworzyć samodzielnie lub pobrać z pakietu NuGet, możemy dodać informacje o walidacji danych do odpowiednich schématów i dokumentacji Swagger. Kod źródłowy zawiera moduł odpowiadający za przekazanie informacji o walidacji danych do schématów Swagger oraz rejestrację tej modułu podczas rejestracji Swagger w aplikacji."
+   }
+==================================================

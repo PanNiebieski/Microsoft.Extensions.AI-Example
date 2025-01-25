@@ -1,0 +1,97 @@
+==================================================
+# Summary
+Prompt:
+Summarize the article in no more than 300 words.
+Write a summary as if you were the author of the text
+
+# Article content:
+
+<p>[metro] Tradycyjna tablica nie bardzo się sprawdza z prezentacji OnLine. Jak się domyślasz problemem jest światło, kt&oacute;re na tą tablicę niezbyt dobrze pada i słabo to widać na kamerze.</p>
+<p>Ktoś wymyślił genialny spos&oacute;b. Aby pisać po specjalnym szkle, kt&oacute;re jest przezroczyste i odpowiednio odwraca napisane wzory dla publiczności.</p>
+<p>Pisanie po szklanej tablicy, kt&oacute;ra świeci Neonem na potrzebę webinar&oacute;w czy LIVE stream-&oacute;w nie jest niczym nowym. Ten wynalazek istnieje od 2015 roku. Fachowo takie urządzenie nazywa się "<a href="https://www.lightboard.info/" target="_blank" rel="noopener">LightBoard</a>". [more]</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/Lig-01_637484800484030723.PNG" alt="LightBoard przykład z Youtube" width="350" height="312" /></p>
+<p style="text-align: center;"><a href="https://www.youtube.com/watch?v=wCOuu0-o5YI" target="_blank" rel="noopener">What's a "Lightboard" Studio (How Do They Work?)</a></p>
+<p>Mamy rok 2021 i świat wciąż potrzebuje lepszych metod nauczania On-Line. Bądźmy szczerzy prawdopodobnie nie masz pieniędzy i przestrzeni, aby taką tablicę kupić.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/LightBox_637484852051752116.png" alt="LightBox.png" width="400" height="266" /></p>
+<p>Zawsze możesz uruchomić Paint-a i tam rysować, ale to nie to samo. Chcielibyśmy mieć tekst, wzory,obrazki na przezroczystym tle, a siebie mieć także na przekazywanym obrazie.</p>
+<p>Na pomoc przychodzi program OBS.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-02_637484819906570524.PNG" alt="Wirtualna Kamera z OBS" width="669" height="478" /></p>
+<p>Ten program pozwala ci ustawiać elementy wobec obrazu przekazywanego z twojej kamery.&nbsp;</p>
+<p>Na obrazku poniżej możesz zobaczyć sceny, kt&oacute;re czasem traktuje jak osobne slajdy w mojej prezentacji Online. Do każdej sceny możesz dodać swoje obrazki, tła oraz kamerę.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-03_637484819906637931.PNG" alt="Sceny i źr&oacute;dła obrazu" width="568" height="221" /></p>
+<p>Dodatkowo OBS potrafi stworzyć wirtualną kamerę, gdy zainstalujesz ten oto <a href="https://obsproject.com/forum/resources/obs-virtualcam.949/" target="_blank" rel="noopener">plugin</a>&nbsp;i przekazać ten zmodyfikowany obraz do StreamYarda, Zooma, MS Teams, Skype, do jakiegokolwiek programu chcesz.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-04_637484819906807673.png" alt="Slajdy i kamera OBS" width="634" height="360" /></p>
+<p>Moglibyśmy stworzyć zestaw obrazk&oacute;w per slajd, kt&oacute;ry chcemy pokazać, ale wiesz mi, nawet jeśli nie bawimy się z przezroczystością to jest z tym dużo zabawy w przełączaniu. Bez programu TouchPortal nie dałbym rady. O programie TouchPortal pisałem tutaj, ale jakbyś był ciekaw to w skr&oacute;cie ten program na moim tablecie tworzy mi specjalne klawisze do skakania pomiędzy "scenami" w programie OBS.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-05_637484819906955042.PNG" alt="TouchPortal klawisze do slajd&oacute;w" width="434" height="216" /></p>
+<p>Skoncentrujmy się na celu osiągnięcia podobnego efektu jakbyś korzystali z szklanej tablicy.</p>
+<p>Co jest potrzebne do osiągnięcia takiego efektu :</p>
+<ul>
+<li>Przynajmniej dwa monitory (optymalnie to 3)</li>
+<li>Program OBS</li>
+<li>Program PowerPoint</li>
+</ul>
+<p>Na pierwszy monitorze uruchamiasz program PowerPoint. Chcemy w nim utworzyć slajdy z jasnozielonym tłem tak aby na nim zrobić efekt "greenbox".</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/slajdy2_637484819907138760.png" alt="PowerPoint z jasnozielonym kolorem" width="750" height="469" /></p>
+<p>Na drugim monitorze uruchamiamy program OBS i tworzymy odpowiednią scene. Do tej sceny chcesz dodać swoją kamerę oraz ekran monitora, na kt&oacute;rym obecnie jest uruchomiony PowerPoint.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-06_637484819907347110.png" alt="Przechwytywanie obrazu ekranu" width="293" height="442" /></p>
+<p>Oto elementy mojej sceny&nbsp;</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-07_637484819907374619.PNG" alt="źr&oacute;dła obraz&oacute;w w OBS tylko dwa. PowerPoint i kamera z laptopa" width="213" height="69" /></p>
+<p>Gdy oba elementy dobrze sobie ustawisz pora dodać "Filtr", kt&oacute;ry zamieni ten jasnozielony kolor na warstw przezroczystą.&nbsp;</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-08_637484819907398277.png" alt="Dodawanie filtr&oacute;w do OBS" width="322" height="89" /></p>
+<p>Z tych wszystkich filtr&oacute;w wybierz "Chroma Key"&nbsp;</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-09_637484842371199851.png" alt="Wszystkie filtry kt&oacute;re ma m&oacute;j OBS" width="256" height="605" /></p>
+<p>Domyślny efekt dla koloru zielonego powinien zdać egazmin</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/lig-10_637484842371250315.PNG" alt="Chroma Key w OBS . normalne ustawienia" width="571" height="238" /></p>
+<p>Dodajmy coś do slajdu aby sprawdzić czy to działa.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/slajd-01_637484842371294392.PNG" alt="Zielony slajd w OBS" width="300" height="174" /></p>
+<p>Oto efekt :</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/slajd-02_637484842372177840.png" alt="Efekt końcowy kamera plus zielony slajd z PowerPoint" width="300" height="247" /></p>
+<p>I to wszystko. Od tego momentu ogranicza Cię już tylko wyobraźnia. Pamiętasz, że m&oacute;wiłem coś na temat programu TouchPortal i zmieniania "scen" to znaczy slajd&oacute;w. Mając PowerPointa uruchomionego na drugim monitorze możesz używając swojej własnej klawiatury bardzo łatwo skakać po swoich przezroczystych jak szkło slajdach.</p>
+<p>Z ciekawości możesz sprawdzić czy istnieje dla Ciebie lepszy kolor na robienie przezroczystości niż ten jasnozielony.</p>
+<p>A co z rysowanie? Tą samą sztuczkę można wykonać rysując w programie graficznym lub rysując po slajdach PowerPoint. Pamiętaj jednak, że rysowanie jest dostępne dla użytkownik&oacute;w Office 360. Ja mam legalną wersje PowerPoint 2019 i nie mogę znaleźć opcji "Draw" w moim programie.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/light-11_637484842372374125.png" alt="Rysowanie po ekranie" width="750" height="389" /></p>
+<p>Samo rysowanie też ma sens, jeśli jesteś podłączony do ekranu bądź tabletu, po kt&oacute;rym możesz rysować rysikiem. Inaczej moim zdaniem mija się to z celem.</p>
+<p>Pamiętaj też, że na tym jasnozielonym tłem możesz dawać też sobie wskaz&oacute;wki o czym masz m&oacute;wisz lub co masz narysować w tym momencie. Wymaga to jednak dodatkowych przygotowań w jakimś programie graficznym. Ja korzystam <a href="https://cezarywalenciuk.pl/blog/programing/paintnet-darmowy-edytory-obrazkow" target="_blank" rel="noopener">Paint.NET&nbsp;</a></p>
+<p>Slajd z ukrytą dla Ciebie wiadomością wyglądałby tak.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/szklana-tablica-przezroczyste-slajdy-na-stream-z-powerpoint-i-obs/slajdy3_637484842372421959.PNG" alt="Dodawanie sobie odpowiedzi do slajd&oacute;w PowerPoint" width="450" height="180" /></p>
+<p>To wszystko. Jak widzisz prezentacje, webinary, Live Streamy nie muszą być nudne. Nie musisz dzielić swojej kamery od slajd&oacute;w. Slajdy i kamera mogą być r&oacute;wnocześnie na jednym ekranie.</p>
+<p>Do zobaczenia.</p>
+--------------------------------------------------
+Response:
+ To wpis zawiera informacje o sposobie wykorzystania programu PowerPoint do tworzenia prezentacji z przezroczystymi slajdami, które mogą być efektownie pokazywane wraz z obrazkiem z kamery. Opisano także możliwość rysowania po tych slajdach i dostosowywanie ich do potrzeb poprzez dodawanie sobie odpowiedzi. Uwaga na to, że ta funkcja jest dostępna tylko w Office 360, natomiast użytkownicy mogą również korzystać z innych programów graficznych do dodawania wskazówek do slajdów.
+==================================================
+==================================================
+# Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski?
+--------------------------------------------------
+Response:
+ Opisano sposób wykorzystania programu PowerPoint w wersji Office 360 do tworzenia prezentacji z przezroczystymi slajdami, które mogą być efektownie pokazywane wraz z obrazkiem z kamery. Dodatkowo opisano możliwość rysowania po tych slajdach i dostosowywanie ich do potrzeb poprzez dodawanie sobie odpowiedzi. Uwaga, że ta funkcja jest dostępna tylko w Office 360, natomiast użytkownicy mogą również korzystać z innych programów graficznych do dodawania wskazówek do slajdów.
+
+W przypadku korzystania z innego oprogramu możliwe jest dodawanie sobie odpowiedzi poprzez ręczne edycję kodu lub użycie innego programu, który będzie umożliwiał dodać wskazówki do slajdów.
+==================================================
+==================================================
+# JSON Format
+Prompt:
+Format your previous answer to JSON.
+Only provide a RFC8259 compliant JSON response following this format without deviation:
+{
+    "summary": "Summarize the article in no more than 100 words. Write a summary as if you were the author of the text"
+}
+--------------------------------------------------
+Response:
+ {
+      "summary": "W tej wiadomości przedstawiono sposób korzystania z programu PowerPoint w wersji Office 360 do tworzenia prezentacji z przezroczystymi slajdami, które mogą być efektownie pokazywane wraz z obrazkiem z kamery. Dodatkowo opisano możliwość rysowania po tych slajdach i dostosowywanie ich do potrzeb poprzez dodawanie sobie odpowiedzi. Uwaga, że ta funkcja jest dostępna tylko w Office 360."
+   }
+==================================================
+==================================================
+# JSON Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski, zachowując format JSON?
+Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+--------------------------------------------------
+Response:
+ {
+      "summary": "W tej wiadomości przedstawiono sposób korzystania z programu PowerPoint w wersji Office 360 do tworzenia prezentacji z przezroczystymi slajdami, które mogą być efektownie pokazywane wraz z obrazkiem z kamery. Dodatkowo opisano możliwość rysowania po tych slajdach i dostosowywanie ich do potrzeb poprzez dodawanie sobie odpowiedzi. Uwaga, że ta funkcja jest dostępna tylko w Office 360."
+   }
+==================================================

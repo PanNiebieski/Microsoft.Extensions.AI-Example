@@ -63,6 +63,6 @@
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="responses\" />
+		<Folder Include="responses-llama3\" />
 	</ItemGroup>
 </Project>

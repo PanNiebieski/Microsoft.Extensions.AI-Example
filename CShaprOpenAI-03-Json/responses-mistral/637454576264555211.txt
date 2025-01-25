@@ -1,0 +1,96 @@
+==================================================
+# Summary
+Prompt:
+Summarize the article in no more than 300 words.
+Write a summary as if you were the author of the text
+
+# Article content:
+
+<p>[metro] Jeśli chodzi o podsumowania bloga to ostatnie<a href="https://cezarywalenciuk.pl/blog/programing/rok-2015---355600-unikatowych-wyswietlen-i-130000-uzytkownikow" target="_blank" rel="noopener">&nbsp;robiłem w styczniu 2016 roku</a>. Dużo się od tego czasu się zmieniło.</p>
+<p>W roku 2020 wr&oacute;ciłem do swojej strony internetowej. Miałem dwuletnią przerwę w tworzeniu wpisu na bloga. Nie ma co ukrywać, ale czasem w życiu są ważniejsze rzeczy.</p>
+<p>Statystki Google Analytics pokazują brutalna prawdę faktu, że większość wpis&oacute;w na tym blogu się zestarzała. Chociaż Kurs C# nadal się trzyma. Ktoś m&oacute;głby powiedzieć, że ten blog programistyczny tonie. Tak mogłoby być, gdyby coś z tym nie zrobił.</p>
+<p>Do strony wprowadziłem wiele zmian. Oto one:</p>
+<p>W roku 2020 zrobiłem <a href="https://cezarywalenciuk.pl/blog/programing/przeniesienie-bloga-na-aspnet-core-3-1" target="_blank" rel="noopener">migrację bloga z ASP.NET MVC do ASP.NET CORE 3.2. </a>Strona dzięki temu dostała ciekawy <a href="https://cezarywalenciuk.pl/blog/programing/aspnet-core-response-compression-na-blog" target="_blank" rel="noopener">algorytm kompresji każdego zapytania HTTP.</a></p>
+<p>Poprawiłem stronę gł&oacute;wną, kt&oacute;ra przez wiele lat wyglądała tak: [more]</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/stara szata graficzna_637454605099464604.PNG" alt="Stara szata graficzna" width="500" height="391" /></p>
+<p>Aż wstyd było się chwalić swoim blogiem, gdy moja młoda morda w tej szarości Ciebie witała.</p>
+<p>Pomysł graficzny nie był zbyt dobry, a potem nie miałem czasu tego poprawić, aż do roku 2020? Jak wiesz każdy wpisy na blogu programistyczny mają sw&oacute;j dominujący kolor. Teraz ja te kolory wykorzystać na stronie gł&oacute;wnej. Po długich analizach uznałem, że taki odcień fioletu jest najlepszym kolorem do podkreślania tej tęczy kolor&oacute;w.</p>
+<p>Dodatkowo kolor ż&oacute;łty jest kolorem, kt&oacute;ry wstępuje najmniej na blogu programistycznym.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/stara szata graficzna.23232_637454605099639159.PNG" alt="Nowa strona gł&oacute;wna Cezary Walenciuk" width="498" height="393" /></p>
+<p>Zawsze też mi brakowało dobrego paska nawigacyjnego, kt&oacute;ry byłby sp&oacute;jny na wszystkich stronach i podstronach.</p>
+<p>Pojawiły się także lepsze listy do wpis&oacute;w z danego cyklu. Chciałem to zrobić od zawsze, a nigdy nie było na to czasu.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/lepsze_637454605099717441.PNG" alt="Lista wpis&oacute;w z kurs&oacute;w" width="400" height="349" /></p>
+<p>Ponownie ciesze się, że te kolory oraz ikonki metro udało mi się wykorzystać w sensowny spos&oacute;b. Wiedzieć, że ten blog żyje dłużej niż filozofia Metro UI z Windows Phone.</p>
+<p>Została także dodana lista wszystkich kurs&oacute;w i cykli. Z bloga usunąłem też nieintuicyjne meni, kt&oacute;re pokazywało kategorie. Teraz kategorię są na dole pod każdym wpisem.&nbsp;</p>
+<p>Z bloga został usunięty pomocniczy dodatek "AddThis", kt&oacute;ry dodawał przyciski do Social Media. Zobaczyłem, że spamuje on skryptami śledzącymi i stwierdziłem, że w dzisiejszych&nbsp; czasach i tak nie wiele os&oacute;b ma nawyk publikowania wpis&oacute;w na swoich kanałach social media.</p>
+<p><a href="https://cezarywalenciuk.pl/blog/programing/mailchimp-i-aspnet--stworzenie-newslettera" target="_blank" rel="noopener">Do bloga doszedł także newsletter.</a> Chociaż jest to przyszłościowe narzędzie, bo na razie nie spełnia żadnej większej funkcji.</p>
+<p><a href="https://cezarywalenciuk.pl/blog/speech" target="_blank" rel="noopener">Blog o przemawianiu został,</a> ale nie wiem czy posiadanie dw&oacute;ch blog&oacute;w na tej stronie było dobrym pomysłem. Jedyne co wiem to niekt&oacute;re wpisy z bloga o przemawianiu całkiem dobrze sobie radzą więc, aż tak źle nie jest.</p>
+<p><a href="https://cezarywalenciuk.pl/webinars" target="_blank" rel="noopener">Do strony gł&oacute;wnej doszła lista webinar&oacute;w.</a> Skoro robię webinary to fajnie by było mieć ich listę. O liście swoich prelekcji marzyłem od zawsze, ale nigdy bym nie przewidział, że będą to linki do prezentacji, kt&oacute;re sam organizuje.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/lepsze2_637454605099871429.PNG" alt="Lista webinar&oacute;w" width="496" height="396" /></p>
+<p><a href="https://cezarywalenciuk.pl/blog/programing/aplikacja-wpf-do-formatowania-kodu" target="_blank" rel="noopener">Stworzyłem program w WPF,</a> aby łatwiej mi było dodawać kod do bloga.&nbsp;</p>
+<p>Zrobiłem też przegląd wpis&oacute;w pod względem SEO i błęd&oacute;w ortograficznych. Na przykład tytuły pewnych wpis&oacute;w były za długie i je skracałem. Pomogło mi w tym płatne narzędzie :&nbsp;<a href="https://neilpatel.com/seo-analyzer/" target="_blank" rel="noopener">https://neilpatel.com/seo-analyzer/</a></p>
+<p>W roku 2020 dwa razy ten blog został uznany, za jeden z najlepszych blog&oacute;w na temat programowania.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/saskasa_637454605100011163.PNG" alt="TOP 10 w blogach programistycznych" width="400" height="348" /></p>
+<p>Zawsze coś, bo wiem, jaką mam konkurencję.</p>
+<p>Co zrobię w przyszłości, jeśli chodzi o ten blog:</p>
+<ul>
+<li>Dla szybkości może usunę Google Analytics i tak tych statystyk nie przeglądam i zastanawiam się czy mają one sens w dobie program&oacute;w, kt&oacute;re zacierają twoje ślady przeglądania internetu</li>
+<li>Dalszy przegląd starych wpis&oacute;w, ponieważ błędy językowe zawsze można znaleźć</li>
+</ul>
+<p>To wszystko. Rok 2020 był bardzo owocny. O swoje strony trzeba dbać po inaczej odejdą one w zapomnienie.&nbsp;</p>
+<p>Do zobaczenia za 5 lat.</p>
+--------------------------------------------------
+Response:
+ In this post, the author summarizes their updates and improvements made to their programming blog in 2020. Here are some of the main points:
+
+1. Redesigning the website's appearance and layout, improving navigation, and making it more visually appealing.
+2. Enhancing the SEO optimization of the blog posts by using tools like Neil Patel's SEO Analyzer to optimize titles and content for better search engine rankings.
+3. Adding new features such as a webinar list, an application in WPF for easier code formatting, and a code editor for adding snippets to blog posts.
+4. Correcting grammatical errors and making adjustments to ensure that post titles are not too long.
+5. The blog was recognized as one of the top 10 programming blogs two times in 2020.
+6. The author plans to continue refining the blog by potentially removing Google Analytics for privacy reasons, conducting further reviews of old posts, and looking for new ways to engage readers.
+
+Overall, the author emphasizes that maintaining a blog requires regular attention to keep it relevant and engaging for readers.
+==================================================
+==================================================
+# Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski?
+--------------------------------------------------
+Response:
+ W tej postaście autor podsumowuje swoje aktualizacje i ulepszenia dokonane do swojego bloga programistycznego w 2020 roku. Tu są kilka głównych punktów:
+
+1. Zmiana wyglądu i układu strony, poprawienie nawigacji i uczynienie jej bardziej przyjemną dla oczu.
+2. Współcześnienie optymalizacji SEO blogowych postów za pomocą narzędzi takich jak Analyzer SEO Neila Patela do optymalizacji tytułów i treści dla lepszych wyników w poszukiwarkach.
+3. Dodanie nowych funkcji, takich jak listę seminariów, aplikację w WPF do sformatowania kodu łatwiejsze, oraz edytor kodu do dodawania kawałków do postów blogowych.
+4. Poprawienie błędów ortograficznych i dokonanie odpowiednich zmian, aby tytuły postów nie były za długie.
+5. Blog został wyróżniony dwukrotnie jako jeden z najlepszych blogów programistycznych w 2020 roku.
+6. Autor planuje kontynuować poprawę bloga, może usuwając Google Analytics dla powodów prywatności, przeprowadzając dalsze recenzje starszych postów i poszukując nowych sposobów na zachowanie czytelników.
+
+W szczególności autor podkreśla, że utrzymywanie bloga wymaga stałej uwagi, aby ten był aktualny i przyjemny dla odbiorców.
+==================================================
+==================================================
+# JSON Format
+Prompt:
+Format your previous answer to JSON.
+Only provide a RFC8259 compliant JSON response following this format without deviation:
+{
+    "summary": "Summarize the article in no more than 100 words. Write a summary as if you were the author of the text"
+}
+--------------------------------------------------
+Response:
+ {
+      "summary": "In 2020, I made updates to my programming blog, including redesigning its appearance and navigation, improving SEO optimization, adding new features like webinars, code editors, and WPF applications for easier formatting. I also corrected grammatical errors and optimized post titles. The blog was recognized as one of the top 10 programming blogs twice in 2020."
+   }
+==================================================
+==================================================
+# JSON Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski, zachowując format JSON?
+Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+--------------------------------------------------
+Response:
+ {
+      "summary": "W 2020 roku dokonałem aktualizacji mojego bloga programistycznego, w tym zmiany wyglądu i układu strony, poprawienie optymalizacji SEO, dodanie nowych funkcji, takich jak listę seminariów, edytor kodu oraz aplikację WPF do sformatowania łatwiejszego. Poprawiłem błędy ortograficzne i optimizował tytuły postów. Blog został wyróżniony dwukrotnie jako jeden z najlepszych blogów programistycznych w 2020 roku."
+   }
+==================================================

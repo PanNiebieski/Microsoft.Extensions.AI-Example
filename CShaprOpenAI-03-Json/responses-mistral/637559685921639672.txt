@@ -1,0 +1,89 @@
+==================================================
+# Summary
+Prompt:
+Summarize the article in no more than 300 words.
+Write a summary as if you were the author of the text
+
+# Article content:
+
+<p>[metro] Zainstalowałeś OBS. Chcesz udostępnić sw&oacute;j monitor poprzez "Display Capture" i masz czarny ekran. O co chodzi? Jak to naprawić?</p>
+<p>Do mnie też ten problem wr&oacute;cił, gdy zainstalowałem system Windows 10 od nowa. Swoją drogą wszystkie pluginy z OBS zachowałem, ponieważ zrobiłem bezpośrednią kopię całego programu&nbsp;</p>
+<p>Z czego ten problem z czarny ekranem wynika. Dotycz on użytkownik&oacute;w, kt&oacute;rzy mają 2 karty graficzne, kt&oacute;re są zintegrowane. Jedna z nich zajmuje się grami/programami druga twoim pulpitem w systemie Windows.</p>
+<p>OBS, gdy chce rzutować ekran, to korzysta ze złej karty graficznej. Trzeba powiedzieć OBS, aby korzystał z kart graficznej odpowiedzialnej za pulpit/ekran twojego komputera.</p>
+<p>Przejdźmy więc do rozwiązania [more]</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/____637559687567482479.png" alt="Problem z OBS czarny ekran" width="385" height="225" /></p>
+<p>Na pulpicie kliknij&nbsp; prawym przyciskiem myszki i wybierz ustawienia ekranu.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___1_637559687567600104.png" alt="Ustawienia ekranu na pulpicie" width="277" height="322" /></p>
+<p>Potem z tego okna twoich monitor&oacute;w znajdź na samym dole "Ustawienia grafiki".</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___2_637559687567625912.png" alt="Ustawienia grafiki w oknie ekran Windows 10" width="336" height="199" /></p>
+<p>W tym oknie naciśnij przycisk przegląd.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___3_637559687567661128.PNG" alt="Ustawienia grafiki więcej opcji Windows 10" width="480" height="314" /></p>
+<p>Znajdź sw&oacute;j program OBS</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___6_637559687567706249.png" alt="Szukamy programu OBS" width="673" height="311" /></p>
+<p>Teraz gdy masz na liście program OBS to wciśnij przycisk "Opcję".</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___5_637559710869604363.png" alt="OBS Studio wciśnij przycisk przegląd" width="483" height="263" /></p>
+<p>W preferencjach dotyczącej grafiki wybierz opcję "oszczędzania energii" albo wybierz kartę graficzną, kt&oacute;ra odpowiada za ekran/pulpit.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___4_637559687567731600.png" alt="Preferencje grafiki oszczędzanie energii" width="393" height="297" /></p>
+<p>To wszystko. Jednak gdybyś chciał udostępniać tylko ekran swojej przeglądarki i wtedy masz czarny ekran to wtedy w tej chromo-podobnej przeglądarce musisz wyłączyć opcję "Use hardware acceleration when available"&nbsp;</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/czarny-ekran-w-obs-przy-display-capture/___7_637559687567758696.PNG" alt="Use hardware acceleration when available Google Chrome" width="475" height="136" /></p>
+--------------------------------------------------
+Response:
+ Title: Resolving Black Screen Issue with OBS using "Display Capture" on Windows 10
+
+   In this article, I will guide you through a solution to a problem I recently encountered myself when installing a fresh copy of Windows 10. The issue involved using OBS (Open Broadcaster Software) for screen capture, but instead of the expected feed, a black screen appeared. This issue specifically affects users with integrated graphics cards, which have two functions: one handles games/programs, and the other manages the system's desktop.
+
+   The root cause is that OBS utilizes the wrong graphics card when it captures the screen. To resolve this, we need to instruct OBS to use the correct graphics card responsible for your computer's desktop or monitor. Here's a step-by-step guide on how to fix this issue:
+
+   1. Right-click on the desktop and select Display settings.
+   2. Within the Display settings window, you will find a list of your monitors at the bottom labeled "Display adapter properties".
+   3. Click on "Display adapter properties" and navigate to the "Monitor" tab.
+   4. In the Monitor tab, you'll see a list of all available graphics cards. Find OBS in this list and click on its name.
+   5. In the Graphics Properties window, go to the "Power Management" tab and ensure the option "Prefer maximum performance" is selected or uncheck "Allow the computer to turn off this device to save power". This ensures that your graphics card doesn't power down when not in use.
+   6. For users who want to share only their browser screen and still encounter a black screen issue, go to your browser settings (e.g., Google Chrome), disable the "Use hardware acceleration when available" option under advanced settings.
+
+   By following these steps, you should be able to successfully capture your screen without any issues in OBS. Happy streaming!
+==================================================
+==================================================
+# Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski?
+--------------------------------------------------
+Response:
+ W tej artykułem przewodniczę Ci przez rozwiązanie problemu, którym spotkałem się właśnie podczas instalowania nowej kopii systemu Windows 10. Problem dotyczył używania OBS (Open Broadcaster Software) do nagrania obrazu ekranu, lecz zamiast oczekiwanej przesłanki pojawiło się tylko czarny ekran. Ten problem dotyczy wyłącznie użytkowników z kartami graficznymi integrowanymi, które dysponują dwiema funkcjami: jedna odpowiada za gry/programy, a druga za zarządzanie ekranem użytkownika.
+
+   Przyczyną problemu jest to, że OBS korzysta z nieprawidłowej karty graficznej podczas nagrania obrazu ekranu. Aby to poprawić, musimy tylko wezwać OBS do wykorzystania poprawnej karty graficznej odpowiedzialnej za desktop użytkownika lub monitora komputera. Poniżej znajduje się przewodnik etap-po-etap na sposób rozwiązania tego problemu:
+
+   1. Kliknij prawym przyciskiem myszy w miejscu pustym na ekranie i wybierz Ustawienia ekranu.
+   2. W oknie Ustawieniach ekranów zobaczysz listę monitorów u podstawy, która jest nazwana „Właściwości adaptatora graficznego”.
+   3. Kliknij w „Właściwości adaptatora graficznego” i przejdź do karty Monitor.
+   4. W karcie Monitor zobaczysz listę dostępnych kart graficznych. Szukaj OBS w tej liście i kliknij jego nazwę.
+   5. W oknie Właściwości urządzenia graficznego przejdź do karty Zarządzanie energii, aby uszczegółowione informacje o wybranej karcie. Upewnij się, że opcja „Preferuj maksymalną wydajność” jest zaznaczona lub wyłącz opcję „Dozwól komputerowi wylądować tę kartę aby zapobiec jej wygaszeniu”.
+   6. Użytkownicy, którzy chcą dzielić jedynie ekran przeglądarki i nadal spotykają problem z czarnym ekranem powinny przejść do ustawień swojej przeglądarki (np. Google Chrome) i wyłączyć opcję „Używaj sprzętu graficznego, kiedy dostępne” w ustawieniach zaawansowanych.
+
+   Wykonując te kroki, powinieneś zostać w stanie nagrwać ekran bez żadnych problemów za pomocą OBS. Powodzenia w transmisji!
+==================================================
+==================================================
+# JSON Format
+Prompt:
+Format your previous answer to JSON.
+Only provide a RFC8259 compliant JSON response following this format without deviation:
+{
+    "summary": "Summarize the article in no more than 100 words. Write a summary as if you were the author of the text"
+}
+--------------------------------------------------
+Response:
+ {
+      "summary": "This guide resolves the black screen issue with OBS using 'Display Capture' on Windows 10. The problem occurs when OBS utilizes the wrong graphics card for desktop capture. To fix this, users need to instruct OBS to use the correct graphics card. This can be achieved by following specific steps in the Display settings."
+   }
+==================================================
+==================================================
+# JSON Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski, zachowując format JSON?
+Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+--------------------------------------------------
+Response:
+ {
+      "summary": "Ten przewodnik rozwiązuje problem czarnego ekranu przy użyciu OBS do kapturek ekranowych w systemie Windows 10. Problem pojawia się, gdy OBS korzysta z nieprawidłowej karty graficznej podczas kaptury desktopa. Aby poprawić to, użytkownicy muszą wezwać OBS do wykorzystania poprawnej karty graficznej. To można osiągnąć przez wykonanie określonych etapów w ustawieniach ekranu."
+   }
+==================================================

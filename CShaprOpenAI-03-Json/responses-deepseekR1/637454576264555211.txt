@@ -1,0 +1,136 @@
+==================================================
+# Summary
+Prompt:
+Summarize the article in no more than 300 words.
+Write a summary as if you were the author of the text
+
+# Article content:
+
+<p>[metro] Jeśli chodzi o podsumowania bloga to ostatnie<a href="https://cezarywalenciuk.pl/blog/programing/rok-2015---355600-unikatowych-wyswietlen-i-130000-uzytkownikow" target="_blank" rel="noopener">&nbsp;robiłem w styczniu 2016 roku</a>. Dużo się od tego czasu się zmieniło.</p>
+<p>W roku 2020 wr&oacute;ciłem do swojej strony internetowej. Miałem dwuletnią przerwę w tworzeniu wpisu na bloga. Nie ma co ukrywać, ale czasem w życiu są ważniejsze rzeczy.</p>
+<p>Statystki Google Analytics pokazują brutalna prawdę faktu, że większość wpis&oacute;w na tym blogu się zestarzała. Chociaż Kurs C# nadal się trzyma. Ktoś m&oacute;głby powiedzieć, że ten blog programistyczny tonie. Tak mogłoby być, gdyby coś z tym nie zrobił.</p>
+<p>Do strony wprowadziłem wiele zmian. Oto one:</p>
+<p>W roku 2020 zrobiłem <a href="https://cezarywalenciuk.pl/blog/programing/przeniesienie-bloga-na-aspnet-core-3-1" target="_blank" rel="noopener">migrację bloga z ASP.NET MVC do ASP.NET CORE 3.2. </a>Strona dzięki temu dostała ciekawy <a href="https://cezarywalenciuk.pl/blog/programing/aspnet-core-response-compression-na-blog" target="_blank" rel="noopener">algorytm kompresji każdego zapytania HTTP.</a></p>
+<p>Poprawiłem stronę gł&oacute;wną, kt&oacute;ra przez wiele lat wyglądała tak: [more]</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/stara szata graficzna_637454605099464604.PNG" alt="Stara szata graficzna" width="500" height="391" /></p>
+<p>Aż wstyd było się chwalić swoim blogiem, gdy moja młoda morda w tej szarości Ciebie witała.</p>
+<p>Pomysł graficzny nie był zbyt dobry, a potem nie miałem czasu tego poprawić, aż do roku 2020? Jak wiesz każdy wpisy na blogu programistyczny mają sw&oacute;j dominujący kolor. Teraz ja te kolory wykorzystać na stronie gł&oacute;wnej. Po długich analizach uznałem, że taki odcień fioletu jest najlepszym kolorem do podkreślania tej tęczy kolor&oacute;w.</p>
+<p>Dodatkowo kolor ż&oacute;łty jest kolorem, kt&oacute;ry wstępuje najmniej na blogu programistycznym.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/stara szata graficzna.23232_637454605099639159.PNG" alt="Nowa strona gł&oacute;wna Cezary Walenciuk" width="498" height="393" /></p>
+<p>Zawsze też mi brakowało dobrego paska nawigacyjnego, kt&oacute;ry byłby sp&oacute;jny na wszystkich stronach i podstronach.</p>
+<p>Pojawiły się także lepsze listy do wpis&oacute;w z danego cyklu. Chciałem to zrobić od zawsze, a nigdy nie było na to czasu.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/lepsze_637454605099717441.PNG" alt="Lista wpis&oacute;w z kurs&oacute;w" width="400" height="349" /></p>
+<p>Ponownie ciesze się, że te kolory oraz ikonki metro udało mi się wykorzystać w sensowny spos&oacute;b. Wiedzieć, że ten blog żyje dłużej niż filozofia Metro UI z Windows Phone.</p>
+<p>Została także dodana lista wszystkich kurs&oacute;w i cykli. Z bloga usunąłem też nieintuicyjne meni, kt&oacute;re pokazywało kategorie. Teraz kategorię są na dole pod każdym wpisem.&nbsp;</p>
+<p>Z bloga został usunięty pomocniczy dodatek "AddThis", kt&oacute;ry dodawał przyciski do Social Media. Zobaczyłem, że spamuje on skryptami śledzącymi i stwierdziłem, że w dzisiejszych&nbsp; czasach i tak nie wiele os&oacute;b ma nawyk publikowania wpis&oacute;w na swoich kanałach social media.</p>
+<p><a href="https://cezarywalenciuk.pl/blog/programing/mailchimp-i-aspnet--stworzenie-newslettera" target="_blank" rel="noopener">Do bloga doszedł także newsletter.</a> Chociaż jest to przyszłościowe narzędzie, bo na razie nie spełnia żadnej większej funkcji.</p>
+<p><a href="https://cezarywalenciuk.pl/blog/speech" target="_blank" rel="noopener">Blog o przemawianiu został,</a> ale nie wiem czy posiadanie dw&oacute;ch blog&oacute;w na tej stronie było dobrym pomysłem. Jedyne co wiem to niekt&oacute;re wpisy z bloga o przemawianiu całkiem dobrze sobie radzą więc, aż tak źle nie jest.</p>
+<p><a href="https://cezarywalenciuk.pl/webinars" target="_blank" rel="noopener">Do strony gł&oacute;wnej doszła lista webinar&oacute;w.</a> Skoro robię webinary to fajnie by było mieć ich listę. O liście swoich prelekcji marzyłem od zawsze, ale nigdy bym nie przewidział, że będą to linki do prezentacji, kt&oacute;re sam organizuje.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/lepsze2_637454605099871429.PNG" alt="Lista webinar&oacute;w" width="496" height="396" /></p>
+<p><a href="https://cezarywalenciuk.pl/blog/programing/aplikacja-wpf-do-formatowania-kodu" target="_blank" rel="noopener">Stworzyłem program w WPF,</a> aby łatwiej mi było dodawać kod do bloga.&nbsp;</p>
+<p>Zrobiłem też przegląd wpis&oacute;w pod względem SEO i błęd&oacute;w ortograficznych. Na przykład tytuły pewnych wpis&oacute;w były za długie i je skracałem. Pomogło mi w tym płatne narzędzie :&nbsp;<a href="https://neilpatel.com/seo-analyzer/" target="_blank" rel="noopener">https://neilpatel.com/seo-analyzer/</a></p>
+<p>W roku 2020 dwa razy ten blog został uznany, za jeden z najlepszych blog&oacute;w na temat programowania.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/Posts/programing/files/2021/podsumowanie-roku-2020-na-blogu-i-nie-tylko/saskasa_637454605100011163.PNG" alt="TOP 10 w blogach programistycznych" width="400" height="348" /></p>
+<p>Zawsze coś, bo wiem, jaką mam konkurencję.</p>
+<p>Co zrobię w przyszłości, jeśli chodzi o ten blog:</p>
+<ul>
+<li>Dla szybkości może usunę Google Analytics i tak tych statystyk nie przeglądam i zastanawiam się czy mają one sens w dobie program&oacute;w, kt&oacute;re zacierają twoje ślady przeglądania internetu</li>
+<li>Dalszy przegląd starych wpis&oacute;w, ponieważ błędy językowe zawsze można znaleźć</li>
+</ul>
+<p>To wszystko. Rok 2020 był bardzo owocny. O swoje strony trzeba dbać po inaczej odejdą one w zapomnienie.&nbsp;</p>
+<p>Do zobaczenia za 5 lat.</p>
+--------------------------------------------------
+Response:
+<think>
+Okay, I need to summarize this text about the user's blog updates and future plans. Let me read through it carefully.
+
+The user has been making several changes to their blog in 2020. They improved SEO by fixing typos and shortening long titles, added a newsletter, removed the AddThis plugin due to spam concerns, reorganized categories, created a speech blog, started a webinar list, built a WPF app for code insertion, and did a content review. They also received recognition as one of the top programming blogs twice.
+
+Looking ahead, they want to stop using Google Analytics because it's intrusive, continue proofreading old posts, and focus on creating more valuable content. They plan to keep updating their website to prevent it from fading away.
+
+I should capture these key points in a concise summary, highlighting the improvements made, the recognition received, and their future goals.
+</think>
+
+In 2020, the user significantly enhanced their blog by implementing various improvements and additions. These included optimizing SEO through typo fixes and title shortening, integrating a newsletter, removing the AddThis plugin due to spam concerns, reorganizing categories, creating a dedicated speech blog, establishing a webinar list, developing a WPF app for code insertion, and conducting a comprehensive content review. The blog also gained recognition as one of the top programming blogs twice.
+
+Looking ahead, the user plans to discontinue Google Analytics due to privacy concerns, continue proofreading older posts, and focus on creating high-value content while maintaining website updates to ensure its longevity.
+==================================================
+==================================================
+# Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski?
+--------------------------------------------------
+Response:
+<think>
+Alright, the user has asked me to translate my previous response from English to Polish. Let me make sure I understand what they're looking for.
+
+In the history, I provided a summary of their blog updates and future plans in English. Now, they want that information translated into Polish.
+
+I should respond by offering the translation, ensuring accuracy and clarity so the user can easily understand the content.
+
+Also, I'll include an invitation to ask further questions or provide more details if needed.
+</think>
+
+Z czystej przemyślności:
+
+W 2020 roku użytkownik znacząco poprawił swoją bloga wprowadzając wiele ulepszeń i nowych funkcji. W tym شامل było poprawienie SEO przez poprawę błędów oraz skrócenie długich tytułów, dodanie newslettera, usunięcie pluginu AddThis z powodu wzrostu spamu, reorganizacja kategorii, tworzenie bloga poświęconego mowach, założenie listy webinarsów, stworzenie aplikacji WPF dla kodu źródłowego oraz przeprowadzenie przeglądu treści. Blog również zyskał uznanie jako jednego z najlepszych blogów programowania dwa razy.
+
+W przyszłości użytkownik planuje zaprzestawić się Google Analytics ze względu na intruzyjność, kontynuować poprawianie i czytelniście starszych postów, skoncentrując się na tworzeniu więcej wartościowych treści, oraz ciążyłbym do aktualizacji strony internetowej aby uniknąć jej pomaraństwa.
+
+Czy chcesz zapytać o czymś jeszcze lub mieć dodatkowe informacje?
+==================================================
+==================================================
+# JSON Format
+Prompt:
+Format your previous answer to JSON.
+Only provide a RFC8259 compliant JSON response following this format without deviation:
+{
+    "summary": "Summarize the article in no more than 100 words. Write a summary as if you were the author of the text"
+}
+--------------------------------------------------
+Response:
+<think>
+Alright, let's break down what the user is asking for here. They want me to take my previous response and format it into JSON following RFC8259 guidelines. The JSON should be concise, not exceeding 100 words, and act as if I'm the author summarizing the article.
+
+First, I need to recall the content of my previous answer about the user's blog updates and future plans. It included improvements made in 2020, recognition received twice as a top programming blog, and future goals like stopping Google Analytics, proofreading older posts, creating valuable content, and updating the website.
+
+Now, I have to condense this information into a summary that's both informative and within the word limit. I'll need to ensure it flows naturally and captures all key points without unnecessary details.
+
+Next, I should structure this summary strictly as JSON, adhering to RFC8259 standards. That means using proper syntax with curly braces, commas, and quotes, ensuring there are no errors or deviations from the specified format.
+
+I also need to make sure that the summary reads smoothly, as if it's a natural condensation of the original text, without losing any critical information. It should be clear and concise, fulfilling the user's request accurately.
+
+Finally, I'll present this JSON-formatted summary in a way that's easy to read, possibly adding line breaks for better readability while maintaining the integrity of the JSON structure.
+</think>
+
+```json
+{
+    "summary": "W 2020 roku użytkownik wprowadził liczne ulepszenia na swoim blogu, w tym poprawę SEO przez usuwanie błędów i skrócenie tytułów, dodanie newslettera, usunięcie pluginu AddThis z powodu spamu, reorganizację kategorii, tworzenie bloga poświęconego mowach, założenie listy webinarsów, stworzenie aplikacji WPF dla kodu źródłowego oraz przeprowadzenie przeglądu treści. Blog zyskał uznanie jako jednego z najlepszych blogów programowania dwukrotnie. W przyszłości użytkownik planuje zaprzestawić się Google Analytics, kontynuować poprawianie starszych postów, skoncentrując się na tworzeniu wartościowej treści i aktualizację strony internetowej aby uniknąć jej pomaraństwa."
+}
+```
+==================================================
+==================================================
+# JSON Translation to Polish
+Prompt:
+Możesz przetłumaczyć swoją poprzednią odpowiedź na język polski, zachowując format JSON?
+Nie dodawaj zbędnych komentarzy. Nie zapomnij o „}” na końcu obiektu JSON.
+--------------------------------------------------
+Response:
+<think>
+Okay, the user is asking me to translate my previous JSON response into Polish while maintaining the JSON format. They also specified not to add any unnecessary comments and to ensure the JSON object ends with a closing brace.
+
+First, I need to take my existing JSON response in English and accurately translate each key-value pair into Polish. The keys like "summary" should be translated appropriately, and the entire structure must remain valid JSON.
+
+I'll make sure that the translation is both accurate and natural in Polish, avoiding any loss of meaning or context from the original summary. It's important to maintain the integrity of the JSON format during this translation to prevent any syntax errors.
+
+Once translated, I'll format it properly, ensuring that all strings are enclosed in double quotes and that the JSON structure is correctly formatted with commas separating each key-value pair and proper use of colons and brackets.
+
+Finally, I'll review the translated JSON to make sure there are no typos or syntax errors, and that it meets the user's requirement of having no extra comments or deviations from the specified format.
+</think>
+
+```json
+{
+    "summarium": "W 2020 roku użytkownik wprowadził liczne ulepszenia na swoim blogu, w tym poprawę SEO przez usuwanie błędów i skrócenie tytułów, dodanie newslettera, usunięcie pluginu AddThis z powodu spamu, reorganizację kategorii, tworzenie bloga poświęconego mowach, założenie listy webinarsów, stworzenie aplikacji WPF dla kodu źródłowego oraz przeprowadzenie przeglądu treści. Blog zyskał uznanie jako jednego z najlepszych blogów programowania dwukrotnie. W przyszłości użytkownik planuje zaprzestawić się Google Analytics, kontynuować poprawianie starszych postów, skoncentrując się na tworzeniu wartościowej treści i aktualizację strony internetowej aby uniknąć jej pomaraństwa."
+}
+```
+==================================================
