@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35617.110 d17.13
+VisualStudioVersion = 17.13.35617.110
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShaprOpenAI-01-Simple", "CShaprOpenAI\CShaprOpenAI-01-Simple.csproj", "{A3C6D3C4-D6F5-47F7-86EF-08CE3E76D1EA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShaprOpenAI-02-ChatHistory", "CShaprOpenAI-01-ChatHistory\CShaprOpenAI-02-ChatHistory.csproj", "{2C0A54F2-89B5-4C4B-8D54-68E911857FD5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShaprOpenAI-03-Json", "CShaprOpenAI-03-Json\CShaprOpenAI-03-Json.csproj", "{C4A7CEA1-1C72-4C93-AB09-C8F02CEFF928}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShaprOpenAI-01-Simple", "CShaprOpenAI-01-Simple\CShaprOpenAI-01-Simple.csproj", "{4EE3F587-C8BE-6508-6D6E-1F469C181870}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShaprOpenAI-02-ChatHistory", "CShaprOpenAI-02-ChatHistory\CShaprOpenAI-02-ChatHistory.csproj", "{D909F6BC-AADB-A850-A7B8-5F762434E125}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A3C6D3C4-D6F5-47F7-86EF-08CE3E76D1EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3C6D3C4-D6F5-47F7-86EF-08CE3E76D1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3C6D3C4-D6F5-47F7-86EF-08CE3E76D1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3C6D3C4-D6F5-47F7-86EF-08CE3E76D1EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C0A54F2-89B5-4C4B-8D54-68E911857FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C0A54F2-89B5-4C4B-8D54-68E911857FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C0A54F2-89B5-4C4B-8D54-68E911857FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C0A54F2-89B5-4C4B-8D54-68E911857FD5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C4A7CEA1-1C72-4C93-AB09-C8F02CEFF928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4A7CEA1-1C72-4C93-AB09-C8F02CEFF928}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4A7CEA1-1C72-4C93-AB09-C8F02CEFF928}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4A7CEA1-1C72-4C93-AB09-C8F02CEFF928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE3F587-C8BE-6508-6D6E-1F469C181870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE3F587-C8BE-6508-6D6E-1F469C181870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE3F587-C8BE-6508-6D6E-1F469C181870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE3F587-C8BE-6508-6D6E-1F469C181870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D909F6BC-AADB-A850-A7B8-5F762434E125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D909F6BC-AADB-A850-A7B8-5F762434E125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D909F6BC-AADB-A850-A7B8-5F762434E125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D909F6BC-AADB-A850-A7B8-5F762434E125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

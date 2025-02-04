@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 var builder = Host.CreateApplicationBuilder();
 
-builder.Services.AddChatClient(new OllamaChatClient(new Uri("http://localhost:11434"), "mistral"));
+builder.Services.AddChatClient(new OllamaChatClient(new Uri("http://localhost:11434"), "deepseek-r1:8b"));
 
 var app = builder.Build();
 
